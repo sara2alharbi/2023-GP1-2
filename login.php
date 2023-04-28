@@ -42,9 +42,7 @@ if (isset($_SESSION["user"])) {
 
    <div class="icons">
       <div id="menu-btn" class="fas fa-bars"></div>
-      <div id="info-btn" class="fas fa-info-circle"></div>
-      <div id="search-btn" class="fas fa-search"></div>
-      <a  href="log-in.php"><div id="login-btn"  class="fas fa-user"></div></a>
+    </div>
 </header>
 
     <div class="container">
