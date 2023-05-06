@@ -19,5 +19,8 @@ if (!isset($_SESSION["user"])) {
         <h1>Welcome to Dashboard</h1>
         <a href="logout.php" class="btn btn-warning">Logout</a>
     </div>
+
+    <h3>Temperature monitor</h3>
+    <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2135382/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&yaxis=temperature"></iframe>
 </body>
 </html>
