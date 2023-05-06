@@ -235,10 +235,10 @@
 <section class="footer">
 
    <div class="links">
-      <a class="btn" href="#home">الرئيسية</a>
       <a class="btn" href="#about">من نحن</a>
       <a class="btn" href="#services">خدماتنا</a>
       <a class="btn" href="#contact">تواصل معنا</a>
+      <a class="btn" href="#home">الرئيسية</a>
    </div>
 
    <div class="credit"> created by <span>Elmam team</span> | all rights reserved! </div>
