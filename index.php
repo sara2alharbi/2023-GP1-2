@@ -29,7 +29,7 @@
       <a href="#home">الرئيسية </a>
       <a href="#about">من نحن</a>
       <a href="#services">خدماتنا</a>
-      <a href="#contact">تواصل معنا</a>
+      <a href="#contact">تواصل معنا</a> 
    </nav>
 
    <div class="icons">
