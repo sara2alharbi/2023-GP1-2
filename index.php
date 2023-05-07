@@ -67,8 +67,8 @@
    </div>
 
    <div class="share">
-      <a href="#" class="fab fa-twitter"></a>
-      <a href="#" class="fab fa-instagram"></a>
+      <a href="https://twitter.com/elmam_sa?s=11&t=bQf4d5cu-HYAhb1QcYfSJQ" class="fab fa-twitter"></a>
+      <a href="https://instagram.com/elmam_sa?igshid=YmMyMTA2M2Y=" class="fab fa-instagram"></a>
    </div>
 
 </div>
@@ -83,7 +83,7 @@
 
       <div class="swiper-wrapper">
 
-         <section class="swiper-slide slide" style="background: url(images/bg2.jpg) no-repeat;">
+         <section class="swiper-slide slide" style="background: url(images/home-slide-1.jpg) no-repeat;">
             <div class="content">
                <h3>نوفر أفضل الخدمات</h3>
                <p>تمتع بمراقبة درجة الحرارةو جودة الهواء في أي وقت تريده</p>
@@ -91,7 +91,7 @@
             </div>
          </section>
 
-         <section class="swiper-slide slide" style="background: url(images/bg.jpg) no-repeat;">
+         <section class="swiper-slide slide" style="background: url(images/home-slide-2.jpg) no-repeat;">
             <div class="content">
                <h3>راحتك هدفنا</h3>
                <p>تمتع بالحصول على تقارير ملخصة لحالة المبنى</p>
@@ -99,7 +99,7 @@
             </div>
          </section>
 
-         <section class="swiper-slide slide" style="background: url(images/home-slide-3.jpg) no-repeat;">
+         <section class="swiper-slide slide" style="background: url(images/home-slide-4.jpg) no-repeat;">
             <div class="content">
                <h3>راحة العميل أولويتنا</h3>
                <p>نقدم جميع خدماتنا دون إنتهاك خصوصية الزائر </p>
@@ -162,25 +162,25 @@
       </div>
 
       <div class="box">
-         <img src="images/report.png" alt="">
-         <h3>تقارير للمبنى</h3>
-         <p>توفير تقارير ملخصة خاصة بالمبنى،تقدم معلومات عن حالة الغرف داخل المبنى </p>
+         <img src="images/sound.png" alt="">
+         <h3>مراقبة الأصوات</h3>
+         <p>نستخدم أفضل الحسسات لمراقبة الأصوات داخل الغرفةحيث نستطيع معرفة حالة الغرفة مشغولة/متاحة،مع المحافظة على سرية وخصوصية الزائر</p>
       </div>
 
       <div class="box">
-         <img src="images/caution.png" alt="">
-         <h3>الإبلاغ عن تنبيه إذا كانت هناك مشكلة محتملة</h3>
-         <p>نستخدم أحدث المسشتعرات في نظامنا،حيث تمكننا من التنبؤ بحدوث المشاكل ونستطيع تفاديها بشكل أسرع والإبلاغ عنها للجهات المختصة بذلك</p>
+         <img src="images/report.png" alt="">
+         <h3>تقارير للمبنى</h3>
+         <p>توفير تقارير ملخصة خاصة بالمبنى،تقدم معلومات عن حالة درجات الحرارة ،جودة الهواء </p>
       </div>
-      
-      <div class="box">
+         
+      <div class="box" >
   
          <img src="images/map.png" alt="">
          <h3>عرض خريطة للمبنى</h3>
          <p>نوفر خريطة لمداخل ومخارج المبنى و أماكن الغرف المتواجدة داخل المبنى</p>
       </div>
 
-      <div class="box">
+      <div class="box" >
          <img src="images/aviliable.png" alt="">
          <h3>عرض الغرف المتاحة في المبنى</h3>
          <p>من خلال مستشعراتنا نستطيع توفير الجهد على مدير المبنى حيث يستطيع معرفة الغرف المتاحة في وقت معين</p>
@@ -192,14 +192,8 @@
          <p>لإن راحة الزائر هي هدفنا فنحن نعمل على تحقيق جميع خدماتنا دون إنتهاك خصوصية الزائر</p>
       </div>
 
-      <div class="box">
-         <img src="images/sound.png" alt="">
-         <h3>مراقبة الأصوات</h3>
-         <p>نستخدم أفضل الحسسات لمراقبة الأصوات داخل الغرفةحيث نستطيع معرفة حالة الغرفة مشغولة/متاحة،مع المحافظة على سرية وخصوصية الزائر</p>
-      </div>
-
+</div>
  
-   </div>
 
 </section>
 
@@ -235,10 +229,10 @@
 <section class="footer">
 
    <div class="links">
+      <a class="btn" href="#home">الرئيسية</a>
       <a class="btn" href="#about">من نحن</a>
       <a class="btn" href="#services">خدماتنا</a>
       <a class="btn" href="#contact">تواصل معنا</a>
-      <a class="btn" href="#home">الرئيسية</a>
    </div>
 
    <div class="credit"> created by <span>Elmam team</span> | all rights reserved! </div>

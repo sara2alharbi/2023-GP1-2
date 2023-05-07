@@ -3,12 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Kufam&family=Lateef:wght@200;300;400&display=swap');
 
 :root {
-  --yellow:#f5bf23;
   --darkblue:#184E77;
   --black:#111;
   --white:#fff;
   --lightgreen : #D9ED92; 
-  --light-color:#666;
   --light-bg:#eee;
   --bluen : #168AAD;
   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
@@ -170,52 +168,6 @@ section {
 .header #menu-btn {
   display: none;
 }
-
-.header .search-form {
-  position: absolute;
-  top: 120%;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  width: 70rem;
-  background: var(--white);
-  -webkit-box-shadow: var(--box-shadow);
-          box-shadow: var(--box-shadow);
-  padding: 1rem;
-  display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 1rem;
-  -webkit-animation: fadeIn .2s linear;
-          animation: fadeIn .2s linear;
-}
-
-.header .search-form.active {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.header .search-form input {
-  width: 100%;
-  padding: 1.2rem 1.4rem;
-  background: var(--light-bg);
-  font-size: 1.6rem;
-  color: var(--light-color);
-}
-
-.header .search-form label {
-  font-size: 2.5rem;
-  color: var(--black);
-  cursor: pointer;
-  margin: 0 1rem;
-}
-
-.header .search-form label:hover {
-  color: var(--darkblue);
-}
-
 
 .contact-info {
   position: fixed;
@@ -477,7 +429,6 @@ section {
 }
 
 
-
 .services .box-container .box {
   text-align: center;
   padding: 3rem;
@@ -487,10 +438,12 @@ section {
   border: var(--border);
 }
 
+
 .services .box-container .box:hover img {
   -webkit-transform: translateY(-1rem);
           transform: translateY(-1rem);
 }
+
 
 .services .box-container .box img {
   height: 7rem;
@@ -596,21 +549,6 @@ section {
   text-align: center;
 }
 
-.footer .links .btn {
-  margin: .5rem;
-}
-
-.footer .credit {
-  font-size: 2rem;
-  color: var(--black);
-  text-transform: capitalize;
-  margin-top: 2rem;
-  padding-top: 1rem;
-}
-
-.footer .credit span {
-  color: var(--lightgreen);
-}
 
 @media (max-width: 1200px) {
   .header {
@@ -655,12 +593,6 @@ section {
 }
 
 @media (max-width: 768px) {
-  .header .search-form {
-    width: 90%;
-  }
-  .header .login-form {
-    width: 90%;
-  }
   .home .slide {
     -webkit-box-pack: center;
         -ms-flex-pack: center;

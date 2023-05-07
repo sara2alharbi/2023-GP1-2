@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 :root{
-   --yellow:#f5bf23;
    --black:#111;
    --white:#fff;
-   --light-color:#666;
    --light-bg:#eee;
    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
    --border:.1rem solid rgba(0,0,0,.3);
@@ -143,59 +141,6 @@ section{
       display: none;
    }
 
-   .search-form{
-      position: absolute;
-      top:120%; left:50%;
-      transform: translateX(-50%);
-      width: 70rem;
-      background: var(--white);
-      box-shadow: var(--box-shadow);
-      padding:1rem;
-      display: none;
-      align-items: center;
-      gap:1rem;
-      animation: fadeIn .2s linear;
-
-      &.active{
-         display: flex;
-      }
-
-      input{
-         width: 100%;
-         padding:1.2rem 1.4rem;
-         background: var(--light-bg);
-         font-size: 1.6rem;
-         color:var(--light-color);
-      }
-
-      label{
-         font-size: 2.5rem;
-         color:var(--black);
-         cursor: pointer;
-         margin:0 1rem;
-
-         &:hover{
-            color:var(--yellow);
-         }
-      }
-   }
-
-   .login-form{
-      position: absolute;
-      top:120%; left:50%;
-      transform: translateX(-50%);
-      width: 40rem;
-      background: var(--white);
-      box-shadow: var(--box-shadow);
-      padding:2rem;
-      text-align: center;
-      animation: fadeIn .2s linear;
-      display: none;
-
-      &.active{
-         display: block;
-      }
-
       h3{
          @include titleText(2.5rem);
          padding-bottom: 1rem;
@@ -253,7 +198,7 @@ section{
          }
       }
    }
-}
+
 
 .contact-info{
    position: fixed;
@@ -286,11 +231,6 @@ section{
 
    .info{
       padding:2rem 0;
-
-      i{
-         @include iconsBox();
-         margin-bottom: .5rem;
-      }
 
       h3{
          @include titleText(2rem);
@@ -464,164 +404,6 @@ section{
    }
 }
 
-.projects{
-   background: var(--black);
-
-   .heading{
-      color:var(--white);
-   }
-
-   .box-container{
-      @include grid(30rem);
-
-      .box{
-         cursor: initial;
-
-         &:hover .image img{
-            transform: scale(1.1);
-         }
-
-         .image{
-            height: 40rem;
-            overflow: hidden;
-
-            img{
-               height: 100%;
-               width: 100%;
-               object-fit: cover;
-               transition:.2s linear;
-            }
-         }
-
-         .content{
-            display: flex;
-            background: var(--white);
-            justify-content: space-between;
-
-            .info{
-               padding:1rem 2rem;
-
-               h3{
-                  @include titleText(1.7rem);
-               }
-
-               p{
-                  @include graphText(1.5rem);
-               }
-            }
-
-            i{
-               width: 7.5rem;
-               font-size: 3rem;
-               background: var(--yellow);
-               color:var(--white);
-               cursor: pointer;
-               text-align: center;
-               line-height: 7.5rem;
-            }
-         }
-      }
-   }
-}
-
-.reviews{
-
-   .slide{
-
-      p{
-         padding:1.5rem;
-         background: var(--light-bg);
-         position: relative;
-         margin-bottom: 3rem;
-         @include graphText(1.4rem);
-
-         &::before{
-            content: '';
-            position: absolute;
-            bottom:-1rem; left:2rem;
-            height: 2rem;
-            width: 2rem;
-            background: var(--light-bg);
-            transform: rotate(45deg);
-         }
-      }
-
-      .user{
-         display: flex;
-         align-items: center;
-         gap:1.5rem;
-
-         img{
-            height: 7rem;
-            width: 7rem;
-         }
-
-         h3{
-            @include titleText(2rem);
-         }
-
-         .stars{
-            padding-top: .5rem;
-
-            i{
-               font-size: 1.4rem;
-               color:var(--yellow);
-            }
-         }
-      }
-   }
-}
-
-.pricing{
-   background: var(--light-bg);
-
-   .box-container{
-      @include grid(30rem);
-
-      .box{
-         background: var(--white);
-         text-align: center;
-         padding:2rem;
-         border:var(--border);
-         box-shadow: var(--box-shadow);
-
-         i{
-            font-size: 3rem;
-            height: 7rem;
-            width: 7rem;
-            line-height: 7rem;
-            border-radius: 50%;
-            margin-bottom: 2rem;
-            background: var(--yellow);
-            color:var(--black);
-         }
-
-         h3{
-            @include titleText(2rem);
-            font-weight: normal;
-         }
-
-         .price{
-            padding:1rem 0;
-            @include titleText(5rem);
-
-            span{
-               font-size: 2rem;
-            }
-         }
-
-         .list{
-            padding:1rem 0;
-
-            p{
-               padding:1rem 0;
-               @include graphText(1.4rem);
-            }
-         }
-      }
-   }
-}
-
 .contact{
    background: var(--black);
 
@@ -669,49 +451,6 @@ section{
    }
 }
 
-.blogs{
-   background: var(--light-bg);
-
-   .slide{
-      text-align: center;
-
-      &:hover .image img{
-         transform: scale(1.1);
-      }
-
-      .image{
-         height: 25rem;
-         width: 90%;
-         overflow: hidden;
-         margin:0 auto;
-         margin-bottom: -3rem;
-
-         img{
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            transition: .2s linear;
-         }
-      }
-
-      .content{
-         padding:2rem;
-         padding-top: 5rem;
-         background: var(--white);
-         box-shadow: 0 0 1.5rem rgba(0,0,0,.2);
-
-         h3{
-            @include titleText(2rem);
-         }
-
-         p{
-            padding:1rem 0;
-            @include graphText(1.4rem);
-         }
-      }
-   }
-}
-
 .logo-container{
    text-align: center;
 
@@ -740,18 +479,6 @@ section{
       }
    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -808,16 +535,6 @@ section{
 
 @media (max-width:768px){
 
-   .header{
-
-      .search-form{
-         width: 90%;
-      }
-
-      .login-form{
-         width: 90%;
-      }
-   }
 
    .home .slide{
       justify-content: center;
