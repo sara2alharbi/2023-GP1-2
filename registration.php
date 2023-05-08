@@ -21,7 +21,7 @@ if (isset($_SESSION["user"])) {
      <link rel="stylesheet"  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/reg-log.css">
 
 </head>
 <body>
