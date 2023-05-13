@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,19 +41,17 @@
 
     <div class="content">
 
-        <span>إلـمـام</span>
-        <h3>فـي كُل مكانٍ وزمان،راحتُك هدفُنا</h3>
+        <h1 dir="rtl">إلـمـام</h1>
+        <br>
+        <h3 dir="rtl" lang="ar">فـي كُل مكانٍ وزمان،راحتُك هدفُنا</h3>
         <br>
         <br>
         <br>
-        <div class="p1">
-        <p>مرحبًا بك في إلـمـام المخصص لمراقبة البيئة الداخلية نحن نعلم أن البيئة</p>
-        <p>     الداخلية تؤثر بشكل كبير على صحتك وراحتك، ولذلك نحن هنا لنساعدك في</p>
-        <p>  تحسين جودة حياتك.يمكنك الاعتماد على موقعنا لتوفير بيئة صحية ومريحة في</p>
-        <p> المنزل أو مكان العمل.تفضل بزيارة موقعنا الآن وابدأ في تحسين جودة حياتك</p>
-        </div>
-        <a href="#prevent" class="btn">تعرف أكثر</a>
-
+        <p  dir="rtl">مرحبًا بك في إلـمـام المخصص لمراقبة البيئة الداخلية نحن نعلم أن البيئة</p>
+        <p  dir="rtl">     الداخلية تؤثر بشكل كبير على صحتك وراحتك، ولذلك نحن هنا لنساعدك في</p>
+        <p  dir="rtl">  تحسين جودة حياتك.يمكنك الاعتماد على موقعنا لتوفير بيئة صحية ومريحة في</p>
+        <p  dir="rtl"> المنزل أو مكان العمل.تفضل بزيارة موقعنا الآن وابدأ في تحسين جودة حياتك</p>
+        <a href="#about" class="btn">تعـرف أكثر</a>
     </div>
 
     <div class="image">
@@ -64,7 +62,7 @@
 
 <!-- home section ends -->
 
-<!-- prevent about starts  -->
+<!-- about starts  -->
 
 <section class="about" id="about">
 
@@ -75,16 +73,16 @@
         </div>
 
         <div class="content">
-            <h1 class="heading">عن إلـمـام</h1>
+            <h1 class="heading" dir="rtl">عن إلـمـام</h1>
             <br>
             <br>
             <div class="about-text">
-            <p>نحن فريق إلمام يقوم نظامنا على قيم الابتكار والجودة والخدمة الرائعة  </p>
-            <p>ونحن نؤمن بأن تقديم أفضل خدمة تساعد على تحسين جودة حياة الأفراد </p>
-            <p> نحن نعمل على مراقبة درجة الحرارة وجودة الهواء في الغرف داخل المبنى </p>
-            <p>دون انتهاك خصوصية الزائر . نقدم أفضل الخدمات وأجدد التقنيات</p>
+            <p  dir="rtl" lang="ar">نحن فريق إلمام يقوم نظامنا على قيم الابتكار والجودة والخدمة الرائعة  </p>
+            <p  dir="rtl" lang="ar">ونحن نؤمن بأن تقديم أفضل خدمة تساعد على تحسين جودة حياة الأفراد </p>
+            <p  dir="rtl" lang="ar"> نحن نعمل على مراقبة درجة الحرارة وجودة الهواء في الغرف داخل المبنى </p>
+            <p  dir="rtl" lang="ar">دون انتهاك خصوصية الزائر . نقدم أفضل الخدمات وأجدد التقنيات</p>
 </div>
-           <!-- <a href="https://youtu.be/JAMxqWVDJUE" class="btn-about"> شـاهـد</a>-->
+            <a href="#about" class="btn"> شـاهـد</a>
         </div>
     </div>
 </section>
@@ -100,20 +98,42 @@
 
         <div class="box">
             <img src="images/sound.png" alt="">
-            <h3></h3>
-            <p></p>
-        </div>
-
-        <div class="box">
-            <img src="images/map.png" alt="">
-            <h3></h3>
-            <p></p>
+            <h3>مراقبة الأصوات</h3>
+            <p>نستخدم أفضل الحسسات لمراقبة الأصوات داخل الغرفة حيث نستطيع معرفة حالة الغرفة مشغولة/متاحة،مع المحافظة على سرية وخصوصية الزائر</p>
         </div>
 
         <div class="box">
             <img src="images/air.png" alt="">
-            <h3></h3>
-            <p></p>
+            <h3>مراقبة جودة الهواء </h3>
+            <br> <br>
+            <p>نعمل على مراقبة جودة الهواء في المبنى من خلال مستشعرات خاصة بالهواء، لضمان المحافظة على صحة زوار المبنى</p>
+        </div>
+
+        <div class="box">
+            <img src="images/temp.png" alt="">
+            <h3>مراقبة درجة الحرارة</h3>
+            <br><br><br><br>
+            <p>نعمل على مراقبة درجة الحرارة من خلال مستشعرات خاصة،لنمكن الزوار من أخذ كافة راحتهم في المبنى</p>
+        </div>
+
+        <div class="box">
+            <img src="images/report.png" alt="">
+            <h3>تقارير للمبنى</h3>
+            <br><br><br><br>
+            <p> توفير تقارير ملخصة خاصة بالمبنى،تقدم معلومات عن حالة درجات الحرارة ،جودة الهواء</p>
+        </div>
+
+        <div class="box">
+            <img src="images/map.png" alt="">
+            <h3> عرض خريطة للمبنى</h3>
+            <br><br><br><br>
+            <p>نوفر خريطة لمداخل ومخارج المبنى و أماكن الغرف المتواجدة داخل المبنى</p>
+        </div>
+
+        <div class="box">
+            <img src="images/aviliable.png" alt="">
+            <h3> عرض الغرف المتاحة في المبنى</h3>
+            <p>من خلال مستشعراتنا نستطيع توفير الجهد على مدير المبنى حيث يستطيع معرفة الغرف المتاحة في وقت معين</p>
         </div>
 
     </div>
@@ -121,7 +141,7 @@
 </section>
 <!-- footer section starts  -->
 
-<section class="footer">
+<section class="footer" dir="rtl">
 
     <div class="box-container">
 
@@ -135,12 +155,10 @@
 
         <div class="box">
             <h3>الروابط السريعة</h3>
-            <a href="#">الصفحة الرئيسية</a>
-            <a href="#">عن إلمام</a>
-            <a href="#">خدماتنا</a>
-            <a href="#">التسجيل</a>
-           
-           
+            <a href="#home" >الصفحة الرئيسية</a>
+            <a href="#about">عن إلمام</a>
+            <a href="#services">خدماتنا</a>
+            <a href="register.php">التسجيل</a>  
         </div>
 
         <div class="box">
@@ -165,7 +183,7 @@
 <!-- scroll top  -->
 
 <a href="#home" class="scroll-top">
-    <img src="images/scroll-img.png" alt="">
+    <img src="images/office-building.png" alt="">
 </a>
 
 

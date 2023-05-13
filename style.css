@@ -3,9 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Kufam&family=Lateef:wght@200;300;400&display=swap');
 
-:root{
-    --red:#FF4F5B;
-}
+
 
 *{
     font-family: 'Roboto', sans-serif;
@@ -33,11 +31,11 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-    background: #000;
+    background: #fff;
 }
 
 html::-webkit-scrollbar-thumb{
-    background: var(--red);
+    background: #B5E48C;
 }
 
 body{
@@ -55,7 +53,7 @@ section{
     margin-top: 1rem;
     padding:1rem 4rem;
     border-radius: 5rem;
-    background:var(--red);
+    background:#184E77;
     color:#fff;
     overflow: hidden;
     position: relative;
@@ -70,7 +68,7 @@ section{
     height: 100%;
     width: 100%;
     z-index: -1;
-    background:#444;
+    background:#76C893;
     clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
     transition:.3s linear;
 }
@@ -163,32 +161,25 @@ header .navbar ul li a:hover{
     flex:1 1 40rem;
 }
 
-.home .content span{
+.home .content h1{
     color:#168AAD;
-    font-size: 4rem ;
+    font-size: 4rem;
     font-style: italic;
     font-family: 'Kufam', sans-serif;
-    position:relative; right:-450px; top:-9px;
 }
 
 .home .content h3{
     color:#666;
-    font-size: 2rem;
-    font-style: italic;
-    font-family: 'Kufam', sans-serif;
-    position:relative; right:-166px; top:-4px;
+    font-size: 3rem;
 }
 
 .home .content p{
     color:#666;
     font-size: 2rem;
     padding:1rem 0;
-    position:relative; right:-100px; top:-0.02px;
 }
 
-.p1{
-    justify-content: center;
-}
+
 
 .services .heading{
     text-align: center;
@@ -251,7 +242,7 @@ header .navbar ul li a:hover{
     padding:2rem 0;
 }
 
-.preaboutvent .row .image{
+.about .row .image{
     flex:1 1 37rem;
     height:35rem;
     text-align: center;
@@ -272,30 +263,20 @@ header .navbar ul li a:hover{
     color:#168AAD;
     font-style: italic;
     font-family: 'Kufam', sans-serif;
-    position:relative; right:-500px; top:-9px;
 }
 
 .about .row .content p{
+    font-size: 1.7rem;
     color:#666;
-    font-size: 2rem;
     padding:1rem 0;
-    position:relative; right:-350px; top:-9px;
 }
-
-/*.about-text{
-    text-justify: auto;
-}*/
 
 .about .row .content ul li{
     margin-left: 2rem;
     font-size: 1.5rem;
-    color:#aaa;
+    color:#666;
     padding:.5rem 0;
 }
-
-
-
-
 
 
 /* footer ===================================================== */
