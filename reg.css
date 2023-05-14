@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kufam&family=Lateef:wght@200;300;400&display=swap');
+
+
 :root{
     --red:#76C893;
 }
@@ -30,7 +34,7 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-    background: #000;
+    background: #fff;
 }
 
 html::-webkit-scrollbar-thumb{
@@ -126,11 +130,6 @@ header .navbar ul li a:hover{
 }
 /* header end ---------------------------------------------------------------------------------- */
 /* reg code new ---------------------------------------------------------------------------------- */
-
-
-
-
-
 
 h1 {
     font-weight: bold;
@@ -340,8 +339,9 @@ button.ghost {
     min-height: auto;
     padding-top: 0;
     background:#184E77;
-}
+    font-family: 'Roboto', sans-serif;
 
+}
 
 
 .footer .box-container{
@@ -428,6 +428,7 @@ button.ghost {
 .scroll-top img{
     height: 7rem;
 }
+
 
 /* media queries--------------------------------------------------------  */
 

@@ -28,9 +28,9 @@
 
     <nav class="navbar">
         <ul>
-            <li><a class="active" href="index.php">الصفحة الرئيسية</a></li>
+            <li><a class="active"  href="index.php">الصفحة الرئيسية</a></li>
             <li><a href="index.php #about">عن إلمام</a></li>
-            <li><a href="#symtoms">خدماتنا</a></li>
+            <li><a href="index.php #services">خدماتنا</a></li>
             <li ><a href="register.php" id="reg">التسجيل</a></li>
         </ul>
     </nav>
@@ -44,9 +44,9 @@
             <form action="#">
                 <h1>أنشاء حساب جديد</h1>
 
-                <input type="text" placeholder="الأسم" />
-                <input type="email" placeholder="الإيميل" />
-                <input type="password" placeholder="كلمة المرور" />
+                <input  dir="rtl" type="text" placeholder="الأسم" />
+                <input  dir="rtl"type="email" placeholder="الإيميل" />
+                <input  dir="rtl"type="password" placeholder="كلمة المرور" />
                 <button>تسجيل</button>
             </form>
         </div>
@@ -55,8 +55,8 @@
                 <h1>تسجيل الدخول</h1>
 
               
-                <input type="email" placeholder="الإيميل" />
-                <input type="password" placeholder="كلمة المرور" />
+                <input dir="rtl" type="email" placeholder="الإيميل" />
+                <input dir="rtl" type="password" placeholder="كلمة المرور" />
                 <a href="#">هل نسيت كلمة المرور</a>
                 <button>تسجيل دخول</button>
             </form>
@@ -126,8 +126,8 @@
 
 <!-- scroll top  -->
 
-<a href="#home" class="scroll-top">
-    <img src="images/scroll-img.png" alt="">
+<a href="#menu" class="scroll-top">
+    <img src="images/office-building.png" alt="">
 </a>
 
 
