@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="styleDash.css">
+
+	<title>إلـمـام</title>
+</head>
+<body>
+
+	<!-- SIDEBAR -->
+	<section  dir="rtl" id="sidebar">
+		<a href="index.php" class="brand">
+		<span class="name">إلـمـام</span>
+		</a>
+		
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-thermometer'></i>
+					<span class="text" >إحصائية درجة الحرارة والرطوبة</span>
+					
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bx-wind'></i>
+					<span class="text">إحصائية جودة الهواء </span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bx-user-voice'></i>
+					<span class="text">إحصائية الضوضاء</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bx-line-chart'></i>
+					<span class="text">إحصائية غرف المبنى</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-report' ></i>
+					<span class="text">تقارير المبنى</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">الإعدادات</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">تسجيل الخروج</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+			<div class="head-title">
+				<div class="left">
+					<h1 dir="rtl" class="temp" style="margin-left: 1000px;">درجة الحرارة </h1>
+				</div>
+			</div>
+			<br>
+			<br>
+			<iframe width="450" height="260" style="border: 1px solid #cccccc; margin-left:60%;" src="https://thingspeak.com/channels/2141450/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&title=%D9%85%D8%B1%D8%A7%D9%82%D8%A8%D8%A9+%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9&type=line&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9"></iframe>
+
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="script-1.js"></script>
+</body>
+</html>
