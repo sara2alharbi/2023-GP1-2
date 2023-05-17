@@ -1,42 +1,42 @@
 /*Temperature and Humidity monitoring system with Thingspeak
  */
  
-#include <ESP8266WiFi.h>
-#include "DHT.h"
+#include <ESP8266WiFi.h> /*esp laibraly*/
+#include "DHT.h" /*dht11 sensor*/
 
-String apiKey = "I9F3CYB6H5WJA8WT";
-const char *ssid =  "HUAWEI-523B";
-const char *pass =  "516DA29HQ64";
-const char* server = "api.thingspeak.com";
+String apiKey = "I9F3CYB6H5WJA8WT"; /*API key*/
+const char *ssid =  "S"; /*wifi name*/
+const char *pass =  "S1234566"; /*wifi password*/
+const char* server = "api.thingspeak.com"; /*IoT server*/
 
 DHT dht(D2, DHT11);
 
 WiFiClient client;
 
-void setup() {
+void setup() { /*start wifi connection*/
   Serial.begin(115200);
   delay(10);
   dht.begin();
   WiFi.begin(ssid, pass);
 
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) { /*while conectting print ..*/
     delay(500);
     Serial.print(".");
   }
   Serial.println("");
-  Serial.println("WiFi connected");
+  Serial.println("WiFi connected"); /*connection succseful*/
 }
 
 void loop() {
-  float h = dht.readHumidity();
-  float t = dht.readTemperature();
+  float h = dht.readHumidity(); /*reading data from sensor*/
+  float t = dht.readTemperature()*1.8+32;
 
   if (isnan(h) || isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
+    Serial.println("Failed to read from DHT sensor!"); /*sensor not connect corectlly*/
     return;
   }
 
-  if (client.connect(server, 80)) {
+  if (client.connect(server, 80)) {  /*start sending data and printing*/ 
     String postStr = apiKey;
     postStr += "&field1=";
     postStr += String(t);
@@ -62,5 +62,5 @@ void loop() {
 
   }
   client.stop();
-  delay(1000);
+  delay(500);
 }
