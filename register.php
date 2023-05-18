@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="reg.css"> 
+    <link rel="stylesheet" href="CSS/reg.css"> 
 
 </head>
 <body>
@@ -165,7 +165,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- custom js file link  -->
-<script src="script.js"></script>
+<script src="javaScript/script.js"></script>
 
 
 </body>
