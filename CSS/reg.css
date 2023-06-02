@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Kufam&family=Lateef:wght@200;300;400&display=swap');
 :root{
-    --red:#76C893;
+    --green:#76C893;
 }
 
 *{
@@ -34,11 +34,11 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-    background: #000;
+    background: #fff;
 }
 
 html::-webkit-scrollbar-thumb{
-    background: var(--red);
+    background: var( --green);
 }
 
 body{
