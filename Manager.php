@@ -67,15 +67,15 @@
 
         <div class="box" >
             <br>
-            <a href = ""><img src="images/sound.png" alt=""></a>
-            <a href = ""><h3>راقب مستوى الضوضاء</h3></a>
+            <a href = "Sound.php"><img src="images/sound.png" alt=""></a>
+            <a href = "Sound.php"><h3>راقب مستوى الضوضاء</h3></a>
             <br>
         </div>
 
         <div class="box">
             <br>
-            <a href = ""><img src="images/air.png" alt=""></a>
-            <a href = ""><h3>راقب جودة الهواء </h3></a>
+            <a href = "Airquality.php"><img src="images/air.png" alt=""></a>
+            <a href = "Airquality.php"><h3>راقب جودة الهواء </h3></a>
             <br> 
         </div>
 
@@ -102,7 +102,7 @@
 
         <div class="box">
             <br>
-            <a href = ""><img src="images/aviliable.png" alt=""></a>
+            <a href = "Aviliable_room.php"><img src="images/aviliable.png" alt=""></a>
             <a href = ""><h3> اعرض الغرف المتاحة في المبنى</h3></a>
         </div>
 

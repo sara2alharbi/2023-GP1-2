@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>درجةالحرارة و الرطوبة</title>
+    <title>جودة الهواء</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -36,51 +36,43 @@
 
     <div class="content">
 
-        <h1 dir="rtl">درجة الحرارة و الرطوبة</h1>
+        <h1 dir="rtl">جودة الهواء</h1>
         <br>
         <br>
         <br>
         <br>
-        <p  dir="rtl">من هنا تستطيع مراقبة درجة الحرارة أو درجة الرطوبة في المكان </p>
-        <p  dir="rtl">  الذي تتوفر فيه أدوات الإستشعار، تمتع بمراقبة عالية في ظل ظروف آمنة</p>
-        <a href="#about" class="btn">درجة الحرارة </a>   <a href="#services" class="btn"> درجة الرطوبة</a>
+        <p  dir="rtl">من هنا تستطيع مراقبة جودة الهواء في المكان الذي تتوفر </p>
+        <p  dir="rtl">   فيه أدوات الإستشعار، تمتع بمراقبة عالية في ظل ظروف آمنة</p>
+        <p  dir="rtl"> حيث أن 0 يمثل أن هناك أحد الغازات التالية (الدخان أو البروبان</p>
+        <p  dir="rtl"> أو الكحول أول المثيان) تم اكتشافها ، أما 1 يمثل أنه لم يتم اكتشاف اي من الغازات السابقة</p>
+        <a href="#about" class="btn">راقب</a>   
     </div>
 
     <div class="image">
-        <img src="images/Temp2.png" alt="">
+        <img src="images/air2.png" alt="">
     </div>
 
 </section>
 
 <!-- home section ends -->
 
-<!-- temp and humidity starts  -->
+<!-- air quality  starts  -->
 
 <section class="about" id="about">
 
     <div class="row">
         <div class="content">
-            <h1 class="heading" dir="rtl">درجة الحرارة</h1>
+            <h1 class="heading" dir="rtl">جودة الهواء</h1>
             <br><br><br><br>
-            <iframe width="430" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/charts/1?bgcolor=%23ffffff&color=%2376C893&dynamic=true&results=60&title=%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9&type=line&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9"></iframe>&nbsp;
-            <iframe width="410" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662538"></iframe>&nbsp;
-            <iframe width="450" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662544"></iframe>&nbsp;
+            <iframe width="450" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/charts/4?bgcolor=%23ffffff&color=%2376C893&dynamic=true&max=1&min=0&results=60&title=%D8%AC%D9%88%D8%AF%D8%A9+%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A1&type=spline&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D8%AC%D9%88%D8%AF%D8%A9+%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A1&yaxismax=1&yaxismin=0"></iframe>&nbsp;&nbsp;
+            <iframe width="410" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662887"></iframe>&nbsp;&nbsp;
+            <iframe width="410" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662891"></iframe>&nbsp;&nbsp;
+
         </div>
     </div>
 </section>
 
-<section class="services" id="services">
-
-    <h1 class="heading" dir="rtl">درجة الرطوبة</h1><br><br><br>
-    <div class="box-container">
-    <iframe width="450" height="260" style="border: 3px solid #184E77 ;" src="https://thingspeak.com/channels/2171597/charts/2?bgcolor=%23ffffff&color=%2376C893&dynamic=true&results=60&title=%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%B1%D8%B7%D9%88%D8%A8%D8%A9&type=line&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D8%AF%D8%B1%D8%AC%D8%A9+%D8%A7%D9%84%D8%B1%D8%B7%D9%88%D8%A8%D8%A9"></iframe> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <iframe width="450" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662857"></iframe>
-
-    </div>
-
-</section>
-
-<!-- temp and humidity starts  -->
+<!-- air quality ends  -->
 
 <!-- footer section starts  -->
 
