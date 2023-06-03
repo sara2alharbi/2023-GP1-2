@@ -88,22 +88,22 @@
 
         <div class="box">
             <br>
-            <a href = ""><img src="images/report.png" alt=""></a>
-            <a href = ""><h3>اعرض تقارير للمبنى</h3></a>
+            <a href = "Roomreport.php"><img src="images/report.png" alt="report"></a>
+            <a href = "Roomreport.php"><h3>اعرض تقارير للمبنى</h3></a>
             <br><br><br>
         </div>
 
         <div class="box">
             <br>
-            <a href = ""><img src="images/map.png" alt=""></a>
-            <a href = ""><h3> اعرض خريطة للمبنى</h3></a>
+            <a href = "buildingMap.php"><img src="images/map.png" alt="map"></a>
+            <a href = "buildingMap.php"><h3> اعرض خريطة للمبنى</h3></a>
             <br><br><br>
         </div>
 
         <div class="box">
             <br>
-            <a href = "Aviliable_room.php"><img src="images/aviliable.png" alt=""></a>
-            <a href = ""><h3> اعرض الغرف المتاحة في المبنى</h3></a>
+            <a href = "Aviliable_room.php"><img src="images/aviliable.png" alt="room"></a>
+            <a href = "Aviliable_room.php"><h3> اعرض الغرف المتاحة في المبنى</h3></a>
         </div>
 
     </div>
