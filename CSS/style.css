@@ -21,6 +21,7 @@
     color:#fff;
 }
 
+
 html{
     font-size: 62.5%;
     overflow-x: hidden;
@@ -40,6 +41,7 @@ html::-webkit-scrollbar-thumb{
 
 body{
     background:#f9f9f9;
+    /*direction: rtl; make all element in the body tag left....*/ 
 }
 
 section{
@@ -286,8 +288,10 @@ iframe {
     
   }
 */
+/* availible rooms page start=============================================================== */
 
 
+/* avalible rooms page end ===================================================== */
 
 
 /* footer ===================================================== */
@@ -297,6 +301,10 @@ iframe {
     background:#184E77;
 }
 
+#space{
+    background-color: #fff;
+    margin-bottom: 100px;
+}
 
 
 .footer .box-container{

@@ -25,6 +25,7 @@
     <nav class="navbar">
         <ul>
             <li><a class="active" href="Manager.php">القائمة </a></li>
+            <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
         </ul>
     </nav>
 
@@ -65,8 +66,11 @@
 
         </div>
     </div>
+    <div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.100634277895!2d46.63953222591863!3d24.723425150729692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f1d7a2be52257%3A0x817fcef099949c02!2z2YPZhNmK2Kkg2LnZhNmI2YUg2KfZhNit2KfYs9ioINmI2KfZhNmF2LnZhNmI2YXYp9iqICjYt9in2YTYqNin2KogLSBmZW1hbGUgc3R1ZGVudHMp!5e0!3m2!1sar!2ssa!4v1685960857368!5m2!1sar!2ssa" width="1100" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" id="googlemap"></iframe>
+    </div>
 </section>
-
+<div id="space"></div>
 <!-- air quality ends  -->
 
 <!-- footer section starts  -->
@@ -85,10 +89,10 @@
 
         <div class="box">
             <h3>الروابط السريعة</h3>
-            <a href="#home" >الصفحة الرئيسية</a>
-            <a href="#about">عن إلمام</a>
-            <a href="#services">خدماتنا</a>
-            <a href="register.php">التسجيل</a>  
+            <a href="Manager.php" >الصفحة الرئيسية</a>
+            <a href="index.php">عن إلمام</a>
+            <a href="index.php">خدماتنا</a>
+            <a href="registration.php">التسجيل</a>  
         </div>
 
         <div class="box">

@@ -25,7 +25,7 @@
     <nav class="navbar">
         <ul>
             <li><a href="#services">القائمة</a></li>
-            <li ><a href="index.php" id="reg">تسجيل الخروج</a></li>
+            <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
         </ul>
     </nav>
 
@@ -125,10 +125,10 @@
 
         <div class="box">
             <h3>الروابط السريعة</h3>
-            <a href="#home" >الصفحة الرئيسية</a>
-            <a href="#about">عن إلمام</a>
-            <a href="#services">خدماتنا</a>
-            <a href="register.php">التسجيل</a>  
+            <a href="index.php" >الصفحة الرئيسية</a>
+            <a href="index.php">عن إلمام</a>
+            <a href="index.php">خدماتنا</a>
+            <a href="registration.php">التسجيل</a>  
         </div>
 
         <div class="box">
