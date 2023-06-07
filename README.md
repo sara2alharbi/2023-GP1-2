@@ -10,6 +10,7 @@
  * CSS
  * Javascript
  * PHP
+ * C++ (for sensor code)
 
 
 ### Getting Started
