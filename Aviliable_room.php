@@ -73,6 +73,7 @@ include "DB.php";
 <?php include 'DB.php'; ?>
 <div class="container">
 	<div class="header_wrap">
+            
 		<div class="num_rows">
 			<div class="form-group">
 				<!--		Show Numbers Of Rows 		-->
@@ -82,15 +83,16 @@ include "DB.php";
 					<option value="30">30</option>
 					<option value="40">40</option>
                                         <option value="50">50</option>
-
 					<option value="61">إظهار الكل</option>
 				</select>
 			</div>
 		</div>
-		<div class="tb_search">
-			<input type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="ابحث بالأسم" class="form-control">
-		</div>
-	</div>
+        
+    
+        <h6> ادخل اسم القاعة التي تريد البحث عنها:</h6>
+	<input dir="rtl" type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="ابحث بالأسم" class="form-control">
+    	</div> 
+	
 	<table class="table table-striped table-class" id= "table-id">
 		<thead>
 			<tr>
