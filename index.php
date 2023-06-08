@@ -27,7 +27,6 @@
             <li><a class="active" href="#home">الصفحة الرئيسية</a></li>
             <li><a href="#about">عن إلمام</a></li>
             <li><a href="#services">خدماتنا</a></li>
-            <li><a href="Aviliable_room.php"> دخول سريع</a></li>
             <li ><a href="registration.php" id="reg">التسجيل</a></li>
         </ul>
     </nav>
