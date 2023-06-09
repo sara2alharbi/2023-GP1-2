@@ -114,9 +114,9 @@
 
 </section>
 
-<!-- footer section ends -->
+<!-- footer section ends ----------------------------------------------------------------------->
 
-<!-- scroll top  -->
+<!-- scroll top  ------------------------------------------------------------------------------->
 
 <a href="#home" class="scroll-top">
     <img src="images/office-building.png" alt="">
