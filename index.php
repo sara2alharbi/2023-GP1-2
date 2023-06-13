@@ -81,7 +81,7 @@
             <p  dir="rtl" lang="ar"> نحن نعمل على مراقبة درجة الحرارة وجودة الهواء في الغرف داخل المبنى </p>
             <p  dir="rtl" lang="ar">دون انتهاك خصوصية الزائر . نقدم أفضل الخدمات وأجدد التقنيات</p>
 </div>
-            <a href="#about" class="btn"> شـاهـد</a>
+            <a href="https://www.youtube.com/watch?v=JAMxqWVDJUE" class="btn"> شـاهـد</a>
         </div>
     </div>
 </section>
@@ -157,7 +157,7 @@
             <a href="#home" >الصفحة الرئيسية</a>
             <a href="#about">عن إلمام</a>
             <a href="#services">خدماتنا</a>
-            <a href="register.php">التسجيل</a>  
+            <a href="registration.php">التسجيل</a>  
         </div>
 
         <div class="box">

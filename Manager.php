@@ -128,10 +128,7 @@
 
         <div class="box">
             <h3>الروابط السريعة</h3>
-            <a href="index.php" >الصفحة الرئيسية</a>
-            <a href="index.php">عن إلمام</a>
-            <a href="index.php">خدماتنا</a>
-            <a href="registration.php">التسجيل</a>  
+            <a href="Manager.php" >الصفحة الرئيسية</a> 
         </div>
 
         <div class="box">

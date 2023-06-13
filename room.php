@@ -50,7 +50,7 @@ include "DB.php";
         <p  dir="rtl">  من هنا تستطيع استعراض جميع معلومات القاعات والمعامل داخل المبنى</p>
         
         <a href="#about" class="btn">استعرض</a>
-        <a href="" class="btn">استعرض المتاح حاليا</a>
+     
     </div>
 
     <div class="image">
@@ -106,7 +106,7 @@ include "DB.php";
                 <?php     $sql = "SELECT * FROM room";
 $result = mysqli_query($conn, $sql);
    while($row = mysqli_fetch_assoc($result)){ ?>
-     <td><?php echo $row['name'] ; ?> </td> 
+     <td><?php echo $row['roomNo'] ; ?> </td> 
      <td><?php echo $row['floor'] ;?> </td>
      <td><?php echo $row['type'] ; ?> </td>
      <td id="c"><?php echo $row['capacity'] ; ?> </td>
@@ -130,7 +130,7 @@ $result = mysqli_query($conn, $sql);
 	
 </div>
 <!-- 		End of Container -->
-<!--  Developed By Yasser Mas -->
+
 </body>
 
 
@@ -156,9 +156,6 @@ $result = mysqli_query($conn, $sql);
         <div class="box">
             <h3>الروابط السريعة</h3>
             <a href="Manager.php" >الصفحة الرئيسية</a>
-            <a href="index.php">عن إلمام</a>
-            <a href="index.php">خدماتنا</a>
-            <a href="registration.php">التسجيل</a>  
         </div>
 
         <div class="box">
