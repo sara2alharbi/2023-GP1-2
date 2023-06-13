@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2023 at 05:57 PM
+-- Generation Time: Jun 13, 2023 at 09:21 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,12 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `elmam_device` (
   `microID` varchar(50) NOT NULL,
   `roomNo` varchar(10) NOT NULL,
-  `temperature` double(10,10) DEFAULT NULL,
-  `humidity` double(10,10) DEFAULT NULL,
-  `noise` double(10,10) DEFAULT NULL,
-  `airQuality` double(10,10) DEFAULT NULL,
-  `dataTime` time(6) NOT NULL,
-  `dataDate` date NOT NULL
+  `temperatureID` varchar(10) DEFAULT NULL,
+  `humidityID` varchar(10) DEFAULT NULL,
+  `noiseID` varchar(10) DEFAULT NULL,
+  `airQualityID` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -155,6 +153,22 @@ INSERT INTO `room` (`floor`, `roomNo`, `microID`, `type`, `capacity`, `status`, 
 ('الثاني', 'S8', '', 'عادية', 30, 'متاحه', 0),
 ('الثاني', 'ٍS5', '', 'معمل', 20, 'متاحه', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sensor_data`
+--
+
+CREATE TABLE `sensor_data` (
+  `dataTime` time(6) NOT NULL,
+  `dataDate` date NOT NULL,
+  `microID` varchar(50) NOT NULL,
+  `Rtemperature` double(10,10) NOT NULL,
+  `Rhumidity` double(10,10) NOT NULL,
+  `Rnoise` double(10,10) NOT NULL,
+  `RairQuality` double(10,10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -186,6 +200,13 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`roomNo`);
 
 --
+-- Indexes for table `sensor_data`
+--
+ALTER TABLE `sensor_data`
+  ADD PRIMARY KEY (`dataTime`,`dataDate`),
+  ADD KEY `microID` (`microID`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -200,6 +221,12 @@ ALTER TABLE `elmam_device`
 --
 ALTER TABLE `lecture`
   ADD CONSTRAINT `lecture_ibfk_1` FOREIGN KEY (`roomNo`) REFERENCES `room` (`roomNo`);
+
+--
+-- Constraints for table `sensor_data`
+--
+ALTER TABLE `sensor_data`
+  ADD CONSTRAINT `sensor_data_ibfk_1` FOREIGN KEY (`microID`) REFERENCES `elmam_device` (`microID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
