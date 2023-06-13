@@ -26,3 +26,6 @@
 ### follow the step to run the code 
 * Import the code 
 * Open the server
+* Open MySql
+* Import the database
+* Run the code
