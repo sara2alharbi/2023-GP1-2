@@ -279,22 +279,39 @@ header .navbar ul li a:hover{
     color:#666;
     padding:.5rem 0;
 }
-
-/*frame ===================================================== 
-iframe {
-    width:430;
-    height:260;
-    border:3px solid #184E77;
-    
-  }
-*/
-/* availible rooms page start=============================================================== */
+/* manager page start=============================================================== */
 
 
+.fa-bell{
+    font-size:36px;
+    color:#34A0A4;
+    margin-left:10px;
+}
+.fa-bell:hover{
+    color: #76C893;
+}
 
+.fa-share-alt{
+  font-size:36px;
+ color:#34A0A4;
+ margin-left:10px;
+}
+.fa-share-alt:hover{
+    color: #76C893;
+}
 
-/* avalible rooms page end ===================================================== */
+.inputt {
 
+        width: 100%;
+	height: 100%;
+	
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: #555;
+
+}
+
+/* manager page end ===================================================== */
 
 /* footer ===================================================== */
 .footer{

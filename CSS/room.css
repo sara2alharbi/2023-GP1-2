@@ -35,6 +35,13 @@ font-size: 15px;
 
 /* avalible rooms page end ===================================================== */
 
+#n {
+    color: red;
+}
+
+#a {
+    color: green;
+}
 
 .pagination {
   display: inline-block;

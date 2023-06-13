@@ -1,3 +1,7 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+</style>
+
 <?php
 session_start();
 if (isset($_SESSION["user"])) {
@@ -18,10 +22,11 @@ if (isset($_SESSION["user"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-     <link rel="stylesheet"  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-    <!-- custom css file link 
-    <link rel="stylesheet" href="CSS/reg-log.css"> -->
+  
+
+    <!-- custom css file link  -->
+
 
 </head>
 <body>
@@ -42,9 +47,9 @@ if (isset($_SESSION["user"])) {
            $email = $_POST["email"];
            $password = $_POST["password"];
            $passwordRepeat = $_POST["repeat_password"];
-           
+           $passwordHash = sha1($password); 
           
-          
+         
            $errors = array();
          
             
@@ -78,9 +83,9 @@ if (isset($_SESSION["user"])) {
             $stmt = mysqli_stmt_init($conn);
             $prepareStmt = mysqli_stmt_prepare($stmt,$sql);
             if ($prepareStmt) {
-                mysqli_stmt_bind_param($stmt,"ssi",$fullName, $email, $password);
+                mysqli_stmt_bind_param($stmt,"sss",$fullName, $email, $passwordHash);
                 mysqli_stmt_execute($stmt);
-                echo "<div dir='rtl' class='alert alert-success'>لقد تم تسجيلك بنجاح (الآن سجل دخولك)</div>";
+                echo "<div dir='rtl' class='alert alert-success'>لقد تم تسجيلك بنجاح</div>";
             }else{
                 die("Something went wrong");
             }
@@ -171,10 +176,11 @@ inputs.forEach(input => {
 
 
 
-<!--Style--------------------------------------------------------------------------------->
+
 <style>
 
 *{
+       font-family: 'Roboto', sans-serif;
     direction: rtl ;
 	padding: 0;
 	margin: 0;
@@ -182,7 +188,7 @@ inputs.forEach(input => {
 }
 
 body{
-    font-family: 'Poppins', sans-serif;
+   
     overflow: hidden;
 }
 
@@ -229,14 +235,15 @@ form{
 }
 
 .login-content h2{
+        font-family: 'Kufam', sans-serif;
 	margin: 15px 0;
 	color: #333;
 	text-transform: uppercase;
-	font-size: 2.9rem;
+	font-size: 29px;
 }
 
 .login-content .input-div{
-	position: relative;
+    position: relative;
     display: grid;
     grid-template-columns: 7% 93%;
     margin: 25px 0;
@@ -315,7 +322,7 @@ form{
 	outline: none;
 	background: none;
 	padding: 0.5rem 0.7rem;
-	font-size: 1.2rem;
+	font-size: 20px;
 	color: #555;
 	font-family: 'poppins', sans-serif;
 }
@@ -329,7 +336,7 @@ form{
 	display: block;
 	text-align: right;
         color: #333;
-	font-size: 0.9rem;
+	font-size: 17px;
 	transition: .3s;
 }
 
@@ -351,7 +358,8 @@ a:hover{
 	border: none;
 	background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
 	background-size: 200%;
-	font-size: 1.2rem;
+	font-size: 20px;
+        font-weight: bold;
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;

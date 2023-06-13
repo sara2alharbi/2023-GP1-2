@@ -1,3 +1,6 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
+</style>
 
 <?php
 include "DB.php";
@@ -7,11 +10,13 @@ if (isset($_SESSION["user"])) {
 }
     $msg = "";
     
-        if (isset($_POST["submit"])) {
+        if (isset($_POST["login"])) {
            $email = $_POST["email"];
            $password = $_POST["password"]; 
+           $passwordHash = sha1($password); 
            
-            $sql = " SELECT * FROM manager WHERE email = '$email' && password = '$password' ";
+           
+            $sql = " SELECT * FROM manager WHERE email = '$email' && password = '$passwordHash' ";
             $result = mysqli_query($conn, $sql);
  
              if (empty($email) OR empty($password) ) 
@@ -32,8 +37,8 @@ if (isset($_SESSION["user"])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>تسجيل الدخول</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	
+	
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,10 +49,12 @@ if (isset($_SESSION["user"])) {
 		<div class="img">
 			<img src="images/bg.svg">
 		</div>
+            
 		<div class="login-content">
 			<form action="login.php" method="post">
 				<img src="images/avatar.svg">
 				<h2 class="title">أهلاً بعودتك</h2>
+                               
                                 <?php echo $msg  ?>
            		<div class="input-div one">
            		   <div class="i">
@@ -68,7 +75,7 @@ if (isset($_SESSION["user"])) {
             	   </div>
             	</div>
             	 <div class ="registeration" ><p>ليس لديك حساب؟ <a href="registration.php">سجل الآن</a></p></div>
-            	<input type="submit" class="btn" value="الدخول" name="submit">
+            	<input type="submit" class="btn" value="الدخول" name="login">
             </form>
         </div>
     </div>
@@ -106,7 +113,7 @@ inputs.forEach(input => {
 
 
 
-<!--Style--------------------------------------------------------------------------------->
+
 <style>
 
 *{
@@ -163,11 +170,14 @@ form{
 }
 
 .login-content h2{
+        font-family: 'Kufam', sans-serif;
 	margin: 15px 0;
 	color: #333;
 	text-transform: uppercase;
-	font-size: 2.9rem;
+	font-size: 29px;
 }
+
+
 
 .login-content .input-div{
 	position: relative;
@@ -287,7 +297,7 @@ a:hover{
 	background-size: 200%;
 	font-size: 1.2rem;
 	color: #fff;
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Kufam', sans-serif;
 	text-transform: uppercase;
 	margin: 1rem 0;
 	cursor: pointer;

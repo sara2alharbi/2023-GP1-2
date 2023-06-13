@@ -18,7 +18,7 @@
 
 <header>
 
-    <a href="#" class="logo"><img src="images/elmam-logo.png" width="110"></a>
+    <a href="manager.php" class="logo"><img src="images/elmam-logo.png" width="110"></a>
 
     <div id="menu" class="fas fa-bars"></div>
 
@@ -26,6 +26,7 @@
         <ul>
             <li><a href="#services">القائمة</a></li>
             <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
+            <a><li class='fas fa-bell' ></li></a>
         </ul>
     </nav>
 
@@ -51,7 +52,7 @@
     </div>
 
     <div class="image">
-        <img src="images/banner.png" alt="">
+        <img src="images/manager.png" alt="manager" >
     </div>
 
 </section>
@@ -102,13 +103,15 @@
 
         <div class="box">
             <br>
-            <a href = "Aviliable_room.php"><img src="images/aviliable.png" alt="room"></a>
-            <a href = "Aviliable_room.php"><h3> اعرض الغرف المتاحة في المبنى</h3></a>
+            <a href = "room.php"><img src="images/aviliable.png" alt="room" ></a>
+            <a href = "room.php"><h3> اعرض الغرف  في المبنى    </h3></a>
+            <br><br><br>
         </div>
 
     </div>
 
 </section>
+<br><br><br>
 <!-- footer section starts  -->
 
 <section class="footer" dir="rtl">

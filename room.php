@@ -7,7 +7,7 @@ include "DB.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> الغرف المتاحة</title>
+    <title> غرف المبنى</title>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -22,7 +22,7 @@ include "DB.php";
 
 <header>
 
-    <a href="Manager.php" class="logo"><img src="images/elmam-logo.png" width="110"></a>
+    <a href="manager.php" class="logo"><img src="images/elmam-logo.png" width="110"></a>
 
     <div id="menu" class="fas fa-bars"></div>
 
@@ -30,6 +30,7 @@ include "DB.php";
         <ul>
             <li><a class="active" href="Manager.php">القائمة </a></li>
             <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
+            <a><li class='fas fa-bell' ></li></a>
         </ul>
     </nav>
 
@@ -41,14 +42,15 @@ include "DB.php";
 
     <div class="content">
 
-        <h1 dir="rtl">الغرف المتاحة </h1>
+        <h1 dir="rtl"> غرف المبنى</h1>
         <br>
         <br>
         <br>
         <br>
-        <p  dir="rtl">من هنا تستطيع معرفة القاعات المتوفرةوالمتاحة في المكان الذي تتوفر </p>
-        <p  dir="rtl">   فيه أدوات الإستشعار، تمتع بمراقبة عالية في ظل ظروف آمنة</p>
-        <a href="#about" class="btn">اعرض</a>   
+        <p  dir="rtl">  من هنا تستطيع استعراض جميع معلومات القاعات والمعامل داخل المبنى</p>
+        
+        <a href="#about" class="btn">استعرض</a>
+        <a href="" class="btn">استعرض المتاح حاليا</a>
     </div>
 
     <div class="image">
@@ -89,7 +91,7 @@ include "DB.php";
 		</div>
         
     
-        <h6> ادخل اسم القاعة التي تريد البحث عنها:</h6>
+      
 	<input dir="rtl" type="text" id="search_input_all" onkeyup="FilterkeyWord_all_table()" placeholder="ابحث بالأسم" class="form-control">
     	</div> 
 	

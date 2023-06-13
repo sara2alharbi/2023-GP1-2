@@ -26,6 +26,7 @@
         <ul>
             <li><a class="active" href="Manager.php">القائمة </a></li>
             <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
+            <a><li class='fas fa-bell' ></li></a>
         </ul>
     </nav>
 
@@ -44,7 +45,6 @@
         <br>
         <p  dir="rtl">من هنا تستطيع مراقبة مستوى الضوضاء في المكان الذي تتوفر </p>
         <p  dir="rtl">   فيه أدوات الإستشعار، تمتع بمراقبة عالية في ظل ظروف آمنة</p>
-        <p  dir="rtl">حيث أن المعدل للأصوات من 0-1023 التي سيتم اكتشافها</p>
         <a href="#about" class="btn">راقب</a>   
     </div>
 
@@ -63,6 +63,7 @@
     <div class="row">
         <div class="content">
             <h1 class="heading" dir="rtl">مستوى الضوضاء</h1>
+            <input class="inputt"type="text" placeholder="اكتب الوقت الذي تريد عرض الضوضاء">
             <br><br><br><br>
             <iframe width="450" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/charts/3?bgcolor=%23ffffff&color=%2376C893&dynamic=true&results=60&title=%D8%A7%D9%84%D8%B5%D9%88%D8%AA&type=step&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D9%85%D8%B3%D8%AA%D9%88%D9%89+%D8%A7%D9%84%D8%B6%D9%88%D8%B6%D8%A7%D8%A1"></iframe>&nbsp;&nbsp;
             <iframe width="410" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662898"></iframe>&nbsp;&nbsp;

@@ -26,6 +26,7 @@
         <ul>
             <li><a class="active" href="Manager.php">القائمة </a></li>
             <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
+            <a><li class='fas fa-bell' ></li></a>
         </ul>
     </nav>
 

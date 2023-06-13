@@ -26,6 +26,7 @@
         <ul>
             <li><a class="active" href="Manager.php">القائمة </a></li>
             <li ><a href="logout.php" id="reg">تسجيل الخروج</a></li>
+            <a><li class='fas fa-bell' ></li></a>
         </ul>
     </nav>
 
@@ -45,7 +46,7 @@
         <p  dir="rtl">من هنا تستطيع مراقبة جودة الهواء في المكان الذي تتوفر </p>
         <p  dir="rtl">   فيه أدوات الإستشعار، تمتع بمراقبة عالية في ظل ظروف آمنة</p>
         <p  dir="rtl"> حيث أن 0 يمثل أن هناك أحد الغازات التالية (الدخان أو البروبان</p>
-        <p  dir="rtl"> أو الكحول أو المثيان) تم اكتشافها ، أما 1 يمثل أنه لم يتم اكتشاف اي من الغازات السابقة</p>
+        <p  dir="rtl"> أو الكحول أول المثيان) تم اكتشافها ، أما 1 يمثل أنه لم يتم اكتشاف اي من الغازات السابقة</p>
         <a href="#about" class="btn">راقب</a>   
     </div>
 
@@ -64,6 +65,7 @@
     <div class="row">
         <div class="content">
             <h1 class="heading" dir="rtl">جودة الهواء</h1>
+            <input class="inputt"type="text" placeholder="اكتب الوقت الذي تريد عرض جودة الهواء">
             <br><br><br><br>
             <iframe width="450" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/charts/4?bgcolor=%23ffffff&color=%2376C893&dynamic=true&max=1&min=0&results=60&title=%D8%AC%D9%88%D8%AF%D8%A9+%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A1&type=spline&xaxis=%D8%A7%D9%84%D9%88%D9%82%D8%AA&yaxis=%D8%AC%D9%88%D8%AF%D8%A9+%D8%A7%D9%84%D9%87%D9%88%D8%A7%D8%A1&yaxismax=1&yaxismin=0"></iframe>&nbsp;&nbsp;
             <iframe width="410" height="260" style="border: 3px solid #184E77;" src="https://thingspeak.com/channels/2171597/widgets/662887"></iframe>&nbsp;&nbsp;
@@ -114,9 +116,9 @@
 
 </section>
 
-<!-- footer section ends ----------------------------------------------------------------------->
+<!-- footer section ends -->
 
-<!-- scroll top  ------------------------------------------------------------------------------->
+<!-- scroll top  -->
 
 <a href="#home" class="scroll-top">
     <img src="images/office-building.png" alt="">
