@@ -15,7 +15,8 @@ if (isset($_SESSION["user"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>التسجيل</title>
+	<link rel="icon" type="image/png" href="assets/img/elmam-logo.png">
+    <title>تسجيل جديد</title>
 
      <!-- font awesome cdn link  -->
 
@@ -135,8 +136,9 @@ if (isset($_SESSION["user"])) {
                                 
                                 
                                 
-            	 <div class ="registeration" ><p>لديك حساب بالفعل؟ <a href="login.php">تسجيل الدخول</a></p></div>
-            	<input type="submit" class="btn" value="تسجيل الدخول" name="submit">
+            	 <div class ="registeration" ><p>لديك حساب بالفعل؟ <a href="login.php">تسجيل الدخول</a></p></div><br><br>
+				 <p id="password2">كلمة المرور يجب أن تتكون من 8 أو أكثر</p>
+            	<input type="submit" class="btn" value="تسجيل جديد" name="submit">
             </form>
         </div>
     </div>
@@ -426,7 +428,9 @@ a:hover{
     background-color: #fc5555;
 }
 
-
+#password2{
+	color:red;
+}
 
 
 

@@ -6,7 +6,7 @@
 include "DB.php";
 session_start();
 if (isset($_SESSION["user"])) {
-   header("Location: Manager.php");
+   header("Location: index.php");
 }
     $msg = "";
     
@@ -27,7 +27,7 @@ if (isset($_SESSION["user"])) {
               if(mysqli_num_rows($result) > 0) {
                     session_start();
                     $_SESSION["user"] = "yes";
-                    header("Location: Manager.php");
+                    header("Location: index.php");
                     die();
         } else
             {$msg="<div dir='rtl'  class='alert alert-danger'>كلمة المرور أو البريد الإلكتروني غير صحيح</div>"; }
@@ -42,17 +42,20 @@ if (isset($_SESSION["user"])) {
 	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="assets/img/elmam-logo.png">
+	<title>تسجيل الدخول</title>
+
 </head>
 <body>
-	<img class="wave" src="images/wave.png">
+	<img class="wave" src="assets/img/wave.png">
 	<div class="container">
 		<div class="img">
-			<img src="images/bg.svg">
+			<img src="assets/img/bg.svg">
 		</div>
             
 		<div class="login-content">
 			<form action="login.php" method="post">
-				<img src="images/avatar.svg">
+				<img src="assets/img/avatar.svg">
 				<h2 class="title">أهلاً بعودتك</h2>
                                
                                 <?php echo $msg  ?>
@@ -75,7 +78,7 @@ if (isset($_SESSION["user"])) {
             	   </div>
             	</div>
             	 <div class ="registeration" ><p>ليس لديك حساب؟ <a href="registration.php">سجل الآن</a></p></div>
-            	<input type="submit" class="btn" value="الدخول" name="login">
+            	<input type="submit" class="btn" value="تسجيل الدخول" name="login">
             </form>
         </div>
     </div>
