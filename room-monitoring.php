@@ -375,35 +375,59 @@
                     
                     <script>
     // JavaScript code to display live data
-    document.addEventListener('DOMContentLoaded', function () {
-        const textViewTemp = document.getElementById('viewTemp');
-        const textViewHum = document.getElementById('viewHum');
-        const textViewNoise = document.getElementById('viewNoise');
-        const textViewAir = document.getElementById('viewAir');
+document.addEventListener('DOMContentLoaded', function () {
+    const textViewTemp = document.getElementById('viewTemp');
+    const textViewHum = document.getElementById('viewHum');
+    const textViewNoise = document.getElementById('viewNoise');
+    const textViewAir = document.getElementById('viewAir');
 
-        setInterval(function () {
-            fetch('live_data.php', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    'submit': true,
-                    'roomSelect': document.getElementById('roomSelect').value
-                })
+    setInterval(function () {
+        fetch('live_data.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                'submit': true,
+                'roomSelect': document.getElementById('roomSelect').value
             })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    // Update the displayed values with live data
-                    textViewTemp.textContent = data.viewTemp;
-                    textViewHum.textContent =  data.viewHum;
-                    textViewNoise.textContent = data.viewNoise;
-                    textViewAir.textContent =  data.viewAir;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }, 1000);
-    });
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // Update the displayed values with live data
+            textViewTemp.textContent = data.viewTemp;
+            textViewHum.textContent =  data.viewHum;
+            textViewNoise.textContent = data.viewNoise;
+
+            // Handle air quality display
+            if (data.viewAir === '0') {
+                textViewAir.style.color = 'red';
+                textViewAir.textContent = 'مرتفعة';
+            } else if (data.viewAir === '1') {
+                textViewAir.style.color = ''; // Reset to default color
+                textViewAir.textContent = 'جيدة';
+            } else {
+                textViewAir.style.color = ''; // Reset to default color
+                textViewAir.textContent = 'غير معروفة';
+            }
+
+            // Handle temperature color
+            const temperature = parseFloat(data.viewTemp);
+            if (!isNaN(temperature)) {
+                if (temperature > 35) {
+                    textViewTemp.style.color = 'red';
+                } else {
+                    textViewTemp.style.color = ''; // Reset to default color
+                }
+            } else {
+                textViewTemp.style.color = ''; // Reset to default color
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }, 1000);
+});
+
 </script>
 
                     </div>
