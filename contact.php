@@ -132,8 +132,8 @@
     <li class="nav-item dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+      <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">الاسم</span>
       </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -293,7 +293,7 @@
               <div class="info-box card">
                 <i class="bi bi-telephone"></i>
                 <h3>للإتصال</h3>
-                <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                <p dir="rtl">+966 568346791 <br>+966 544387612</p>
               </div>
             </div>
             <div class="col-lg-6">
