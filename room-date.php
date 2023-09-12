@@ -409,7 +409,7 @@ var options = {
     </form>
 
     <!-- Container for the temperature chart -->
-    <div id="chart_div" style="width: 850px; height: 500px; margin-right:180px;margin-top:30px;" ></div>
+    <div id="chart_div" style="width: 850px; height: 500px; margin-right:180px;margin-top:30px;border:20%;" ></div>
     </div>
               </div>
     </div><!-- End Recent Sales -->
