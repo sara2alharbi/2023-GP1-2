@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>الأسئـلةالشائعة</title>
+  <title>الأسئـلة الشائعة</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -188,11 +188,28 @@
         </a>
       </li><!-- End notfications  Nav --------------->
       
-          <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> 
             <i class="bi bi-map"></i>
-           <span>خريطة المبنى</span>
+           <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="map0.php">
+              <i class="bi bi-circle"></i><span>الدور الأرضي</span>
+            </a>
+          </li>
+          <li>
+            <a href="map1.php">
+              <i class="bi bi-circle"></i><span>الدور الأول</span>
+            </a>
+          </li>
+          <li>
+            <a href="map2.php">
+              <i class="bi bi-circle"></i><span>الدور الثاني</span>
+            </a>
+          </li>
+        </ul>
       </li><!-- End map  Nav --------------->
       
 

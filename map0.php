@@ -455,8 +455,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">الاسم</span>
           </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -1125,8 +1125,8 @@
       dataType: 'json',
       data: { 'rooms': true },
       success: function (data) {
-        $('#room1').html(`temp: ${data.temp1} <br>noise: ${data.noise1}`);
-        $('#room2').html(`temp: ${data.temp2} <br>noise: ${data.noise2}`);
+        $('#room1').html(`درجة الحرارة:${data.temp1}<br> الضوضاء:${data.noise1} <br>جودة الهواء:${data.air1}<br>الرطوبة:${data.hum1}`);
+        $('#room2').html(`درجة الحرارة:${data.temp2}<br>الضوضاء:${data.noise2}<br>جودة الهواء:${data.air2}<br>الرطوبة:${data.hum2}`);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error('Errorf:', textStatus, errorThrown);

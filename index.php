@@ -133,8 +133,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">الاسم</span>
           </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -309,11 +309,10 @@
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                    <h1 class="card-title" style="font-size: 400%;"> مرحبًا بِك <span style="font-size: 80%;">| في إلمام</span></h1> <br>
-                  <h5> تم تسجيل دخولك كمدير مبنى<br> يمكنك الاطلاع على خدماتنا من خلال القائمة الجانبية</h5>
-                
-                  <img src="assets/img/home.png" alt="" width="400px" height="400px" style="margin-right: 600px; margin-top: -100px;"/>
-</div>
+                    <h1 class="card-title" style="font-size: 300%;"> مرحبًا بِك <span style="font-size: 50%;">| في إلمام</span></h1> <br>
+                 <!-- <h5> تم تسجيل دخولك كمدير مبنى<br> يمكنك الاطلاع على خدماتنا من خلال القائمة الجانبية</h5>-->
+                  <img src="assets/img/home.png" alt="" width="400px" height="400px" style="margin-right: 700px; margin-top: -100px;"/>
+                </div>
               </div>
             </div><!-- End Recent Sales -->
         </div><!-- End Right side columns -->

@@ -190,11 +190,28 @@
         </a>
       </li><!-- End notfications  Nav --------------->
       
-          <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> 
             <i class="bi bi-map"></i>
-           <span>خريطة المبنى</span>
+           <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="map0.php">
+              <i class="bi bi-circle"></i><span>الدور الأرضي</span>
+            </a>
+          </li>
+          <li>
+            <a href="map1.php">
+              <i class="bi bi-circle"></i><span>الدور الأول</span>
+            </a>
+          </li>
+          <li>
+            <a href="map2.php">
+              <i class="bi bi-circle"></i><span>الدور الثاني</span>
+            </a>
+          </li>
+        </ul>
       </li><!-- End map  Nav --------------->
       
 
@@ -295,7 +312,7 @@
           <div class="row">
 
             <!-- noise Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-5 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">الضوضاء <span>| الآن</span></h5>
@@ -315,7 +332,7 @@
             </div><!-- End noise Card -->
 
                         <!-- air Card -->
-                        <div class="col-xxl-4 col-md-6">
+                        <div class="col-xxl-5 col-md-6">
               <div class="card info-card sales-card">
 
                 
@@ -338,7 +355,7 @@
             </div><!-- End air Card -->
 
             <!-- humidity Card -->
-            <div class="col-xxl-4 col-md-6">
+            <div class="col-xxl-5 col-md-6">
               <div class="card info-card revenue-card">
 
                 <div class="card-body">
@@ -360,7 +377,7 @@
             </div><!-- End humidity Card -->
 
             <!-- temp Card -->
-            <div class="col-xxl-4 col-md-6" style="margin-right:810px;margin-top:-188px;">
+            <div class="col-xxl-5 col-md-6">
 
               <div class="card info-card customers-card">
                 <div class="card-body">
@@ -398,6 +415,12 @@ document.addEventListener('DOMContentLoaded', function () {
             textViewHum.textContent =  data.viewHum;
             textViewNoise.textContent = data.viewNoise;
 
+            if (isNaN(data.viewTemp) || isNaN(data.viewHum) || isNaN(data.viewNoise)  ) {
+              textViewTemp.textContent = 'لاتوجد قيمة';
+              textViewHum.textContent = 'لاتوجد قيمة';
+              textViewNoise.textContent = 'لاتوجد قيمة';
+                }
+
             // Handle air quality display
             if (data.viewAir === '0') {
                 textViewAir.style.color = 'red';
@@ -407,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 textViewAir.textContent = 'جيدة';
             } else {
                 textViewAir.style.color = ''; // Reset to default color
-                textViewAir.textContent = 'غير معروفة';
+                textViewAir.textContent = ' لاتوجد قيمة';
             }
 
             // Handle temperature color

@@ -33,14 +33,14 @@ if (isset($_SESSION["user"])) {
 <body>
       
        
-       	<img class="wave" src="images/wave2.png">
+       	<img class="wave" src="assets/img/wave2.png">
 	<div class="container">
 		<div class="img">
-			<img src="images/reg-img.png">
+			<img src="assets/img/reg-img.png">
 		</div>
 		<div class="login-content">
 			<form action="registration.php" method="post">
-				<img src="images/avatar.svg">
+				<img src="assets/img/avatar.svg">
 				<h2 class="title">مرحباً بك في نظام إلمـام</h2>
                                <?php
         if (isset($_POST["submit"])) {
