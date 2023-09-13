@@ -285,7 +285,7 @@
                 <td id="room-no"></td>
               </tr>
               <tr>
-                <th scope="row">اسم الغرفة</th>
+                <th scope="row">نوع الغرفة</th>
                 <td id="room-nm"></td>
               </tr>
               <tr>
