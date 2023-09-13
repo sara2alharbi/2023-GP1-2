@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Handle air quality display
             if (data.viewAir === '0') {
                 textViewAir.style.color = 'red';
-                textViewAir.textContent = 'مرتفعة';
+                textViewAir.textContent = 'منخفضة';
             } else if (data.viewAir === '1') {
                 textViewAir.style.color = ''; // Reset to default color
                 textViewAir.textContent = 'جيدة';

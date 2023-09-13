@@ -250,6 +250,14 @@
     font-size: 1.5rem;
     /* font-weight: 900; */
   }
+
+  @media only screen and (max-width: 600px) {
+    #header{
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+    }
+  }
 </style>
 <!--POPOVER-->
 <style>
@@ -259,7 +267,8 @@
     position: absolute;
     top: 80%;
     transform: translate(0, 10px);
-    background-color: #bfbfbf;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px black;
     padding: 1.5rem;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     width: auto;
@@ -273,7 +282,7 @@
     top: -8px;
     border-style: solid;
     border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #bfbfbf transparent;
+    border-color: transparent transparent #fff transparent;
     transition-duration: 0.3s;
     transition-property: transform;
   }
@@ -297,10 +306,10 @@
     position: absolute;
     top: 115%;
     transform: translate(0, 10px);
-    background-color: #bfbfbf;
+    background-color: #fff;
     padding: 1.5rem;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    width: auto;
+    width: fit-content;
   }
 
   .popover__content2:before {
@@ -311,7 +320,7 @@
     top: -8px;
     border-style: solid;
     border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #bfbfbf transparent;
+    border-color: transparent transparent #fff transparent;
     transition-duration: 0.3s;
     transition-property: transform;
   }
@@ -327,6 +336,15 @@
   .popover__message2 {
     text-align: center;
   }
+
+  .popover__wrapper .rm-no, .popover__wrapper2 .rm-no{
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    transition: 0.3s ease;
+  }
+  .popover__wrapper:hover{
+    color: black;
+  }
 </style>
 
 
@@ -338,10 +356,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <h5 class="modal-title">معلومات الغرفة</h5>
+          <h5 class="modal-title" dir="rtl">معلومات الغرفة</h5>
         </div>
         <div class="modal-body">
-          <table class="table table-striped">
+          <table class="table table-striped" dir="rtl">
             <tbody>
               <tr>
                 <th scope="row">رقم الغرفة</th>
@@ -352,8 +370,8 @@
                 <td id="room-nm"></td>
               </tr>
               <tr>
-                <th scope="row">Room Name</th>
-                <td id="room-tr"></td>
+                <th scope="row">السعة</th>
+                <td id="room-cp"></td>
               </tr>
             </tbody>
           </table>
@@ -374,7 +392,7 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
+    <nav class="header-nav">
       <ul class="d-flex align-items-center">
 
         <li class="nav-item dropdown">
@@ -517,9 +535,9 @@
           <i class="bi bi-map"></i>
           <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content" data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="map0.php" class="nav-link">
+            <a href="map0.php"  class="nav-link">
               <i class="bi bi-circle"></i><span>الدور الأرضي</span>
             </a>
           </li>
@@ -562,7 +580,7 @@
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
           <i class="bi bi-file-earmark-bar-graph"></i>
           <span> تقارير اسبوعية</span>
         </a>
@@ -1121,12 +1139,12 @@
   function updateDate() {
     $.ajax({
       url: 'http://localhost/GP1-CODE/api.php',
-      method: 'POST',
+      method: 'GET',
       dataType: 'json',
       data: { 'rooms': true },
       success: function (data) {
-        $('#room1').html(`درجة الحرارة:${data.temp1}<br> الضوضاء:${data.noise1} <br>جودة الهواء:${data.air1}<br>الرطوبة:${data.hum1}`);
-        $('#room2').html(`درجة الحرارة:${data.temp2}<br>الضوضاء:${data.noise2}<br>جودة الهواء:${data.air2}<br>الرطوبة:${data.hum2}`);
+        $('#room1').html(`<div>الحرارة: ${data[0].temp}</div><div><br>الضوضاء: ${data[0].noise}</div><div><br>الرطوبة: ${data[0].hum}</div><div><br>جودة الهواء: ${data[0].air}<div>`);
+        $('#room2').html(`<div>الحرارة: ${data[1].temp}</div><div><br>الضوضاء: ${data[1].noise}</div><div><br>الرطوبة: ${data[1].hum}</div><div><br>جودة الهواء: ${data[1].air}<div>`);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error('Errorf:', textStatus, errorThrown);
@@ -1136,11 +1154,25 @@
     });
   }
   setInterval(function () { updateDate(); }, 1000);
-  $('.mytc').on('click', function() {
-      $("#room-no").text($(this).find('.rm-no').text());
-      $("#room-nm").text($(this).find('.rm-nm').text());
-      $("#room-tr").text($(this).find('.rm-tr').text());
-      $('#smallModal').modal('show');
+  $('.mytc').on('click', function () {
+    $("#room-no").text($(this).find('.rm-no').text());
+    $("#room-nm").text($(this).find('.rm-nm').text());
+    var id = $(this).find('.rm-no').text();
+    console.log(id);
+    $.ajax({
+      url: 'http://localhost/GP1-CODE/api.php',
+      method: 'GET',
+      dataType: 'json',
+      data: { 'capacity': true, 'id': id.slice(1)},
+      success: function (data) {
+        console.log(data)
+        $('#room-cp').text(data.cp);
+      },
+      error: function (err) {
+        console.error('Error22f:', err);
+      }
+    });
+    $('#smallModal').modal('show');
   });
 </script>
 

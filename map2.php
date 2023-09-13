@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar">
 <?php include "DB.php"; ?>
+
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <meta charset="utf-8">
@@ -11,12 +12,14 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/elmam-logo.png" rel="icon" >
+  <link href="assets/img/elmam-logo.png" rel="icon">
 
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -238,29 +241,34 @@
   .table1 td {
     width: 2rem;
   }
-  .accross{
-    display:flex;
-    height:100%;
+
+  .accross {
+    display: flex;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width:100%;
-    text-align:center;
+    width: 100%;
+    text-align: center;
   }
-  #tr3{
+
+  #tr3 {
     height: 2rem;
   }
-  #tr3 .mytc{
+
+  #tr3 .mytc {
     height: 4rem;
   }
-  
-  #tr3 .mytc p{
-    margin:0;
+
+  #tr3 .mytc p {
+    margin: 0;
   }
-  #itr5{
+
+  #itr5 {
     height: 10rem;
   }
+
   .rm-nm,
   .rm-tr {
     display: none;
@@ -275,7 +283,7 @@
 
 
 <body>
-<div class="modal fade" id="smallModal" tabindex="-1">
+  <div class="modal fade" id="smallModal" tabindex="-1">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header">
@@ -294,8 +302,8 @@
                 <td id="room-nm"></td>
               </tr>
               <tr>
-                <th scope="row">Room Name</th>
-                <td id="room-tr"></td>
+                <th scope="row">السعة</th>
+                <td id="room-cp"></td>
               </tr>
             </tbody>
           </table>
@@ -311,12 +319,12 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.php" class="logo d-flex align-items-center">
         <img src="assets/img/elmam-logo.png" alt="">
-       
+
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
+    <nav class="header-nav">
       <ul class="d-flex align-items-center">
 
         <li class="nav-item dropdown">
@@ -324,7 +332,7 @@
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
-  </a><!-- End Notification Icon ------------------------------------------>
+          </a><!-- End Notification Icon ------------------------------------------>
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
@@ -447,19 +455,19 @@
         </a>
       </li><!-- End home Nav -->
 
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="notification.php">
           <i class="bi bi-bell"></i>
           <span> التنبيهات</span>
         </a>
       </li><!-- End notfications  Nav --------------->
-      
-          <li class="nav-item">
+
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-map"></i>
-           <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-map"></i>
+          <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="map0.php">
               <i class="bi bi-circle"></i><span>الدور الأرضي</span>
@@ -477,11 +485,12 @@
           </li>
         </ul>
       </li><!-- End map  Nav --------------->
-      
 
-    <li class="nav-item">
+
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i
+            class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -501,19 +510,21 @@
           </li>
         </ul>
       </li><!-- End Tables Nav -->
-      
-            <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-file-earmark-bar-graph"></i>
-           <span> تقارير اسبوعية</span>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
+          <i class="bi bi-file-earmark-bar-graph"></i>
+          <span> تقارير اسبوعية</span>
         </a>
       </li><!-- End report  Nav ---------------------------------------------------->
 
-      
-      <!-- End line  ------------------------------------------------------------------------------->
-      <li> <hr> </li>
 
-      
+      <!-- End line  ------------------------------------------------------------------------------->
+      <li>
+        <hr>
+      </li>
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.php">
           <i class="bi bi-person"></i>
@@ -551,7 +562,7 @@
       <br>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">الصفحة الرئيسية  </a></li>
+          <li class="breadcrumb-item"><a href="index.php">الصفحة الرئيسية </a></li>
           <li class="breadcrumb-item"></li>
           <li class="breadcrumb-item active">الدور الثاني</li>
         </ol>
@@ -562,10 +573,10 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-body">        
+            <div class="card-body">
               <h5 class="card-title">خريطة الجامعة</h5>
               <div class="row">
-                
+
               </div>
               <br><br>
 
@@ -753,7 +764,7 @@
                                 </div>
                               </td>
                               <td class="grp4" rowspan="2">
-                                <div class="mytc" >
+                                <div class="mytc">
                                   <p class="rm-no">6s37</p>
                                   <p class="rm-nm">وحدة الإرشاد و التسجيل الاكاديمي</p>
                                   <p class="rm-tr">Guidance & Registration Unit</p>
@@ -897,13 +908,13 @@
                           <p class="rm-nm"></p>
                           <p class="rm-tr"></p>
                         </div>
-                        <td class="grp2 bort borr">
-                          <div class="mytc">
-                            <p class="rm-no">6s33</p>
-                            <p class="rm-nm">معمل</p>
-                            <p class="rm-tr">lab</p>
-                          </div>
-                        </td>
+                      <td class="grp2 bort borr">
+                        <div class="mytc">
+                          <p class="rm-no">6s33</p>
+                          <p class="rm-nm">معمل</p>
+                          <p class="rm-tr">lab</p>
+                        </div>
+                      </td>
                       </td>
                     </tr>
                     <tr id="tr10">
@@ -1002,14 +1013,21 @@
                           <p>معامل دراسات عليا</p>
                           <p>postgraduate lab</p>
                         </div>
-                      <div class="accross">
+                        <div class="accross">
                           <div style="flex-grow:1;" class="mytc borl">
-                          <p class="rm-no">6s4</p>
-                          <p class="rm-nm">معامل دراسات عليا</p>
-                          <br></div>
-                          <div style="flex-grow:1;" class="mytc borl"><p class="rm-no">6s4</p><p class="rm-nm">معامل دراسات عليا</p><br></div>
-                          <div style="flex-grow:1;" class="mytc"><p class="rm-no">6s4</p><p class="rm-nm">معامل دراسات عليا</p><br></div>
-                      </div>
+                            <p class="rm-no">6s4</p>
+                            <p class="rm-nm">معامل دراسات عليا</p>
+                            <br>
+                          </div>
+                          <div style="flex-grow:1;" class="mytc borl">
+                            <p class="rm-no">6s4</p>
+                            <p class="rm-nm">معامل دراسات عليا</p><br>
+                          </div>
+                          <div style="flex-grow:1;" class="mytc">
+                            <p class="rm-no">6s4</p>
+                            <p class="rm-nm">معامل دراسات عليا</p><br>
+                          </div>
+                        </div>
                       <td class="grp3 borl">
                         <div class="mytc">
                           <p class="rm-no">6s1</p>
@@ -1058,24 +1076,27 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy;  جميع الحقوق محفوظة <strong><span>لإلمـام</span></strong> 
+      &copy; جميع الحقوق محفوظة <strong><span>لإلمـام</span></strong>
     </div>
     <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-        <div class="social-links">
-        <a href="https://twitter.com/elmam_sa?s=11&t=bQf4d5cu-HYAhb1QcYfSJQ" class="twitter"  ><i class="bx bxl-twitter"></i></a>
+      <div class="social-links">
+        <a href="https://twitter.com/elmam_sa?s=11&t=bQf4d5cu-HYAhb1QcYfSJQ" class="twitter"><i
+            class="bx bxl-twitter"></i></a>
         <a href="https://www.youtube.com/@1Elmam" class="facebook"><i class="bx bxl-youtube"></i></a>
-        <a href="https://instagram.com/elmam_sa?igshid=YmMyMTA2M2Y" class="instagram"><i class="bx bxl-instagram"></i></a>
-        
-        
+        <a href="https://instagram.com/elmam_sa?igshid=YmMyMTA2M2Y" class="instagram"><i
+            class="bx bxl-instagram"></i></a>
+
+
       </div>
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -1092,11 +1113,26 @@
 
 </body>
 <script>
-  $('.mytc').on('click', function() {
-      $("#room-no").text($(this).find('.rm-no').text());
-      $("#room-nm").text($(this).find('.rm-nm').text());
-      $("#room-tr").text($(this).find('.rm-tr').text());
-      $('#smallModal').modal('show');
+  $('.mytc').on('click', function () {
+    $("#room-no").text($(this).find('.rm-no').text());
+    $("#room-nm").text($(this).find('.rm-nm').text());
+    var id = $(this).find('.rm-no').text();
+    console.log(id);
+    $.ajax({
+      url: 'http://localhost/project/api.php',
+      method: 'GET',
+      dataType: 'json',
+      data: { 'capacity': true, 'id': id.slice(1) },
+      success: function (data) {
+        console.log(data)
+        $('#room-cp').text(data.cp);
+      },
+      error: function (err) {
+        console.error('Error22f:', err);
+      }
+    });
+    $('#smallModal').modal('show');
   });
 </script>
+
 </html>

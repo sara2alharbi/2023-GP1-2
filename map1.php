@@ -289,8 +289,8 @@
                 <td id="room-nm"></td>
               </tr>
               <tr>
-                <th scope="row">Room Name</th>
-                <td id="room-tr"></td>
+                <th scope="row">السعة</th>
+                <td id="room-cp"></td>
               </tr>
             </tbody>
           </table>
@@ -311,7 +311,7 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <nav class="header-nav ms-auto">
+    <nav class="header-nav">
       <ul class="d-flex align-items-center">
 
         <li class="nav-item dropdown">
@@ -436,7 +436,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
+        <a class="nav-link collapsed " href="index.php">
           <i class="bi bi-grid"></i>
           <span> الرئيسية</span>
         </a>
@@ -454,14 +454,14 @@
             <i class="bi bi-map"></i>
            <span>خريطة المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content " data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="map0.php">
               <i class="bi bi-circle"></i><span>الدور الأرضي</span>
             </a>
           </li>
           <li>
-            <a href="map1.php" class="nav-link">
+            <a href="map1.php">
               <i class="bi bi-circle"></i><span>الدور الأول</span>
             </a>
           </li>
@@ -498,7 +498,7 @@
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>
@@ -1057,11 +1057,25 @@
 </body>
 
 <script>
-  $('.mytc').on('click', function() {
-      $("#room-no").text($(this).find('.rm-no').text());
-      $("#room-nm").text($(this).find('.rm-nm').text());
-      $("#room-tr").text($(this).find('.rm-tr').text());
-      $('#smallModal').modal('show');
+  $('.mytc').on('click', function () {
+    $("#room-no").text($(this).find('.rm-no').text());
+    $("#room-nm").text($(this).find('.rm-nm').text());
+    var id = $(this).find('.rm-no').text();
+    console.log(id);
+    $.ajax({
+      url: 'http://localhost/project/api.php',
+      method: 'GET',
+      dataType: 'json',
+      data: { 'capacity': true, 'id': id.slice(1)},
+      success: function (data) {
+        console.log(data)
+        $('#room-cp').text(data.cp);
+      },
+      error: function (err) {
+        console.error('Error22f:', err);
+      }
+    });
+    $('#smallModal').modal('show');
   });
 </script>
 
