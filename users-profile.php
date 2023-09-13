@@ -39,6 +39,14 @@
 </head>
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["user"])) {
+   header("Location: login.php");
+}
+$userName = $_SESSION["user"];
+$userEmail = $_SESSION["email"];
+?>
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -132,13 +140,13 @@
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
       <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">الاسم</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userName; ?></span>
       </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
         <li class="dropdown-header">
-          <h6>Kevin Anderson</h6>
-          <span>Web Designer</span>
+          <h6><?php echo $userName; ?></h6>
+          <span>مدير مبنى</span>
         </li>
         <li>
           <hr class="dropdown-divider">
@@ -298,8 +306,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
-              <h2>Kevin Anderson</h2>
-              <h3>Web Designer</h3>
+              <h2><?php echo $userName; ?></h2>
+              <h3>مدير مبنى</h3>
             </div>
           </div>
 
@@ -323,15 +331,15 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label "> الإسم</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $userName; ?></div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">الوظيفة</div>
-                    <div class="col-lg-9 col-md-8">Web Designer</div>
+                    <div class="col-lg-9 col-md-8">مدير مبنى</div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">البريد الإلكتروني</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $userEmail; ?></div>
                   </div>
 
                 </div>

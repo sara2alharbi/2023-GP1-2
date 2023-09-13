@@ -8,31 +8,32 @@ session_start();
 if (isset($_SESSION["user"])) {
    header("Location: index.php");
 }
-    $msg = "";
-    
-        if (isset($_POST["login"])) {
-           $email = $_POST["email"];
-           $password = $_POST["password"]; 
-           $passwordHash = sha1($password); 
-           
-           
-            $sql = " SELECT * FROM manager WHERE email = '$email' && password = '$passwordHash' ";
-            $result = mysqli_query($conn, $sql);
- 
-             if (empty($email) OR empty($password) ) 
-             {  $msg= "<div dir='rtl' class='alert alert-danger'>جميع البيانات مطلوبة</div>"; }
-             
-             else  
-                //here i will check user input .....
-              if(mysqli_num_rows($result) > 0) {
-                    session_start();
-                    $_SESSION["user"] = "yes";
-                    header("Location: index.php");
-                    die();
-        } else
-            {$msg="<div dir='rtl'  class='alert alert-danger'>كلمة المرور أو البريد الإلكتروني غير صحيح</div>"; }
-        }
+$msg = "";
+
+if (isset($_POST["login"])) {
+   $email = $_POST["email"];
+   $password = $_POST["password"]; 
+   $passwordHash = sha1($password); 
+   
+   $sql = "SELECT * FROM manager WHERE email = '$email' && password = '$passwordHash'";
+   $result = mysqli_query($conn, $sql);
+
+   if (empty($email) OR empty($password)) {  
+      $msg = "<div dir='rtl' class='alert alert-danger'>جميع البيانات مطلوبة</div>";
+   } else { 
+      if(mysqli_num_rows($result) > 0) {
+         $row = mysqli_fetch_assoc($result);
+         $_SESSION["user"] = $row["name"]; // Set $_SESSION["user"] to the user's name
+		 $_SESSION["email"] = $row["email"]; // Set $_SESSION["email"] to the user's email
+         header("Location: index.php");
+         die();
+      } else {
+         $msg = "<div dir='rtl' class='alert alert-danger'>كلمة المرور أو البريد الإلكتروني غير صحيح</div>";
+      }
+   }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>

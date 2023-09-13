@@ -29,6 +29,8 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -40,6 +42,13 @@
 </head>
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION["user"])) {
+   header("Location: login.php");
+}
+$userName = $_SESSION["user"];
+?>
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -134,13 +143,13 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
           <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">الاسم</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userName; ?></span>
           </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+              <h6><?php echo $userName; ?></h6>
+              <span>مدير مبنى</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -309,9 +318,20 @@
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                    <h1 class="card-title" style="font-size: 300%;"> مرحبًا بِك <span style="font-size: 50%;">| في إلمام</span></h1> <br>
-                 <!-- <h5> تم تسجيل دخولك كمدير مبنى<br> يمكنك الاطلاع على خدماتنا من خلال القائمة الجانبية</h5>-->
-                  <img src="assets/img/home.png" alt="" width="400px" height="400px" style="margin-right: 700px; margin-top: -100px;"/>
+                    <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1> <br>
+                 <!-- <h5> تم تسجيل دخولك كمدير مبنى<br> يمكنك الاطلاع على خدماتنا من خلال القائمة الجانبية</h5>
+                  <img src="assets/img/home.png" alt="" width="400px" height="400px" style="margin-right: 700px; margin-top: -100px;"/>-->
+
+                    <!-- capacity Card -->
+            <div class="col-xxl-5 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">السعة</h5>
+                  <canvas id="capacityChart"></canvas>
+                </div>
+              </div>
+            </div><!-- End capacity Card -->
+
                 </div>
               </div>
             </div><!-- End Recent Sales -->
@@ -351,9 +371,87 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+
+  <style>
+  #capacityChart {
+    border: 2px solid #fff; /* Set border properties */
+    width: 100;
+    height: 100;
+  }
+</style>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+  // Get a reference to the canvas element
+  var ctx = document.getElementById('capacityChart').getContext('2d');
+
+  // Define your chart data (example data)
+  var chartData = {
+    labels: ['F1', 'F3', 'F6', 'G5', 'G9'],
+    datasets: [{
+      label: 'السعة',
+      data: [26, 23, 21, 25, 30],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 0,
+      borderRadius: 10, // Set the border radius to make edges rounded
+
+    }]
+  };
+
+  // Create the chart
+  var capacityChart = new Chart(ctx, {
+    type: 'bar', // You can change this to 'line', 'pie', etc. depending on your chart type
+    data: chartData,
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'سعة الغرف', // Your chart title here
+        },
+        legend: {
+          display: false, // Hide the legend
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+      layout: {
+        padding: {
+          left: 10,
+          right: 10,
+          top: 20,
+          bottom: 20,
+        },
+      },
+      elements: {
+        bar: {
+          shadowOffsetX: 0,
+          shadowOffsetY: 4,
+          shadowBlur: 6,
+          shadowColor: 'rgba(0, 0, 0, 0.2)',
+          barPercentage: 0.5, // Adjust the bar size here (0.5 means 50% of the available space)
+        },
+      },
+    },
+  });
+</script>
 
 </body>
 
