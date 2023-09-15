@@ -38,13 +38,7 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-<?php
-session_start();
-if (!isset($_SESSION["user"])) {
-   header("Location: login.php");
-}
-$userName = $_SESSION["user"];
-?>
+
 <style>
   .table-map {
     font-family: 'Tajawal', sans-serif !important;
@@ -291,7 +285,7 @@ $userName = $_SESSION["user"];
                 <td id="room-no"></td>
               </tr>
               <tr>
-                <th scope="row">نوع الغرفة</th>
+                <th scope="row">اسم الغرفة</th>
                 <td id="room-nm"></td>
               </tr>
               <tr>
@@ -398,14 +392,14 @@ $userName = $_SESSION["user"];
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userName; ?></span>
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $userName; ?></h6>
-              <span>مدير مبنى</span>
+              <h6>Kevin Anderson</h6>
+              <span>Web Designer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -442,7 +436,7 @@ $userName = $_SESSION["user"];
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed " href="index.php">
+        <a class="nav-link " href="index.php">
           <i class="bi bi-grid"></i>
           <span> الرئيسية</span>
         </a>
@@ -467,7 +461,7 @@ $userName = $_SESSION["user"];
             </a>
           </li>
           <li>
-            <a href="map1.php" class="nav-link">
+            <a href="map1.php">
               <i class="bi bi-circle"></i><span>الدور الأول</span>
             </a>
           </li>
@@ -504,7 +498,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>

@@ -42,13 +42,7 @@
   ======================================================== -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
-<?php
-session_start();
-if (!isset($_SESSION["user"])) {
-   header("Location: login.php");
-}
-$userName = $_SESSION["user"];
-?>
+
 <style>
   .table-map {
     font-family: 'Tajawal', sans-serif !important;
@@ -293,7 +287,7 @@ $userName = $_SESSION["user"];
     transition-property: transform;
   }
 
-  .popover__wrapper:hover .popover__content {
+ .popover__content.active {
     z-index: 10;
     opacity: 1;
     visibility: visible;
@@ -305,7 +299,7 @@ $userName = $_SESSION["user"];
     text-align: center;
   }
 
-  /*** */
+  /****/
   .popover__content2 {
     opacity: 0;
     visibility: hidden;
@@ -331,7 +325,7 @@ $userName = $_SESSION["user"];
     transition-property: transform;
   }
 
-  .popover__wrapper2:hover .popover__content2 {
+  .popover__content2.active {
     z-index: 10;
     opacity: 1;
     visibility: visible;
@@ -362,17 +356,17 @@ $userName = $_SESSION["user"];
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          <h5 class="modal-title" dir="rtl">معلومات الغرفة</h5>
+          <h5 class="modal-title">معلومات الغرفة</h5>
         </div>
         <div class="modal-body">
-          <table class="table table-striped" dir="rtl">
+          <table class="table table-striped">
             <tbody>
               <tr>
                 <th scope="row">رقم الغرفة</th>
                 <td id="room-no"></td>
               </tr>
               <tr>
-                <th scope="row">نوع الغرفة</th>
+                <th scope="row">اسم الغرفة</th>
                 <td id="room-nm"></td>
               </tr>
               <tr>
@@ -479,14 +473,14 @@ $userName = $_SESSION["user"];
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/img/empty-profile.png" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $userName; ?></span>
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
           </a><!-- End Profile Iamge Icon ----------------------------------------------------------->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?php echo $userName; ?></h6>
-              <span>مدير مبنى</span>
+              <h6>Kevin Anderson</h6>
+              <span>Web Designer</span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -523,7 +517,7 @@ $userName = $_SESSION["user"];
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.php">
+        <a class="nav-link " href="index.php">
           <i class="bi bi-grid"></i>
           <span> الرئيسية</span>
         </a>
@@ -543,7 +537,7 @@ $userName = $_SESSION["user"];
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="map0.php"  class="nav-link">
+            <a href="map0.php">
               <i class="bi bi-circle"></i><span>الدور الأرضي</span>
             </a>
           </li>
@@ -586,7 +580,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed"  data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-file-earmark-bar-graph"></i>
           <span> تقارير اسبوعية</span>
         </a>
@@ -650,6 +644,9 @@ $userName = $_SESSION["user"];
             <div class="card-body">
               <h5 class="card-title">خريطة الجامعة</h5>
               <div class="row">
+                <div class='col-md-6'>
+                  <button class="btn btn-primary" onClick="showInfo(this)">إظهار/إخفاء الحساسات</button>
+                </div>
               </div>
               <br><br>
 
@@ -659,7 +656,7 @@ $userName = $_SESSION["user"];
                     <tr id='tr1'>
                       <td rowspan="2" class="borl grp1">
                         <div class="mytc">
-                          <p class="rm-no">6F19</p>
+                          <p class="rm-no">6G19</p>
                           <p class="rm-nm">قاعة بحث</p>
                           <p class="rm-tr">Seminar room</p>
                         </div>
@@ -828,7 +825,7 @@ $userName = $_SESSION["user"];
                               </td>
                               <td class="grp4 bort borr" style="border-bottom:1px solid rgb(175, 141, 202)">
                                 <div class="mytc">
-                                  <p class="rm-no">6f48</p>
+                                  <p class="rm-no">6G48</p>
                                   <p class="rm-nm">مكتب أنشطة الطالبات</p>
                                   <p class="rm-tr">Activity Office</p>
                                 </div>
@@ -849,7 +846,7 @@ $userName = $_SESSION["user"];
                               </td>
                               <td class="grp4 borb borl" rowspan="2" colspan="2">
                                 <div class="mytc">
-                                  <p class="rm-no">6f51</p>
+                                  <p class="rm-no">6G51</p>
                                   <p class="rm-nm">قاعة دراسية</p>
                                   <p class="rm-tr">classroom</p>
                                 </div>
@@ -1166,7 +1163,7 @@ $userName = $_SESSION["user"];
     var id = $(this).find('.rm-no').text();
     console.log(id);
     $.ajax({
-      url: 'http://localhost/GP1-CODE/api.php',
+      url: 'http://localhost/project/api.php',
       method: 'GET',
       dataType: 'json',
       data: { 'capacity': true, 'id': id.slice(1)},
@@ -1180,6 +1177,16 @@ $userName = $_SESSION["user"];
     });
     $('#smallModal').modal('show');
   });
+
+  function showInfo(event){
+    event.classList.toggle('btn-secondary');
+    const box1 = document.getElementsByClassName('popover__content')[0];
+    const box2 = document.getElementsByClassName('popover__content2')[0];
+    console.log(box1, box2);
+    box1.classList.toggle('active');
+    box2.classList.toggle('active');
+  }
+
 </script>
 
 </html>
