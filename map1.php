@@ -578,7 +578,7 @@ $userName = $_SESSION["user"];
                       </td>
                       <td rowspan="2" class="borl borb grp1">
                         <div class="mytc">
-                          <p class="rm-no">6g20</p>
+                          <p class="rm-no">6F20</p>
                           <p class="rm-nm">معمل</p>
                           <p class="rm-tr">lab</p>
                         </div>
@@ -650,9 +650,9 @@ $userName = $_SESSION["user"];
                               <td class="grp5 bor"></td>
                               <td class="grp2 borb borl borr">
                                 <div class="mytc">
-                                  <p class="rm-no">6f17</p>
-                                  <p class="rm-nm">قاعة دراسية</p>
-                                  <p class="rm-tr">classroom</p>
+                                  <p class="rm-no"></p>
+                                  <p class="rm-nm"> </p>
+                                  <p class="rm-tr"></p>
                                 </div>
                               </td>
                             </tr>
@@ -854,7 +854,7 @@ $userName = $_SESSION["user"];
                       <td class="grp1 borl bort">
                         <div class="mytc">
                           <p class="rm-no">6f13</p>
-                          <p class="rm-nm"></p>
+                          <p class="rm-nm"> قاعةدراسية</p>
                           <p class="rm-tr"></p>
                         </div>
                       </td>
