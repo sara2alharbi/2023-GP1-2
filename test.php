@@ -2,16 +2,14 @@
 <html>
 <head>
     <title>Alerts Table</title>
+    <meta http-equiv="refresh" content="5"> <!-- Refresh the page every 5 seconds -->
 </head>
 <body>
 
 <table border="1">
     <tr>
-        <th>Temperature</th>
-        <th>Humidity</th>
-        <th>Noise</th>
-        <th>Air Quality</th>
-        <th>Time</th>
+        <th>Alert Message</th>
+        <th>Last Alert Time</th>
         <th>Room Number</th>
     </tr>
     <?php
@@ -27,45 +25,61 @@
         exit();
     }
 
-    // Get the current date
+    // Get the current date and time
     $currentDate = date("Y-m-d");
+    $currentTime = date("H:i:s");
 
     // Retrieve data from the database based on conditions
-    $sql = "SELECT t.temperature, t.humidity, t.microID, t.Date_today, TIME_FORMAT(t.Time_today, '%H:%i') AS Time_today,
-                   n.noise, a.airquality
+    $sql = "SELECT t.temperature, t.microID, t.Date_today, TIME_FORMAT(t.Time_today, '%H:%i') AS Time_today,
+                   a.airquality
             FROM temperature t
-            LEFT JOIN noise n ON t.microID = n.microID AND t.Date_today = n.Date_today
             LEFT JOIN airquality a ON t.microID = a.microID AND t.Date_today = a.Date_today
             WHERE t.Date_today = '$currentDate'
-            AND (a.airquality = 0 OR t.temperature > 35)";
+            ORDER BY t.Date_today DESC, t.Time_today DESC
+            LIMIT 1";
 
     $result = mysqli_query($connect, $sql);
 
-    while ($row = mysqli_fetch_assoc($result)) {
+    if ($row = mysqli_fetch_assoc($result)) {
         $temperature = $row['temperature'];
-        $humidity = $row['humidity'];
-        $noise = $row['noise'];
         $airquality = $row['airquality'];
         $microID = $row['microID'];
-        $time_today = $row['Time_today'];
+        $alertTime = $row['Time_today'];
 
         // Determine the room number based on microID
         $roomNumber = ($microID == "ESP12E") ? "G35" : (($microID == "ESP12F") ? "G9" : "");
 
-        // Define row style based on conditions
-        $rowStyle = '';
-        if ($airquality == 0 || $temperature > 35) {
-            $rowStyle = 'background-color: lightcoral;';
+        // Define alert message based on conditions
+        if ($airquality == 0 || $temperature > 30) {
+            if ($airquality == 0 && $temperature > 30) {
+                $alertMessage = "درجة الحرارة مرتفعة و جودة الهواء منخفضة";
+            } elseif ($airquality == 0) {
+                $alertMessage = "جودة الهواء منخفضة";
+            } else {
+                $alertMessage = "درجة الحرارة مرتفعة";
+            }
+            
+            // Set the row style to red
+            $rowStyle = 'background-color: red;';
+        } else {
+            $alertMessage = "لا يوجد اشعارات";
+            
+            // Set the row style to green
+            $rowStyle = 'background-color: #D9ED92;';
         }
 
-        // Display data in the table
+        // Display data in the table with the specified row style
         echo "<tr style='$rowStyle'>";
-        echo "<td>$temperature</td>";
-        echo "<td>$humidity</td>";
-        echo "<td>$noise</td>";
-        echo "<td>$airquality</td>";
-        echo "<td>$time_today</td>";
+        echo "<td>$alertMessage</td>";
+        echo "<td>$alertTime</td>";
         echo "<td>$roomNumber</td>";
+        echo "</tr>";
+    } else {
+        // If no alerts are found, display "لا يوجد اشعارات" with a green row
+        echo "<tr style='background-color: #D9ED92;'>";
+        echo "<td>لا يوجد اشعارات</td>";
+        echo "<td>$currentTime</td>";
+        echo "<td></td>";
         echo "</tr>";
     }
 

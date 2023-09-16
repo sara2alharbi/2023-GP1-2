@@ -230,7 +230,7 @@ $userEmail = $_SESSION["email"];
       </li>
       <li>
         <a href="room-date.php">
-          <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة</span>
+        <i class="bi bi-circle"></i><span> حصائية درجة الحرارة الضوضاء </span>
         </a>
       </li>
     </ul>
