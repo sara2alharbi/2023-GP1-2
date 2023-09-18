@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar">
+<?php include "DB.php"; ?>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>التنبيهات</title>
+  <meta http-equiv="refresh" content="30"> <!-- Refresh the page every 5 seconds -->
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -301,6 +303,77 @@ $userName = $_SESSION["user"];
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">جدول التنبيهات</h5>
+              <table border="1">
+    <tr>
+        <th>رسالة التنبيه</th>
+        <th>وقت التنبيه</th>
+        <th>رقم الغرفة</th>
+    </tr>
+    <?php
+    //// Set your desired time zone
+    // Get the current date and time
+    date_default_timezone_set('Asia/Riyadh');
+    $currentDate = date("Y-m-d");
+    $currentTime = date("H:i:s");
+
+    // Retrieve data from the database based on conditions
+    $sql = "SELECT t.temperature, t.microID, t.Date_today, TIME_FORMAT(t.Time_today, '%H:%i') AS Time_today,
+                   a.airquality
+            FROM temperature t
+            LEFT JOIN airquality a ON t.microID = a.microID AND t.Date_today = a.Date_today
+            WHERE t.Date_today = '$currentDate'
+            ORDER BY t.Date_today DESC, t.Time_today DESC
+            LIMIT 1";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        $temperature = $row['temperature'];
+        $airquality = $row['airquality'];
+        $microID = $row['microID'];
+        $alertTime = $row['Time_today'];
+
+        // Determine the room number based on microID
+        $roomNumber = ($microID == "ESP12E") ? "G35" : (($microID == "ESP12F") ? "G9" : "");
+
+        // Define alert message based on conditions
+        if ($airquality == 0 || $temperature > 30) {
+            if ($airquality == 0 && $temperature > 30) {
+                $alertMessage = "درجة الحرارة مرتفعة و جودة الهواء منخفضة";
+            } elseif ($airquality == 0) {
+                $alertMessage = "جودة الهواء منخفضة";
+            } else {
+                $alertMessage = "درجة الحرارة مرتفعة";
+            }
+            
+            // Set the row style to red
+            $rowStyle = 'background-color: red;';
+        } else {
+            $alertMessage = "لا يوجد اشعارات";
+            
+            // Set the row style to green
+            $rowStyle = 'background-color: #D9ED92;';
+        }
+
+        // Display data in the table with the specified row style
+        echo "<tr style='$rowStyle'>";
+        echo "<td>$alertMessage</td>";
+        echo "<td>$alertTime</td>";
+        echo "<td>$roomNumber</td>";
+        echo "</tr>";
+    } else {
+        // If no alerts are found, display "لا يوجد اشعارات" with a green row
+        echo "<tr style='background-color: #D9ED92;'>";
+        echo "<td colspan = '2'>لا يوجد اشعارات</td>";
+        echo "<td>$currentTime</td>";
+        echo "</tr>";
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+    ?>
+</table>
+
 
             </div>
           </div>
@@ -347,5 +420,45 @@ $userName = $_SESSION["user"];
   <script src="assets/js/main.js"></script>
 
 </body>
+
+<style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #76C893;
+            font-family : 'Droid Arabic Naskh' , Arial, sans-serif;
+            color : white;
+
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr.alert {
+            background-color: red;
+            color: white;
+        }
+
+        tr.green {
+            background-color: #D9ED92;
+        }
+
+        /* Add a hover effect to the second row */
+tr:nth-child(2):hover {
+    background-color: gray; /* Specify the hover color you want */
+    color: white /* Specify the hover text color you want */
+}
+
+    </style>
 
 </html>
