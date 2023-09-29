@@ -7,7 +7,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>التنبيهات</title>
-  <meta http-equiv="refresh" content="30"> <!-- Refresh the page every 5 seconds -->
+  <meta http-equiv="refresh" content="5"> <!-- Refresh the page every 5 seconds -->
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -217,7 +217,7 @@ $userName = $_SESSION["user"];
       </li><!-- End map  Nav --------------->
       
 
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -234,7 +234,12 @@ $userName = $_SESSION["user"];
           </li>
           <li>
             <a href="room-date.php">
-            <i class="bi bi-circle"></i><span> حصائية درجة الحرارة الضوضاء </span>
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة</span>
+            </a>
+          </li>
+               <li>
+            <a href="bookRoom.php">
+              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
             </a>
           </li>
         </ul>
@@ -306,8 +311,8 @@ $userName = $_SESSION["user"];
               <table border="1">
     <tr>
         <th>رسالة التنبيه</th>
-        <th>وقت التنبيه</th>
         <th>رقم الغرفة</th>
+        <th>وقت التنبيه</th>
     </tr>
     <?php
     //// Set your desired time zone
@@ -358,8 +363,8 @@ $userName = $_SESSION["user"];
         // Display data in the table with the specified row style
         echo "<tr style='$rowStyle'>";
         echo "<td>$alertMessage</td>";
-        echo "<td>$alertTime</td>";
         echo "<td>$roomNumber</td>";
+        echo "<td>$alertTime</td>";
         echo "</tr>";
     } else {
         // If no alerts are found, display "لا يوجد اشعارات" with a green row

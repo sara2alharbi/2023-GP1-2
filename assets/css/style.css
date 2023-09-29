@@ -15,7 +15,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #F5FFF8;
   color: #444444;
  direction: rtl ;
 }
@@ -153,7 +153,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #f6f9ff;
+  background-color: #F5FFF8;
 }
 
 @media (min-width: 768px) {
@@ -475,7 +475,7 @@ h6 {
 }
 
 .header-nav .notifications .notification-item:hover {
-  background-color: #f6f9ff;
+  background-color: #F5FFF8;
 }
 
 
@@ -603,9 +603,9 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #168AAD;
   transition: 0.3;
-  background: #f6f9ff;
+  background: #F5FFF8;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -613,7 +613,7 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-left: 10px;
-  color: #4154f1;
+  color: #168AAD;
 }
 
 .sidebar-nav .nav-link.collapsed {
@@ -626,12 +626,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #168AAD;
+  background: #F5FFF8;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #168AAD;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -669,11 +669,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #168AAD;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #4154f1;
+  background-color: #168AAD;
 }
 
 /*--------------------------------------------------------------
@@ -885,6 +885,13 @@ h6 {
   border-radius: 5px;
   max-width: 60px;
 }
+/*--------------------------------------------------------------
+# BookRoom page
+--------------------------------------------------------------*/
+
+
+
+
 
 /*--------------------------------------------------------------
 # Icons list page

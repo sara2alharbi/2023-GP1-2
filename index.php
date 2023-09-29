@@ -26,10 +26,13 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   
 </head>
 
@@ -58,79 +61,117 @@ $userName = $_SESSION["user"];
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-  </a><!-- End Notification Icon ------------------------------------------>
+        <div id="notification-bell" onclick="toggleAlerts()">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+        <i class="bi bi-bell" style="font-size:30px"></i>
+        <span id="notification-count"></span>
+    </a>
+    </div>
+  </a>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+    <!-- End Notification Icon ------------------------------------------>
+  <!--  Notification code ------------------------------------------>
+  <style>
+        #notification-bell{
+          position: absolute;
+          bottom: -28px;
+          left : -5px;
+        }
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
+        #alerts-container {
+            display: none;
+            position: absolute;
+            bottom: -333px;
+            left : -5px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 5px #ccc;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+        }
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+        #notification-bell {
+            position: absolute;
+        }
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
+        #notification-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: red;
+            color: white;
+            border-radius: 40%;
+            padding: 3px 5px;
+            font-size: 10px;
+        }
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+        .alert-item {
+            margin-bottom: 10px;
+        }
 
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
+        ul {
+        list-style-type: none; /* Remove bullet points from the list */
+        padding: 0; /* Remove default padding */
+        margin: 0; /* Remove default margin */
+    }
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+    li {
+        margin-bottom: 10px;
+    }
+    </style>
+    <script>
+        var newNotificationsCount = 0;
 
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
+        // Function to check for new sensor data and display alerts
+        function checkForAlerts() {
+            $.ajax({
+                url: 'check.php',
+                method: 'GET',
+                success: function (data) {
+                    if (data !== "") {
+                        newNotificationsCount++;
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
+                        // Update the notification count
+                        $('#notification-count').text(newNotificationsCount);
+                        $('#notification-count').show();
 
-          </ul><!-- End Notification Dropdown Items -->
+                        // Add the new notification to the list
+                        $('#alerts-list').append('<div class="alert-item">' + data + '</div>');
+                    }
+                }
+            });
+        }
 
-        </li><!-- End Notification Nav-------------------------------------------------------------------------- -->
+        // Function to remove a notification
+        function removeNotification(button) {
+            $(button).parent().remove();
+            newNotificationsCount--;
 
+            if (newNotificationsCount === 0) {
+                $('#notification-count').hide();
+            } else {
+                $('#notification-count').text(newNotificationsCount);
+            }
+        }
 
+        // Function to toggle the visibility of the alerts container
+        function toggleAlerts() {
+            $('#alerts-container').toggle();
+        }
+
+        // Periodically check for alerts (every minute in this example)
+        setInterval(checkForAlerts, 10000); // 60,000 milliseconds = 1 minute
+    </script>
+    <!--End notification script and style-->
+
+            <div id="alerts-container">
+            <div id="alerts-list">
+            <!-- Alerts will be displayed here -->
+            </div>
+            </div>
+ 
+    <!--End notification -->
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -216,7 +257,7 @@ $userName = $_SESSION["user"];
       </li><!-- End map  Nav --------------->
       
 
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -233,7 +274,12 @@ $userName = $_SESSION["user"];
           </li>
           <li>
             <a href="room-date.php">
-            <i class="bi bi-circle"></i><span> حصائية درجة الحرارة الضوضاء </span>
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
+            </a>
+          </li>
+               <li>
+            <a href="bookRoom.php" >
+              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
             </a>
           </li>
         </ul>
@@ -297,11 +343,7 @@ $userName = $_SESSION["user"];
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    
-    
-    
-    
-
+  
     <section class="section dashboard">
       <div class="row">
 
@@ -310,24 +352,31 @@ $userName = $_SESSION["user"];
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                    <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1> <br>
-                 <!-- <h5> تم تسجيل دخولك كمدير مبنى<br> يمكنك الاطلاع على خدماتنا من خلال القائمة الجانبية</h5>
-                  <img src="assets/img/home.png" alt="" width="400px" height="400px" style="margin-right: 700px; margin-top: -100px;"/>-->
-
-                    <!-- capacity Card -->
-            <div class="col-xxl-5 col-md-6">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">السعة</h5>
-                  <canvas id="capacityChart"></canvas>
-                </div>
-              </div>
-            </div><!-- End capacity Card -->
-
+                  <br>
+                    <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1> <br>                  
                 </div>
               </div>
             </div><!-- End Recent Sales -->
+                                <!-- building-info Card -->
+                                <div class="col-lg-4">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">معلومات المبنى</h5>
+                  <canvas id="myPieChart" width="200" height="200"></canvas>
+                </div>
+              </div>
+            </div><!-- End building-info Card -->
+            <div class="col-lg-4">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">نسبة استغلال المساحة </h5> 
+                  <canvas id="myDoughnutChart" width="200" height="200"></canvas>
+                </div>
+              </div>
+            </div><!-- End building-info Card -->
         </div><!-- End Right side columns -->
+        
+        
     </section>
 
   </main><!-- End #main -->
@@ -375,75 +424,50 @@ $userName = $_SESSION["user"];
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script>
-  // Get a reference to the canvas element
-  var ctx = document.getElementById('capacityChart').getContext('2d');
+// Static data for the pie chart
+var data = [39,29, 2 ,5 , 4 , 12];
+var labels = ['القاعات الدراسية', 'المعامل', 'مصلى' , 'قاعة بحث' , 'معمل أبحاث' , 'مكاتب'];
 
-  // Define your chart data (example data)
-  var chartData = {
-    labels: ['F1', 'F3', 'F6', 'G5', 'G9'],
-    datasets: [{
-      label: 'السعة',
-      data: [26, 23, 21, 25, 30],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.5)',
-        'rgba(255, 206, 86, 0.5)',
-        'rgba(75, 192, 192, 0.5)',
-        'rgba(153, 102, 255, 0.5)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-      ],
-      borderWidth: 0,
-      borderRadius: 10, // Set the border radius to make edges rounded
+// Get the canvas element
+var ctx = document.getElementById('myPieChart').getContext('2d');
 
-    }]
-  };
-
-  // Create the chart
-  var capacityChart = new Chart(ctx, {
-    type: 'bar', // You can change this to 'line', 'pie', etc. depending on your chart type
-    data: chartData,
-    options: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'سعة الغرف', // Your chart title here
-        },
-        legend: {
-          display: false, // Hide the legend
-        },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-      layout: {
-        padding: {
-          left: 10,
-          right: 10,
-          top: 20,
-          bottom: 20,
-        },
-      },
-      elements: {
-        bar: {
-          shadowOffsetX: 0,
-          shadowOffsetY: 4,
-          shadowBlur: 6,
-          shadowColor: 'rgba(0, 0, 0, 0.2)',
-          barPercentage: 0.5, // Adjust the bar size here (0.5 means 50% of the available space)
-        },
-      },
-    },
-  });
+// Create the pie chart
+var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: ['#184E77', '#1A759F', '#34A0A4', '#76C893' , '#B5E48C' , '#D9ED92'], // Customize the colors
+        }]
+    }
+});
 </script>
+
+<script>
+        // Static data for the doughnut chart
+        var data = [80 , 20]; // Data for each segment
+        var labels = ['المستغلة', 'الغير مستغلة']; // Labels for each segment
+
+        // Get the canvas element
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+
+        // Create the doughnut chart
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: ['#52B69A', '#B5E48C'], // Customize the colors of each segment
+                }]
+            }
+        });
+    </script>
+
 
 </body>
 

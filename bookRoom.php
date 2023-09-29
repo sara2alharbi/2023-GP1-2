@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>للتواصل</title>
+  <title>حجز غرفة</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -213,7 +213,7 @@ $userName = $_SESSION["user"];
       </li><!-- End map  Nav --------------->
       
 
-      <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -230,11 +230,11 @@ $userName = $_SESSION["user"];
           </li>
           <li>
             <a href="room-date.php">
-              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء </span>
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
             </a>
           </li>
                <li>
-            <a href="bookRoom.php">
+            <a href="bookRoom.php" class="nav-link">
               <i class="bi bi-circle"></i><span>  حجز غرفة</span>
             </a>
           </li>
@@ -268,7 +268,7 @@ $userName = $_SESSION["user"];
       </li><!-- End F.A.Q Page Nav ------------------------------------>
 
       <li class="nav-item">
-        <a class="nav-link " href="contact.php">
+        <a class="nav-link collapsed " href="contact.php">
           <i class="bi bi-envelope"></i>
           <span>تواصل معنا</span>
         </a>
@@ -286,59 +286,161 @@ $userName = $_SESSION["user"];
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>معلومات التواصل</h1>
+      <h1>حجز غرفة </h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="contact.php">للتواصل</a></li>
-          <li class="breadcrumb-item active"></li>
+          <li class="breadcrumb-item">غرف المبنى</li>
+           <li class="breadcrumb-item"></li>
+          <li class="breadcrumb-item active">حجز غرفة</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section contact">
+     <div class="card ">
+            <div class="card-body">
+              <h5 class="card-title">الرجاء ادخال بيانات المحاضرة</h5>
 
-      <div class="row gy-4">
+              <!-- No Labels Form -->
+            <!--  <form class="row g-3" method="POST" action="insert_lecture.php">
+               
+                <div class="col-md-6">
+                  <input type="text" name="courseCo" class="form-control" placeholder="رمز المقرر">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="roomNo"  class="form-control" placeholder="رقم الغرفة">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="section" class="form-control" placeholder="رقم الشعبة">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="day" class="form-control" placeholder="اليوم">
+                </div>
+                  <div class="col-md-6">
+                  <input type="text" name="startTime" class="form-control" placeholder="وقت بداية المحاضرة">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="endTime" class="form-control" placeholder="وقت نهاية المحاضرة">
+                </div>
+               
+                  <!-- <div class="col-md-4">
+                  <select id="inputState" class="form-select">
+                    <option selected>Choose...</option>
+                    <option>...</option>
+                  
+                </div> 
+                  
+             
+                <div class="text-center">
+                    <button type="submit" name="add" class="btn btn-primary">Submit</button>
+                 
+                </div>
+              </form>End No Labels Form -->
+                  
+                  <?php
+// Include the database connection file (DB.php)
+include 'DB.php';
 
-        <div class="col-xl-6">
+// Initialize error and success messages
+$errorMessage = "";
+$successMessage = "";
 
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="info-box card">
-                <i class="bi bi-geo-alt"></i>
-                <h3>الموقع</h3>
-                <p>المملكة العربية السعودية،الرياض</p>
-                <br>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="info-box card">
-                <i class="bi bi-telephone"></i>
-                <h3>للإتصال</h3>
-                <p dir="rtl">+966 568346791 <br>+966 544387612</p>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="info-box card">
-                <i class="bi bi-envelope"></i>
-                <h3>البريد الإلكتروني</h3>
-                <p>elmamGP1@gmail.com</p>
-                <br>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="info-box card">
-                <i class="bi bi-clock"></i>
-                <h3>أوقات التواصل</h3>
-                <p>الأحد - الخميس<br>9:00AM - 08:00PM</p>
-              </div>
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $courseCo = $_POST["courseCo"];
+    $roomNo = $_POST["roomNo"];
+    $section = $_POST["section"];
+    $day = $_POST["day"];
+    $startTime = $_POST["startTime"];
+    $endTime = $_POST["endTime"];
+
+    // Check if any field is empty
+    if (empty($courseCo) || empty($roomNo) || empty($section) || empty($day) || empty($startTime) || empty($endTime)) {
+        $errorMessage = "جميع الحقول مطلوبة";
+    } else {
+        // Convert time strings to a suitable format for comparison
+        $startTimeFormatted = date("H:i", strtotime($startTime));
+        $endTimeFormatted = date("H:i", strtotime($endTime));
+
+        // Check if there is a conflict in the database
+        $checkQuery = "SELECT * FROM lecture WHERE roomNo = '$roomNo' AND day = '$day' AND
+                       (CAST('$startTimeFormatted' AS TIME) <= CAST(endTime AS TIME) AND CAST('$endTimeFormatted' AS TIME) >= CAST(startTime AS TIME))";
+        $result = $conn->query($checkQuery);
+
+        if ($result->num_rows > 0) {
+            // Room is busy
+            $errorMessage = " الغرفة محجوزة في هذا الوقت";
+        } else {
+            // Room is available, insert the data
+            $insertQuery = "INSERT INTO lecture (courseCo, roomNo, section, day, startTime, endTime)
+                            VALUES ('$courseCo', '$roomNo', '$section', '$day', '$startTimeFormatted', '$endTimeFormatted')";
+
+            if ($conn->query($insertQuery) === TRUE) {
+                $successMessage = "تم حجز الغرفة بنجاح";
+            } else {
+                $errorMessage = "Error: " . $conn->error;
+            }
+        }
+    }
+}
+?>
+                  
+  <!-- Error Message -->
+    <?php if (!empty($errorMessage)) { ?>
+      <div class="col-md-12">
+        <div class="alert alert-danger redAlr" role="alert">
+          <?php echo $errorMessage; ?>
+        </div>
+      </div>
+    <?php } ?>
+
+    <!-- Success Message -->
+    <?php if (!empty($successMessage)) { ?>
+      <div class="col-md-12">
+        <div class="alert alert-success greenAlr" role="alert">
+          <?php echo $successMessage; ?>
+        </div>
+      </div>
+    <?php } ?>
+    
+      <form class="row g-3 book" method="POST" action="">
+          
+          <div class="col-md-6">
+                  <input type="text" name="courseCo" class="form-control" placeholder="رمز المقرر">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="roomNo"  class="form-control" placeholder="رقم الغرفة">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="section" class="form-control" placeholder="رقم الشعبة">
+                </div>
+                <div class="col-md-6">
+                  <select id="inputState" class="form-select" name="day" >
+                    <option selected>اختر اليوم</option>
+                    <option value="الأحد">الأحد</option>
+                    <option value="الاثنين" >الاثنين</option>
+                    <option value="الثلاثاء" >الثلاثاء</option>
+                    <option value="الأربعاء" >الأربعاء</option>
+                    <option value="الخميس" >الخميس</option>
+                  </select>
+                </div>
+                  <div class="col-md-6">
+                  <input type="text" name="startTime" class="form-control" placeholder="وقت بداية المحاضرة">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" name="endTime" class="form-control" placeholder="وقت نهاية المحاضرة">
+                </div>
+                   
+             
+                <div class="text-center">
+                    <button type="submit" name="add" class="btn btn-primary">Submit</button>
+                 
+                </div>
+              </form> <!-- End No Labels Form --> 
+    
+
             </div>
           </div>
-
-        </div>
-
-      </div>
-
-    </section>
 
   </main><!-- End #main -->
 

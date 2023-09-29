@@ -216,11 +216,11 @@ $userName = $_SESSION["user"];
       </li><!-- End map  Nav --------------->
       
 
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content  " data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="room-info.php">
               <i class="bi bi-circle"></i><span>بيانات الغرف</span>
@@ -232,8 +232,13 @@ $userName = $_SESSION["user"];
             </a>
           </li>
           <li>
-            <a href="room-date.php" class="nav-link">
-              <i class="bi bi-circle"></i><span> حصائية درجة الحرارة الضوضاء </span>
+            <a href="room-date.php">
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
+            </a>
+          </li>
+               <li>
+            <a href="bookRoom.php">
+              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
             </a>
           </li>
         </ul>

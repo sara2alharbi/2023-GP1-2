@@ -213,28 +213,33 @@ $userEmail = $_SESSION["email"];
       </li><!-- End map  Nav --------------->
   
 
-<li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="room-info.php">
-          <i class="bi bi-circle"></i><span>بيانات الغرف</span>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
-      <li>
-        <a href="room-monitoring.php">
-          <i class="bi bi-circle"></i><span>مراقبة حالة الغرفة</span>
-        </a>
-      </li>
-      <li>
-        <a href="room-date.php">
-        <i class="bi bi-circle"></i><span> حصائية درجة الحرارة الضوضاء </span>
-        </a>
-      </li>
-    </ul>
-  </li><!-- End Tables Nav -->
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="room-info.php">
+              <i class="bi bi-circle"></i><span>بيانات الغرف</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-monitoring.php">
+              <i class="bi bi-circle"></i><span>مراقبة حالة الغرفة</span>
+            </a>
+          </li>
+          <li>
+            <a href="room-date.php">
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة والضوضاء</span>
+            </a>
+          </li>
+               <li>
+            <a href="bookRoom.php">
+              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
   
         <li class="nav-item">
     <a class="nav-link collapsed"  href="#">
