@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar">
 <?php include "DB.php"; ?>
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+}
+
+$userName = $_SESSION["user"];
+
+?>
 <head>
 
   <meta charset="utf-8">
@@ -30,20 +40,19 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/alert.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="assets/js/alerts.js"></script>
+
 
   
 </head>
 
 <body>
-<?php
-session_start();
-if (!isset($_SESSION["user"])) {
-   header("Location: login.php");
-}
-$userName = $_SESSION["user"];
-?>
+
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -55,123 +64,26 @@ $userName = $_SESSION["user"];
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
+    
+<!--the notification start-------------------------------------------------------------- -->
+   
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item dropdown">
-
-        <div id="notification-bell" onclick="toggleAlerts()">
-        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+      <div id="notification-bell" onclick="toggleAlerts()">
+    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
         <i class="bi bi-bell" style="font-size:30px"></i>
         <span id="notification-count"></span>
     </a>
-    </div>
-  </a>
-
-    <!-- End Notification Icon ------------------------------------------>
-  <!--  Notification code ------------------------------------------>
-  <style>
-        #notification-bell{
-          position: absolute;
-          bottom: -28px;
-          left : -5px;
-        }
-
-        #alerts-container {
-            display: none;
-            position: absolute;
-            bottom: -333px;
-            left : -5px;
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 0px 0px 5px #ccc;
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 20px;
-        }
-
-        #notification-bell {
-            position: absolute;
-        }
-
-        #notification-count {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: red;
-            color: white;
-            border-radius: 40%;
-            padding: 3px 5px;
-            font-size: 10px;
-        }
-
-        .alert-item {
-            margin-bottom: 10px;
-        }
-
-        ul {
-        list-style-type: none; /* Remove bullet points from the list */
-        padding: 0; /* Remove default padding */
-        margin: 0; /* Remove default margin */
-    }
-
-    li {
-        margin-bottom: 10px;
-    }
-    </style>
-    <script>
-        var newNotificationsCount = 0;
-
-        // Function to check for new sensor data and display alerts
-        function checkForAlerts() {
-            $.ajax({
-                url: 'check.php',
-                method: 'GET',
-                success: function (data) {
-                    if (data !== "") {
-                        newNotificationsCount++;
-
-                        // Update the notification count
-                        $('#notification-count').text(newNotificationsCount);
-                        $('#notification-count').show();
-
-                        // Add the new notification to the list
-                        $('#alerts-list').append('<div class="alert-item">' + data + '</div>');
-                    }
-                }
-            });
-        }
-
-        // Function to remove a notification
-        function removeNotification(button) {
-            $(button).parent().remove();
-            newNotificationsCount--;
-
-            if (newNotificationsCount === 0) {
-                $('#notification-count').hide();
-            } else {
-                $('#notification-count').text(newNotificationsCount);
-            }
-        }
-
-        // Function to toggle the visibility of the alerts container
-        function toggleAlerts() {
-            $('#alerts-container').toggle();
-        }
-
-        // Periodically check for alerts (every minute in this example)
-        setInterval(checkForAlerts, 10000); // 60,000 milliseconds = 1 minute
-    </script>
-    <!--End notification script and style-->
-
-            <div id="alerts-container">
-            <div id="alerts-list">
-            <!-- Alerts will be displayed here -->
-            </div>
-            </div>
+</div>
+<span id="alerts-container">
+<div id="alerts-dropdown" class="dropdown-menu">
+    <!-- Alerts will be displayed here -->
+</div>
  
-    <!--End notification -->
+
+
+<!--the notification end-------------------------------------------------------------- -->
+   
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -286,7 +198,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="report.php">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>

@@ -8,7 +8,7 @@ if ($mysqli->connect_error) {
 // Calculate the current minute
 $currentMinute = date('i');
 
-$queryTemperature = "SELECT * FROM temperature WHERE Date_today = ? AND Time_today <= ? AND temperature > 25";
+$queryTemperature = "SELECT * FROM temperature WHERE Date_today = ? AND Time_today >= ? AND temperature > 25";
 $stmtTemperature = $mysqli->prepare($queryTemperature);
 
 // Store the values in variables and pass them by reference to bind_param
@@ -24,7 +24,7 @@ if ($resultTemperature === false) {
     die("Error: " . $mysqli->error);
 }
 
-$queryAirQuality = "SELECT * FROM airquality WHERE Date_today = ? AND Time_today <= ? AND airquality = 0";
+$queryAirQuality = "SELECT * FROM airquality WHERE Date_today = ? AND Time_today >= ? AND airquality = 0";
 $stmtAirQuality = $mysqli->prepare($queryAirQuality);
 
 $stmtAirQuality->bind_param("ss", $currentDate, $currentTime);
@@ -43,15 +43,20 @@ while ($row = $resultTemperature->fetch_assoc()) {
     $time = $row['Time_today'];
     $temperature = $row['temperature'];
     $ID = $row['microID'];
-   
+
     if($ID == "ESP12F")
      $room = "G9";
-
-     else
+    else
      $room = "G35";
 
     // Store the temperature alert message in an array
-    $temperatureAlerts[] = "Alert: High temperature detected ($temperature °C) at $date $time in $room";
+    $temperatureAlerts[] = [
+        'type' => 'temperature',
+        'date' => $date,
+        'time' => $time,
+        'room' => $room,
+        'temperature' => $temperature,
+    ];
 }
 
 while ($row = $resultAirQuality->fetch_assoc()) {
@@ -60,70 +65,45 @@ while ($row = $resultAirQuality->fetch_assoc()) {
     $ID = $row['microID'];
 
     if($ID == "ESP12F")
-    $room = "G9";
-
+        $room = "G9";
     else
-    $room = "G35";
+        $room = "G35";
 
     // Store the air quality alert message in an array
-    $airQualityAlerts[] = "Alert: Low air quality detected at $date $time in $room";
+    $airQualityAlerts[] = [
+        'type' => 'air_quality',
+        'date' => $date,
+        'time' => $time,
+        'room' => $room,
+    ];
 }
 
 $stmtTemperature->close();
 $stmtAirQuality->close();
 $mysqli->close();
 
-// Output the alerts as an HTML list
-echo "<ul>";
+// Initialize an empty alert
+$alert = [];
 
+// Check if there are temperature alerts
 if (!empty($temperatureAlerts) && !empty($airQualityAlerts)) {
-    echo "<li class='notification-item'>
-    <i class='bi bi-exclamation-circle text-warning'></i>
-    <div>
-      <h4>جودة الهواء منخفضة و درجة الحرارة مرتفعة </h4>
-      <p>التاريخ $date</p>
-      <p>الوقت $time</p>
-      <p> في الغرفة رقم $room</p>
-    </div></li>
-    <button class='remove-btn' onclick='removeNotification(this)'>حذف</button>
-    <li>
-    <hr class='dropdown-divider'>
-    </li>";
-} 
-
-elseif (!empty($temperatureAlerts)) {
-    echo "<li class='notification-item'>
-    <i class='bi bi-exclamation-circle text-warning'></i>
-    <div>
-      <h4>درجة الحرارة مرتفعة </h4>
-      <p>التاريخ $date</p>
-      <p>الوقت $time</p>
-      <p> في الغرفة رقم $room</p>
-    </div></li>
-    <button class='remove-btn' onclick='removeNotification(this)'>حذف</button>
-    <li>
-    <hr class='dropdown-divider'>
-    </li>";
-} 
-
-elseif (!empty($airQualityAlerts)) {
-    echo "<li class='notification-item'>
-    <i class='bi bi-exclamation-circle text-warning'></i>
-    <div>
-      <h4 >جودة الهواء منخفضة </h4>
-      <p>التاريخ $date</p>
-      <p>الوقت $time</p>
-      <p> في الغرفة رقم $room</p>
-    </div></li>
-    <button class='remove-btn' onclick='removeNotification(this)'>حذف</button>
-    <li>
-    <hr class='dropdown-divider'>
-    </li>";} 
-
-else {
-    echo "<li>لا يوجد تنبيهات<br>
-    <button class='remove-btn' onclick='removeNotification(this)'>حذف</button></li>";
+    // Both temperature and air quality alerts are present, display combined alert
+    $alert = [
+        'type' => 'combined',
+        'date' => $date,
+        'time' => $time,
+        'room' => $room,
+        'temperature' => $temperature,
+    ];
+} elseif (!empty($temperatureAlerts)) {
+    // If only temperature alerts, select it
+    $alert = array_shift($temperatureAlerts);
+} elseif (!empty($airQualityAlerts)) {
+    // If only air quality alerts, select it
+    $alert = array_shift($airQualityAlerts);
 }
 
-echo "</ul>";
+// Output the selected alert as JSON
+header('Content-Type: application/json');
+echo json_encode($alert);
 ?>

@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="ar">
 <?php include 'DB.php'; ?>
+<?php
+session_start();
+
+if (!isset($_SESSION["user"])) {
+    header("Location: login.php");
+}
+
+$userName = $_SESSION["user"];
+
+// Access the alert session variables
+if (isset($_SESSION['newNotificationsCount']) && isset($_SESSION['notificationMessages'])) {
+    $newNotificationsCount = $_SESSION['newNotificationsCount'];
+    $notificationMessages = $_SESSION['notificationMessages'];
+} else {
+    $newNotificationsCount = 0;
+    $notificationMessages = [];
+}
+?>
 
 <head>
   <meta charset="utf-8">
@@ -29,17 +47,15 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/alert.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="assets/js/alert.js"></script>
 
 </head>
 
 <body>
-<?php
-session_start();
-if (!isset($_SESSION["user"])) {
-   header("Location: login.php");
-}
-$userName = $_SESSION["user"];
-?>
+
 
    <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -52,83 +68,22 @@ $userName = $_SESSION["user"];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <!--the notification start-------------------------------------------------------------- -->
+   
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-  </a><!-- End Notification Icon ------------------------------------------>
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav-------------------------------------------------------------------------- -->
-
+      <div id="notification-bell" onclick="toggleAlerts()">
+        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell" style="font-size:28px"></i>
+            <span id="notification-count"></span>
+        </a>
+    </div>
+    <div id="alerts-container">
+        <div id="alerts-list">
+            <!-- Alerts will be displayed here -->
+        </div>
+    </div>
+<!--the notification end-------------------------------------------------------------- -->
 
         <li class="nav-item dropdown pe-3">
 
@@ -244,7 +199,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed"  href="#">
+        <a class="nav-link collapsed"  href="report.php">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>

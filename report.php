@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="ar">
 
+<?php
+// Database connection
+$dsn = 'mysql:host=localhost;dbname=elmam';
+$username = 'root';
+$password = '';
+
+try {
+    $db = new PDO($dsn, $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+    die();
+}
+?>
+
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>الأسئـلة الشائعة</title>
+  <title>التقرير الأسبوعي</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -24,6 +40,10 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <script src='Chart.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -242,7 +262,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed"  href="report.php">
+        <a class="nav-link "  href="report.php">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>
@@ -261,7 +281,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Profile Page Nav ------------------------------------->
 
       <li class="nav-item">
-        <a class="nav-link " href="pages-faq.php">
+        <a class="nav-link collapsed" href="pages-faq.php">
           <i class="bi bi-question-circle"></i>
           <span>الأسئلة الشائعة</span>
         </a>
@@ -286,96 +306,114 @@ $userName = $_SESSION["user"];
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>الأسئلة الشائعة</h1>
+      <h1>تقرير أسبوعي</h1>
     </div><!-- End Page Title -->
 
-    <section class="section faq">
+    <section class="section dashboard">
       <div class="row">
-      
-        <div class="col-lg-12">
+      <div class="col-lg-12">
+      <div class="card">
+        <br> <br>
+      <?php
+// Calculate the start and end dates for the past week
+$end_date = date('Y-m-d');
+$start_date = date('Y-m-d', strtotime('-7 days'));
 
-          <!-- F.A.Q Group 2 -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">الأسئـلة</h5>
+// Fetch data for the past week
+$query = "SELECT AVG(temperature) AS avg_temperature, AVG(humidity) AS avg_humidity
+          FROM temperature
+          WHERE Date_today BETWEEN :start_date AND :end_date";
 
-              <div class="accordion accordion-flush" id="faq-group-2">
+$stmt = $db->prepare($query);
+$stmt->bindParam(':start_date', $start_date);
+$stmt->bindParam(':end_date', $end_date);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-1" type="button" data-bs-toggle="collapse">
-                      في حال تعرض جهاز الحساسات إلى عطل كيف يتم صيانتها؟ 
-                    </button>
-                  </h2>
-                  <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
-                    <div class="accordion-body">
-                      في حال تعرض أي من الحساسات الثلاث لعطل مفاجئ يتم التواصل معنا من خلال صفحة التواصل لمعرفة المشكلة والعمل على حلها.
+$avg_temperature = $result['avg_temperature'];
+$avg_humidity = $result['avg_humidity'];
+
+// Format the averages to two decimal places
+$avg_temperature_formatted = number_format($avg_temperature, 2);
+$avg_humidity_formatted = number_format($avg_humidity, 2);
+?>
+
+<!-- Display the average temperature and humidity -->
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- temp Card -->
+            <div class="col-xxl-5 col-md-6">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">متوسط درجة الحرارة <span>| خلال أسبوع</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-thermometer-sun"></i>
                     </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-2" type="button" data-bs-toggle="collapse">
-                      هل يوجد اشتركات شهرية أو سنوية للنظام؟
-                    </button>
-                  </h2>
-                  <div id="faqsTwo-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
-                    <div class="accordion-body">
-                     نعم ،يوجد اشتراك يتم تجديده كل سنة.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-3" type="button" data-bs-toggle="collapse">
-                      ماهي الوحدات المستخدم للحساسات الثلاث؟
-                    </button>
-                  </h2>
-                  <div id="faqsTwo-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
-                    <div class="accordion-body">
-                      الوحدات المستخدمة لقياس كل من:<br><br>
-                      1- درجة الحرارة : تقاس بوحدة سلزيوس<br>
-                      2- مستوى الضوضاء: يقاس بوحدة الديسيبل<br>
-                      3-جودة الهواء: يتم عرض فقط في حال أن الهواء متلوث أو لا
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-4" type="button" data-bs-toggle="collapse">
-                      كيفية التسجيل في نظام إلمام؟
-                    </button>
-                  </h2>
-                  <div id="faqsTwo-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
-                    <div class="accordion-body">
-                      في حال كنت تعمل ك مدير للمبنى يمكنك التقديم على إنشاء حساب في الصفحة الرئيسية للنظام
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" data-bs-target="#faqsTwo-5" type="button" data-bs-toggle="collapse">
-                      هل يمكنني عرض درجة الحرارة لتاريخ معين؟
-                    </button>
-                  </h2>
-                  <div id="faqsTwo-5" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
-                    <div class="accordion-body">
-                      نعم، يمكنك ذلك من خلال النقر على صفحة "إحصائية درجة الحرارة".
+                    <div class="ps-3">
+                      <h6 id="viewNoise"></h6>
+                      <p><?php echo $avg_temperature_formatted ?>°C</p>
                     </div>
                   </div>
                 </div>
 
               </div>
+            </div><!-- End temp Card -->
 
-            </div>
-          </div><!-- End F.A.Q Group 2 -->
-        </div>
+                        <!-- air Card -->
+                        <div class="col-xxl-5 col-md-6">
+              <div class="card info-card sales-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">متوسط درجة الرطوبة<span>| خلال أسبوع</span></h5>
+
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-moisture"></i>
+                    </div>
+                    <div class="ps-3">
+                      <h6 id="viewAir"></h6>
+                      <p><?php echo $avg_humidity_formatted ?>%</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- End air Card -->
+          </div>
+        </div><!-- End Left side columns -->
+        <?php  
+        // Fetch temperature data for the past week
+$query = "SELECT Date_today, temperature
+FROM temperature
+WHERE Date_today BETWEEN :start_date AND :end_date
+ORDER BY Date_today";
+
+$stmt = $db->prepare($query);
+$stmt->bindParam(':start_date', $start_date);
+$stmt->bindParam(':end_date', $end_date);
+$stmt->execute();
+$temperatureData = [];
+
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+// Format timestamp to ISO 8601 date format
+$timestamp = date('c', strtotime($row['Date_today']));
+$temperature = $row['temperature'];
+$temperatureData[] = ['x' => $timestamp, 'y' => $temperature];
+}
+
+        ?>
+        <canvas id="temperatureChart"></canvas>
+
 
       </div>
+      
+</div>
+</div>
     </section>
 
   </main><!-- End #main -->

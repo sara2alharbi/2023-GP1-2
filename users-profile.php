@@ -242,7 +242,7 @@ $userEmail = $_SESSION["email"];
       </li><!-- End Tables Nav -->
   
         <li class="nav-item">
-    <a class="nav-link collapsed"  href="#">
+    <a class="nav-link collapsed"  href="report.php">
         <i class="bi bi-file-earmark-bar-graph"></i>
        <span> تقارير اسبوعية</span>
     </a>

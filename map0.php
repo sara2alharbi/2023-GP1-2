@@ -584,7 +584,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="report.php">
           <i class="bi bi-file-earmark-bar-graph"></i>
           <span> تقارير اسبوعية</span>
         </a>
@@ -1150,8 +1150,8 @@ $userName = $_SESSION["user"];
       dataType: 'json',
       data: { 'rooms': true },
       success: function (data) {
-        $('#room1').html(`<div>الحرارة: ${data[0].temp}</div><div><br>الضوضاء: ${data[0].noise}</div><div><br>الرطوبة: ${data[0].hum}</div><div><br>جودة الهواء: ${data[0].air}<div>`);
-        $('#room2').html(`<div>الحرارة: ${data[1].temp}</div><div><br>الضوضاء: ${data[1].noise}</div><div><br>الرطوبة: ${data[1].hum}</div><div><br>جودة الهواء: ${data[1].air}<div>`);
+        $('#room1').html(`<div>الحرارة: ${data[0].temp}</div><div>الضوضاء: ${data[0].noise}</div><div>الرطوبة: ${data[0].hum}</div><div>جودة الهواء: ${data[0].air}<div>`);
+        $('#room2').html(`<div>الحرارة: ${data[1].temp}</div><div>الضوضاء: ${data[1].noise}</div><div>الرطوبة: ${data[1].hum}</div><div>جودة الهواء: ${data[1].air}<div>`);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error('Errorf:', textStatus, errorThrown);
@@ -1167,7 +1167,7 @@ $userName = $_SESSION["user"];
     var id = $(this).find('.rm-no').text();
     console.log(id);
     $.ajax({
-      url: 'http://localhost/project/api.php',
+      url: 'http://localhost/GP1-CODE/api.php',
       method: 'GET',
       dataType: 'json',
       data: { 'capacity': true, 'id': id.slice(1)},

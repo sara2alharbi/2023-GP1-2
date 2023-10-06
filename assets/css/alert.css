@@ -1,0 +1,53 @@
+#notification-bell {
+    position: absolute;
+    left:200px;
+
+}
+
+#notification-count {
+    position: absolute;
+    top: 0;
+    left:15px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 5px;
+    font-size: 9px;
+}
+
+#alerts-dropdown {
+    display: none;
+    left:233px;
+    top: 80px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 5px #ccc;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dropdown-item {
+    margin-bottom: 10px;
+}
+
+.remove-btn {
+    background-color: #D9ED92;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #52B69A;
+    color: white;
+}
+
+ul {
+list-style-type: none; /* Remove bullet points from the list */
+padding: 0; /* Remove default padding */
+margin: 0; /* Remove default margin */
+}
+
+li {
+margin-bottom: 10px;
+}

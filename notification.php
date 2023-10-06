@@ -234,7 +234,7 @@ $userName = $_SESSION["user"];
           </li>
           <li>
             <a href="room-date.php">
-              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة</span>
+              <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
             </a>
           </li>
                <li>
@@ -246,7 +246,7 @@ $userName = $_SESSION["user"];
       </li><!-- End Tables Nav -->
       
             <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="report.php">
             <i class="bi bi-file-earmark-bar-graph"></i>
            <span> تقارير اسبوعية</span>
         </a>
