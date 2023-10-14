@@ -48,9 +48,11 @@ if (isset($_SESSION['newNotificationsCount']) && isset($_SESSION['notificationMe
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/alert.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="assets/js/alert.js"></script>
+  <script src="notification/alerting.js"></script>
 
 </head>
 
@@ -70,19 +72,21 @@ if (isset($_SESSION['newNotificationsCount']) && isset($_SESSION['notificationMe
 
     <!--the notification start-------------------------------------------------------------- -->
    
-    <nav class="header-nav ms-auto">
+<nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
       <div id="notification-bell" onclick="toggleAlerts()">
-        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell" style="font-size:28px"></i>
-            <span id="notification-count"></span>
-        </a>
-    </div>
-    <div id="alerts-container">
-        <div id="alerts-list">
-            <!-- Alerts will be displayed here -->
-        </div>
-    </div>
+    <a class="nav-link nav-icon">
+        <i class="bi bi-bell" style="font-size:30px"></i>
+        <span id="notification-count"></span>
+    </a>
+</div>
+<span id="alerts-container">
+<div id="alerts-dropdown" class="dropdown-menu">
+    <!-- Alerts will be displayed here -->
+</div>
+ 
+
+
 <!--the notification end-------------------------------------------------------------- -->
 
         <li class="nav-item dropdown pe-3">

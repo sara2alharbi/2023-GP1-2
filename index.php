@@ -45,7 +45,7 @@ $userName = $_SESSION["user"];
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="assets/js/alerts.js"></script>
+  <script src="notification/alerting.js"></script>
 
 
   
@@ -67,10 +67,10 @@ $userName = $_SESSION["user"];
     
 <!--the notification start-------------------------------------------------------------- -->
    
-    <nav class="header-nav ms-auto">
+<nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
       <div id="notification-bell" onclick="toggleAlerts()">
-    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+    <a class="nav-link nav-icon">
         <i class="bi bi-bell" style="font-size:30px"></i>
         <span id="notification-count"></span>
     </a>
@@ -118,9 +118,9 @@ $userName = $_SESSION["user"];
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+          </ul>
 
-      </ul>
+        </li><!-- End Profile Nav -->
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->

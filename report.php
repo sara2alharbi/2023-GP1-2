@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar">
 
-<?php
-// Database connection
-$dsn = 'mysql:host=localhost;dbname=elmam';
-$username = 'root';
-$password = '';
-
-try {
-    $db = new PDO($dsn, $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    die();
-}
-?>
-
 
 <head>
   <meta charset="utf-8">
@@ -40,13 +25,21 @@ try {
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <script src='Chart.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/report.css" rel="stylesheet">
+  <link href="assets/css/alert.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="notification/alerting.js"></script>
+
 
 </head>
 
@@ -69,83 +62,24 @@ $userName = $_SESSION["user"];
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
-
-    <nav class="header-nav ms-auto">
+<!--the notification start-------------------------------------------------------------- -->
+   
+<nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
+      <div id="notification-bell" onclick="toggleAlerts()">
+    <a class="nav-link nav-icon">
+        <i class="bi bi-bell" style="font-size:30px"></i>
+        <span id="notification-count"></span>
+    </a>
+</div>
+<span id="alerts-container">
+<div id="alerts-dropdown" class="dropdown-menu">
+    <!-- Alerts will be displayed here -->
+</div>
+ 
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-  </a><!-- End Notification Icon ------------------------------------------>
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav-------------------------------------------------------------------------- -->
+<!--the notification end-------------------------------------------------------------- -->
 
 
         <li class="nav-item dropdown pe-3">
@@ -305,115 +239,37 @@ $userName = $_SESSION["user"];
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>تقرير أسبوعي</h1>
+  <div class="pagetitle">
+      <h1> التقارير </h1>
+      <br>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="report.php"> تقارير أسبوعية</a></li>
+          <li class="breadcrumb-item"></li>
+          <li class="breadcrumb-item active"> حسب الغرفة</li>
+        </ol>
+      </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
       <div class="row">
-      <div class="col-lg-12">
-      <div class="card">
-        <br> <br>
-      <?php
-// Calculate the start and end dates for the past week
-$end_date = date('Y-m-d');
-$start_date = date('Y-m-d', strtotime('-7 days'));
-
-// Fetch data for the past week
-$query = "SELECT AVG(temperature) AS avg_temperature, AVG(humidity) AS avg_humidity
-          FROM temperature
-          WHERE Date_today BETWEEN :start_date AND :end_date";
-
-$stmt = $db->prepare($query);
-$stmt->bindParam(':start_date', $start_date);
-$stmt->bindParam(':end_date', $end_date);
-$stmt->execute();
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$avg_temperature = $result['avg_temperature'];
-$avg_humidity = $result['avg_humidity'];
-
-// Format the averages to two decimal places
-$avg_temperature_formatted = number_format($avg_temperature, 2);
-$avg_humidity_formatted = number_format($avg_humidity, 2);
-?>
-
-<!-- Display the average temperature and humidity -->
-
-        <!-- Left side columns -->
-        <div class="col-lg-8">
-          <div class="row">
-
-            <!-- temp Card -->
-            <div class="col-xxl-5 col-md-6">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">متوسط درجة الحرارة <span>| خلال أسبوع</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-thermometer-sun"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6 id="viewNoise"></h6>
-                      <p><?php echo $avg_temperature_formatted ?>°C</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End temp Card -->
-
-                        <!-- air Card -->
-                        <div class="col-xxl-5 col-md-6">
-              <div class="card info-card sales-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">متوسط درجة الرطوبة<span>| خلال أسبوع</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-moisture"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6 id="viewAir"></h6>
-                      <p><?php echo $avg_humidity_formatted ?>%</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End air Card -->
-          </div>
-        </div><!-- End Left side columns -->
-        <?php  
-        // Fetch temperature data for the past week
-$query = "SELECT Date_today, temperature
-FROM temperature
-WHERE Date_today BETWEEN :start_date AND :end_date
-ORDER BY Date_today";
-
-$stmt = $db->prepare($query);
-$stmt->bindParam(':start_date', $start_date);
-$stmt->bindParam(':end_date', $end_date);
-$stmt->execute();
-$temperatureData = [];
-
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-// Format timestamp to ISO 8601 date format
-$timestamp = date('c', strtotime($row['Date_today']));
-$temperature = $row['temperature'];
-$temperatureData[] = ['x' => $timestamp, 'y' => $temperature];
-}
-
-        ?>
-        <canvas id="temperatureChart"></canvas>
-
-
+      <div class="form-container">
+      <div class="card info-card sales-card">
+    <h2>اختر الغرفة للحصول على التقرير الإسبوعي</h2> 
+    <br><br>
+    <form method="post" action="generate_report.php" id="report-form">
+    <div class="label-select-container">
+    <label for="room" class="label">اختر الغرفة:</label>
+        <select name="room" id="room" class="select">
+            <option value="G9">G9</option>
+            <option value="G35">G35</option>
+        </select>
+    </div>
+        <button type="submit" class="button">اختيار</button>
+    </form>
       </div>
-      
-</div>
-</div>
+      </div>
+      </div>
     </section>
 
   </main><!-- End #main -->
@@ -451,7 +307,6 @@ $temperatureData[] = ['x' => $timestamp, 'y' => $temperature];
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
 </body>
 
-</html>
+</html> 

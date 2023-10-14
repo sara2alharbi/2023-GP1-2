@@ -29,9 +29,14 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/alert.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="notification/alerting.js"></script>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -392,82 +397,24 @@ $userName = $_SESSION["user"];
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <nav class="header-nav">
+   <!--the notification start-------------------------------------------------------------- -->
+   
+<nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
+      <div id="notification-bell" onclick="toggleAlerts()">
+    <a class="nav-link nav-icon">
+        <i class="bi bi-bell" style="font-size:30px"></i>
+        <span id="notification-count"></span>
+    </a>
+</div>
+<span id="alerts-container">
+<div id="alerts-dropdown" class="dropdown-menu">
+    <!-- Alerts will be displayed here -->
+</div>
+ 
 
-        <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon ------------------------------------------>
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav-------------------------------------------------------------------------- -->
+<!--the notification end-------------------------------------------------------------- -->
 
 
         <li class="nav-item dropdown pe-3">
@@ -1145,7 +1092,7 @@ $userName = $_SESSION["user"];
 <script>
   function updateDate() {
     $.ajax({
-      url: 'http://localhost/GP1-CODE/api.php',
+      url: 'api.php',
       method: 'GET',
       dataType: 'json',
       data: { 'rooms': true },
@@ -1167,15 +1114,17 @@ $userName = $_SESSION["user"];
     var id = $(this).find('.rm-no').text();
     console.log(id);
     $.ajax({
-      url: 'http://localhost/GP1-CODE/api.php',
+      url: 'api.php',
       method: 'GET',
       dataType: 'json',
       data: { 'capacity': true, 'id': id.slice(1)},
       success: function (data) {
         console.log(data)
+        $('#room-cp').text('');
         $('#room-cp').text(data.cp);
       },
       error: function (err) {
+        $('#room-cp').text('');
         console.error('Error22f:', err);
       }
     });
