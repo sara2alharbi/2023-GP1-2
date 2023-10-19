@@ -38,8 +38,14 @@ $texts = [
 
 // Loop through the data and add text with numbers to the PDF
 foreach ($texts as $text => $value) {
-    $pdf->Cell(0, 10, $text . ': ' . $value, 0, 1, 'R');
+    $pdf->SetFont('dejavusans', 'B', 16); // Set bold font and size
+    $pdf->SetTextColor(0, 51, 102); // Set text color to dark blue
+    $pdf->Cell(0, 10, $text . ': ' . $value, 0, 1, 'C'); // Center-align without background color
 }
+
+// Set font and size for section headers
+$pdf->SetFont('dejavusans', 'B', 18);
+
 
 // Output the PDF
 $pdf->Output('التقرير الإسبوعي.pdf', 'D');

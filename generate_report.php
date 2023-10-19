@@ -34,7 +34,7 @@ session_start();
     </div>
 
     <?php
-    // Database connection (Replace with your database credentials)
+    // Database connection 
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -107,7 +107,7 @@ session_start();
 
     // Check if there is no data for the selected room
     if (empty($temperatures) || empty($dailyNoiseAverages)) {
-        echo "لاتوجد بيانات لآخر 7 أيام";
+        echo "<div style ='text-align:center;'>لاتوجد بيانات لآخر 7 أيام</div>";
     } else {
         // Calculate averages with 2 decimal places
         $average_temperature = number_format(array_sum($temperatures) / count($temperatures), 2);
@@ -149,7 +149,7 @@ session_start();
 
 
         if ($air_quality_affected) {
-            echo "<p class ='air'>جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام يجب تحسينها🌫️</p>";
+            echo "<p class ='air'>جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام🌫️</p>";
             echo "<br>";
             echo "<hr>";
         } else {
@@ -167,6 +167,8 @@ session_start();
         echo "<br>";
         echo '<canvas id="temperatureChart" width="400" height="200"></canvas>';
         echo '</div>';
+        echo '</div>';
+        echo '<div class="chart-container">';
         echo "<br>";
         echo '<div style="width: 50%;">'; // Adjust the width as needed
         echo '<p class="chat_title">متوسط مستوى الضوضاء لكل  يوم</p>';
@@ -174,6 +176,7 @@ session_start();
         echo '<canvas id="noiseChart" width="400" height="200">متوسط نسبة الضوضاء لكل يوم</canvas>';
         echo '</div>';
         echo '</div>';
+
     }
     // Prepare data for the report
 // Prepare data for the report
@@ -199,12 +202,12 @@ if (isset($average_temperature, $average_humidity, $average_noise, $high_tempera
         'room' => $room,
         'startDate' => $startDate,
         'endDate' => $endDate,
-        'average_temperature' => 'N/A',
-        'average_humidity' => 'N/A',
-        'average_noise' => 'N/A',
-        'high_temperature' => 'N/A',
-        'low_temperature' => 'N/A',
-        'temperatures' => 'N/A',
+        'average_temperature' => ' لايوجد بيانات',
+        'average_humidity' => 'لايوجد بيانات',
+        'average_noise' => ' لايوجد بيانات',
+        'high_temperature' => ' لايوجد بيانات',
+        'low_temperature' => ' لايوجد بيانات',
+        'temperatures' => ' لايوجد بيانات',
     ];
 }
 
