@@ -12,25 +12,48 @@ if (isset($_SESSION["user"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="assets/img/elmam-logo.png">
-    <title>تسجيل جديد</title>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="assets/img/elmam-logo.png">
 
-     <!-- font awesome cdn link  -->
+<title>تسجيل جديد</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+<!-- font awesome cdn link  -->
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-  
-
-    <!-- custom css file link  -->
-
+<!-- Vendor CSS Files -->
+<link href="assets/vendor_home/aos/aos.css" rel="stylesheet">
+<link href="assets/vendor_home/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor_home/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor_home/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="assets/vendor_home/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="assets/vendor_home/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<link href="assets/css/style1_home.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
 </head>
+   
 <body>
+<header id="header" class="d-flex flex-column justify-content-center">
+     
+  
+	 <nav id="navbar" class="navbar nav-menu">
+   
+	   <ul>
+		 <li><a href="home.html #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+		 <li><a href="home.html #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
+		 <li><a href="home.html #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
+	   </ul>
+	 </nav><!-- .nav-menu -->
+ 
+   </header><!-- End Header -->
       
        
        	<img class="wave" src="assets/img/wave2.png">

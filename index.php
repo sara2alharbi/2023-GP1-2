@@ -135,15 +135,7 @@ $userName = $_SESSION["user"];
           <i class="bi bi-grid"></i>
           <span> الرئيسية</span>
         </a>
-      </li><!-- End home Nav -->
-
-       <li class="nav-item">
-        <a class="nav-link collapsed" href="notification.php">
-          <i class="bi bi-bell"></i>
-          <span> التنبيهات</span>
-        </a>
-      </li><!-- End notfications  Nav --------------->
-      
+      </li><!-- End home Nav -->      
      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> 
             <i class="bi bi-map"></i>
@@ -264,8 +256,7 @@ $userName = $_SESSION["user"];
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
-                  <br>
-                    <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1> <br>                  
+                    <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1>                   
                 </div>
               </div>
             </div><!-- End Recent Sales -->
@@ -284,6 +275,14 @@ $userName = $_SESSION["user"];
                   <h5 class="card-title">نسبة استغلال المساحة </h5> 
                   <canvas id="myDoughnutChart" width="200" height="200"></canvas>
                 </div>
+              </div>
+            </div><!-- End building-info Card -->
+            <div class="col-lg-4">
+              <div class="card info-card sales-card">
+                <div class="card-body">
+                  <h5 class="card-title">منسوبي الكلية</h5> 
+                  <canvas id="myBarChart" width="200" height="200"></canvas>
+              </div>                
               </div>
             </div><!-- End building-info Card -->
         </div><!-- End Right side columns -->
@@ -326,14 +325,6 @@ $userName = $_SESSION["user"];
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
 
-  <style>
-  #capacityChart {
-    border: 2px solid #fff; /* Set border properties */
-    width: 100;
-    height: 100;
-  }
-</style>
-
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -353,8 +344,15 @@ var myPieChart = new Chart(ctx, {
         labels: labels,
         datasets: [{
             data: data,
-            backgroundColor: ['#184E77', '#1A759F', '#34A0A4', '#76C893' , '#B5E48C' , '#D9ED92'], // Customize the colors
-        }]
+            backgroundColor: [
+        'rgba(255, 173, 173)',
+        'rgba(255, 214, 165)',
+        'rgba(253, 255, 182)',
+        'rgba(202, 255, 191)',
+        'rgba(155, 246, 255)',
+        'rgba(160, 196, 255)',
+      ],
+            }]
     }
 });
 </script>
@@ -374,12 +372,39 @@ var myPieChart = new Chart(ctx, {
                 labels: labels,
                 datasets: [{
                     data: data,
-                    backgroundColor: ['#52B69A', '#B5E48C'], // Customize the colors of each segment
+                    backgroundColor: ['#caf0f8', '#00b4d8'], // Customize the colors of each segment
                 }]
             }
         });
     </script>
 
+<script>
+        // Data for the number of students and teachers
+        var data = {
+            labels: ['الطالبات', 'منسوبي الكلية'],
+            datasets: [{
+                label: 'أعداد منسوبي كلية الحاسب والمعلومات',
+                data: [1000, 100], // Replace with your actual data
+                backgroundColor: ['#7b2cbf', '#e0aaff'], // Customize the colors
+            }]
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+
+        // Create a bar chart
+        var myBarChart = new Chart(ctx, {
+            type: 'bar', // Use 'bar' for vertical bars or 'horizontalBar' for horizontal bars
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 

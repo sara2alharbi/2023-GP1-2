@@ -131,12 +131,6 @@ $userName = $_SESSION["user"];
         </a>
       </li><!-- End home Nav -->
 
-       <li class="nav-item">
-        <a class="nav-link collapsed" href="notification.php">
-          <i class="bi bi-bell"></i>
-          <span> التنبيهات</span>
-        </a>
-      </li><!-- End notfications  Nav --------------->
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"> 

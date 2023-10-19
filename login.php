@@ -38,16 +38,46 @@ if (isset($_POST["login"])) {
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="assets/vendor_home/aos/aos.css" rel="stylesheet">
+<link href="assets/vendor_home/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/vendor_home/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="assets/vendor_home/boxicons/css/boxicons.min.css" rel="stylesheet">
+<link href="assets/vendor_home/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="assets/vendor_home/swiper/swiper-bundle.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+<link href="assets/css/style1_home.css" rel="stylesheet">
 	
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicons -->
 	<link rel="icon" type="image/png" href="assets/img/elmam-logo.png">
+
 	<title>تسجيل الدخول</title>
+	<meta content="" name="description">
+    <meta content="" name="keywords">
 
 </head>
 <body>
+<header id="header" class="d-flex flex-column justify-content-center">
+     
+  
+	 <nav id="navbar" class="navbar nav-menu">
+   
+	   <ul>
+		 <li><a href="home.html #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+		 <li><a href="home.html #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
+		 <li><a href="home.html #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
+	   </ul>
+	 </nav><!-- .nav-menu -->
+ 
+   </header><!-- End Header -->
+
 	<img class="wave" src="assets/img/wave.png">
 	<div class="container">
 		<div class="img">
@@ -57,9 +87,9 @@ if (isset($_POST["login"])) {
 		<div class="login-content">
 			<form action="login.php" method="post">
 				<img src="assets/img/avatar.svg">
-				<h2 class="title">أهلاً بعودتك</h2>
+				<h2 class="title">مرحبا بك</h2>
                                
-                                <?php echo $msg  ?>
+                <?php echo $msg  ?>
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fa fa-envelope"></i>
@@ -78,13 +108,16 @@ if (isset($_POST["login"])) {
            		    	<input dir="rtl" type="password" placeholder="كلمة المرور"  class="input" name="password">
             	   </div>
             	</div>
-            	 <div class ="registeration" ><p>ليس لديك حساب؟ <a href="registration.php">سجل الآن</a></p></div>
+            	 <div class ="registeration" ><p>ليس لديك حساب؟ <a href="registration.php"><srtong style="font-weight: bold;">سجل الآن</strong></a></p></div>
             	<input type="submit" class="btn" value="تسجيل الدخول" name="login">
             </form>
         </div>
     </div>
 
+
+
 </body>
+
 </html>
 
 <script>
@@ -110,14 +143,6 @@ inputs.forEach(input => {
 });
 
 </script>
-
-
-
-
-
-
-
-
 <style>
 
 *{
@@ -129,6 +154,7 @@ inputs.forEach(input => {
 body{
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
+	
 }
 
 .wave{
