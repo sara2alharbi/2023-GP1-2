@@ -1,6 +1,8 @@
 <?php
 include "DB.php";
 
+// This code for gitting live data to the manager
+
 date_default_timezone_set('Asia/Riyadh');
 $current_date = date("Y-m-d");
 

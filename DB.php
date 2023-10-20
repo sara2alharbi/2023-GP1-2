@@ -1,5 +1,5 @@
 <?php  
-   
+ // database connection  
     $conn = mysqli_connect("localhost","root","", "elmam");
     $error = mysqli_connect_error();
     if ($error != null){

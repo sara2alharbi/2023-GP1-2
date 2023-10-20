@@ -1,6 +1,6 @@
 <html>
 <body>
-
+<!-- This page takes the sensor data from Arduino  and then sote it to the database -->
 <?php
 
 $dbname = 'elmam';

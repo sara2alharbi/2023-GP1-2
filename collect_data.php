@@ -1,6 +1,6 @@
 <html>
 <body>
-
+<!--This code for collecting data from room G9 for testing -->
 <?php
 
 $dbname = 'collect_data';
