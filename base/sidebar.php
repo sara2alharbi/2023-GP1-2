@@ -39,6 +39,11 @@
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="bookRoom.php" >
+              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
+            </a>
+          </li>
           <li>
             <a href="room-info.php">
               <i class="bi bi-circle"></i><span>بيانات الغرف</span>
@@ -52,11 +57,6 @@
           <li>
             <a href="room-date.php">
               <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
-            </a>
-          </li>
-               <li>
-            <a href="bookRoom.php" >
-              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
             </a>
           </li>
         </ul>

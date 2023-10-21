@@ -163,7 +163,7 @@ include "base/session_checker.php";?>
 
   .inner-table {
     background-color: white;
-    /* border: 1px solid black; */
+    /* border: 1px solid black; for the middle the line*/
     /* height: 100%;
     width: 100%; */
   }

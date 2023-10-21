@@ -745,22 +745,11 @@ include "base/session_checker.php";?>
                       </td>
                       <td colspan="2" class="grp3 borl" style="position:relative;">
                         <div class="accross" style="transform: translate(-50%, -10%); display:block">
-                          <p>معامل دراسات عليا</p>
-                          <p>postgraduate lab</p>
                         </div>
                         <div class="accross">
                           <div style="flex-grow:1;" class="mytc borl">
                             <p class="rm-no">6s4</p>
                             <p class="rm-nm">معامل دراسات عليا</p>
-                            <br>
-                          </div>
-                          <div style="flex-grow:1;" class="mytc borl">
-                            <p class="rm-no">6s4</p>
-                            <p class="rm-nm">معامل دراسات عليا</p><br>
-                          </div>
-                          <div style="flex-grow:1;" class="mytc">
-                            <p class="rm-no">6s4</p>
-                            <p class="rm-nm">معامل دراسات عليا</p><br>
                           </div>
                         </div>
                       <td class="grp3 borl">
