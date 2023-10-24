@@ -48,10 +48,11 @@ include "base/session_checker.php";?>
           <div class="row">
 
             <!-- noise Card -->
-            <div class="col-xxl-5 col-md-6">
+            <div class="col-xxl-6 col-md-6">
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">الضوضاء <span>| الآن</span></h5>
+                  <p style="font-size:10px;">أعلى قيمة للضوضاء داخل الغرف 30 ديسيبل</p>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -67,14 +68,15 @@ include "base/session_checker.php";?>
               </div>
             </div><!-- End noise Card -->
 
-                        <!-- air Card -->
-                        <div class="col-xxl-5 col-md-6">
+            <!-- air Card -->
+            <div class="col-xxl-6 col-md-6">
               <div class="card info-card sales-card">
 
                 
 
                 <div class="card-body">
                   <h5 class="card-title">جودة الهواء <span>| الآن</span></h5>
+                  <p style="font-size:10px;">تتأثر بوجود الكحول - الغاز - أو الدخان</p>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -91,11 +93,12 @@ include "base/session_checker.php";?>
             </div><!-- End air Card -->
 
             <!-- humidity Card -->
-            <div class="col-xxl-5 col-md-6">
+            <div class="col-xxl-6 col-md-6">
               <div class="card info-card revenue-card">
-
                 <div class="card-body">
                   <h5 class="card-title"> درجة الرطوبة <span>| الآن </span></h5>
+                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي بين 40-70%.</p>
+
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -113,11 +116,12 @@ include "base/session_checker.php";?>
             </div><!-- End humidity Card -->
 
             <!-- temp Card -->
-            <div class="col-xxl-5 col-md-6">
+            <div class="col-xxl-6 col-md-6">
 
               <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">درجة الحرارة <span>| الآن </span></h5>
+                  <p style="font-size:10px;">درجة حرارة الغرفة المريحة لمعظم الناس عادة ما تكون بين 18-22 درجة مئوية</p>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -125,7 +129,6 @@ include "base/session_checker.php";?>
                     </div>
                     <div class="ps-3">
                     <h6 id="viewTemp"></h6>
-                    
                     <script>
     // JavaScript code to display live data
     document.addEventListener('DOMContentLoaded', function () {

@@ -48,7 +48,7 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">معلومات المبنى</h5>
-                  <canvas id="myPieChart" width="200" height="200"></canvas>
+                  <canvas id="myPieChart" width="100" height="100"></canvas>
                 </div>
               </div>
             </div><!-- End building-info Card -->
@@ -56,17 +56,25 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">نسبة استغلال المساحة </h5> 
-                  <canvas id="myDoughnutChart" width="200" height="200"></canvas>
+                  <canvas id="myDoughnutChart" width="100" height="100"></canvas>
                 </div>
               </div>
             </div><!-- End building-info Card -->
             <div class="col-lg-4">
-              <div class="card info-card sales-card">
-                <div class="card-body">
-                  <h5 class="card-title">منسوبي الكلية</h5> 
-                  <canvas id="myBarChart" width="200" height="200"></canvas>
-              </div>                
-              </div>
+            <div class="card info-card sales-card">
+            <div class="card-body">
+            <h5 class="card-title">درجة الحرارة الخارجية:</h5>
+           <p>درجة الحرارة الآن: <span id="outdoor-temperature">تحميل...</span></p>
+          </div>
+          </div>
+          </div> 
+          <div class="col-lg-4">
+            <div class="card info-card sales-card">
+            <div class="card-body">
+            <h5 class="card-title">درجة الرطوبة الخارجية:</h5>
+            <p class="card-text">درجة الرطوبة الآن <span id="outdoor-humidity">تحميل...</span></p>
+          </div>               
+            </div>
             </div><!-- End building-info Card -->
         </div><!-- End Right side columns -->
         
@@ -133,32 +141,32 @@ var myPieChart = new Chart(ctx, {
         });
 </script>
 <script>
-        // Data for the number of students and teachers
-        var data = {
-            labels: ['الطالبات', 'منسوبي الكلية'],
-            datasets: [{
-                label: 'أعداد منسوبي كلية الحاسب والمعلومات',
-                data: [1000, 100], // Replace with your actual data
-                backgroundColor: ['#7b2cbf', '#e0aaff'], // Customize the colors
-            }]
-        };
+// Replace 'YOUR_API_KEY' with your actual API key
+const apiKey = 'ebeaf8cebc55cdfbb9f2ec96e8146f73';
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Riyadh&appid=${apiKey}&units=metric`;
 
-        // Get the canvas element
-        var ctx = document.getElementById('myBarChart').getContext('2d');
+// Function to fetch weather data
+async function fetchWeatherData() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    const outdoorTemperature = data.main.temp;
+    const outdoorHumidity = data.main.humidity;
 
-        // Create a bar chart
-        var myBarChart = new Chart(ctx, {
-            type: 'bar', // Use 'bar' for vertical bars or 'horizontalBar' for horizontal bars
-            data: data,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+    // Update the temperature and humidity in the HTML
+    document.getElementById('outdoor-temperature').textContent =   '°' + outdoorTemperature ;
+    document.getElementById('outdoor-humidity').textContent = '%' + outdoorHumidity ;
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    document.getElementById('outdoor-temperature').textContent = 'Error';
+    document.getElementById('outdoor-humidity').textContent = 'Error';
+  }
+}
+
+// Fetch the weather data when the page loads
+fetchWeatherData();
+</script>
+
 <!-- End index home page script-->
 
 </body>

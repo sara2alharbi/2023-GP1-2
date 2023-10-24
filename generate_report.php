@@ -149,6 +149,15 @@ session_start();
 
         }
 
+        // Insert the report data into the "history" table, including low and high temperatures
+        $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature)
+        VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature)";
+        if ($conn->query($insert_query) === TRUE) {
+        echo "تم حفظ التقرير في الجدول 'history'";
+        } else {
+        echo "Error: " . $insert_query . "<br>" . $conn->error;
+        }
+
         // Display the charts side by side
         echo "<br>";
         echo '<div class="chart-container">';

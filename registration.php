@@ -34,9 +34,24 @@ include 'DB.php';
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style1_home.css" rel="stylesheet">
+
 </head>
 
 <body>
+<header id="header" class="d-flex flex-column justify-content-center">
+     
+  
+     <nav id="navbar" class="navbar nav-menu">
+   
+       <ul>
+         <li><a href="home.html #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+         <li><a href="home.html #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
+         <li><a href="home.html #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
+       </ul>
+     </nav><!-- .nav-menu -->
+ 
+   </header><!-- End Header -->
 
   <main>
     <div class="container">
@@ -45,14 +60,6 @@ include 'DB.php';
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-              <div class="d-flex justify-content-center py-4">
-                <a href="home.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/elmam-logo.png" alt="">
-                  <span class="d-none d-lg-block">إلمــام - Elmam</span>
-                </a>
-              </div><!-- End Logo -->
-
               <div class="card mb-3">
 
                 <div class="card-body">
