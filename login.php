@@ -32,51 +32,30 @@ if (isset($_POST["login"]))
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>تسجيل الدخول</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/elmam-logo.png" rel="icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <?php include "base/head_imports.php"; ?>
   <link href="assets/css/style1_home.css" rel="stylesheet">
-
 </head>
+
 <body>
+<a href="#" class="logo"><img src="assets/img/elmam-logo.png" width="70"></a>
+
 <header id="header" class="d-flex flex-column justify-content-center">
-     
-  
      <nav id="navbar" class="navbar nav-menu">
-   
        <ul>
          <li><a href="home.html #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+         <li><a href="" class="nav-link scrollto"><i class="bx bx-user"></i> <span>تسجيل الدخول</span></a></li>
          <li><a href="home.html #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
          <li><a href="home.html #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
        </ul>
      </nav><!-- .nav-menu -->
  
-   </header><!-- End Header -->
-  <main>
+</header><!-- End Header -->
+
+
+<main>
     <div class="container">
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">

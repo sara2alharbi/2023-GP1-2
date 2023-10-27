@@ -97,7 +97,7 @@ include "base/session_checker.php";?>
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title"> درجة الرطوبة <span>| الآن </span></h5>
-                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي بين 40-70%.</p>
+                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من40 %.</p>
 
 
                   <div class="d-flex align-items-center">
@@ -121,7 +121,7 @@ include "base/session_checker.php";?>
               <div class="card info-card customers-card">
                 <div class="card-body">
                   <h5 class="card-title">درجة الحرارة <span>| الآن </span></h5>
-                  <p style="font-size:10px;">درجة حرارة الغرفة المريحة لمعظم الناس عادة ما تكون بين 18-22 درجة مئوية</p>
+                  <p style="font-size:9px;">درجة حرارة الغرفة المريحة لمعظم الناس عادة ما تكون بين 18-25 درجة مئوية</p>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">

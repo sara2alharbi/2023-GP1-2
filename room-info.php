@@ -65,7 +65,7 @@ include "base/session_checker.php";?>
 	<table class="table table-striped table-class" id= "table-id">
 		<thead>
 			<tr>
-			<th>الأسم</th><th>الدور</th><th>النوع</th><th>السعة</th>
+			<th>الأسم</th><th>الدور</th><th>النوع</th><th>السعة</th><th>متاحة حسب الجدول</th><th>متاحة حسب الضوضاء</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -76,7 +76,9 @@ include "base/session_checker.php";?>
      <td><?php echo $row['roomNo'] ; ?> </td> 
      <td><?php echo $row['floor'] ;?> </td>
      <td><?php echo $row['type'] ; ?> </td>
-     <td id="c"><?php echo $row['capacity'] ; ?> </td>   
+     <td id="c"><?php echo $row['capacity'] ; ?> </td> 
+     <td></td>
+     <td></td>  
         </tr>    
  <?php } ?>
 	

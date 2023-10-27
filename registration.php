@@ -39,13 +39,12 @@ include 'DB.php';
 </head>
 
 <body>
+<a href="#" class="logo"><img src="assets/img/elmam-logo.png" width="70"></a>
 <header id="header" class="d-flex flex-column justify-content-center">
-     
-  
      <nav id="navbar" class="navbar nav-menu">
-   
        <ul>
          <li><a href="home.html #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+         <li><a href="login.php" class="nav-link scrollto"><i class="bx bx-user"></i> <span>تسجيل الدخول</span></a></li>
          <li><a href="home.html #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
          <li><a href="home.html #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
        </ul>

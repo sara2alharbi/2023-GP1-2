@@ -20,13 +20,12 @@ include "base/session_checker.php";?>
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>لوحة التحكم</h1>
+      <h1> الرئيسية</h1>
       <br>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">الصفحة الرئيسية  </a></li>
           <li class="breadcrumb-item"></li>
-          <li class="breadcrumb-item active">لوحة التحكم</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -48,7 +47,9 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">معلومات المبنى</h5>
+                  <p style = "font-size:10px;">معلومات مبنى كلية الحاسب والمعلومات</p>
                   <canvas id="myPieChart" width="100" height="100"></canvas>
+                  <br>
                 </div>
               </div>
             </div><!-- End building-info Card -->
@@ -56,24 +57,32 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">نسبة استغلال المساحة </h5> 
+                  <p style = "font-size:10px;"> نسبة اتسغلال المساحة حسب الجداول</p>
                   <canvas id="myDoughnutChart" width="100" height="100"></canvas>
+                  <br>
                 </div>
               </div>
             </div><!-- End building-info Card -->
             <div class="col-lg-4">
-            <div class="card info-card sales-card">
-            <div class="card-body">
-            <h5 class="card-title">درجة الحرارة الخارجية:</h5>
-           <p>درجة الحرارة الآن: <span id="outdoor-temperature">تحميل...</span></p>
-          </div>
-          </div>
-          </div> 
-          <div class="col-lg-4">
-            <div class="card info-card sales-card">
-            <div class="card-body">
-            <h5 class="card-title">درجة الرطوبة الخارجية:</h5>
-            <p class="card-text">درجة الرطوبة الآن <span id="outdoor-humidity">تحميل...</span></p>
-          </div>               
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                    <h5 class="card-title">درجة الحرارة الخارجية:</h5>
+                    <p>درجة الحرارة الآن: <span id="outdoor-temperature">تحميل...</span></p>
+                    </div>
+                </div>
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h5 class="card-title">درجة الرطوبة الخارجية:</h5>
+                        <p class="card-text">درجة الرطوبة الآن <span id="outdoor-humidity">تحميل...</span></p>
+                    </div>
+                </div>
+                <div class="card info-card sales-card">
+        <div class="card-body">
+            <h5 class="card-title">جودة الهواء:</h5>
+            <p style = "font-size:10px;">0-50:نوعية الهواء مرضية ولا تشكل أي خطر على الصحة .</p>
+            <p>مؤشر جودة الهواء: <span id="air-quality-index">تحميل...</span></p>
+        </div>
+    </div>
             </div>
             </div><!-- End building-info Card -->
         </div><!-- End Right side columns -->
@@ -143,27 +152,43 @@ var myPieChart = new Chart(ctx, {
 <script>
 // Replace 'YOUR_API_KEY' with your actual API key
 const apiKey = 'ebeaf8cebc55cdfbb9f2ec96e8146f73';
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Riyadh&appid=${apiKey}&units=metric`;
+const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Riyadh&appid=${apiKey}&units=metric`;
+const airQualityApiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=24.7136&lon=46.6753&appid=${apiKey}`;
 
 // Function to fetch weather data
 async function fetchWeatherData() {
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    const outdoorTemperature = data.main.temp;
-    const outdoorHumidity = data.main.humidity;
+    try {
+        // Fetch weather data
+        const weatherResponse = await fetch(weatherApiUrl);
+        const weatherData = await weatherResponse.json();
+        const outdoorTemperature = weatherData.main.temp;
+        const outdoorHumidity = weatherData.main.humidity;
 
-    // Update the temperature and humidity in the HTML
-    document.getElementById('outdoor-temperature').textContent =   '°' + outdoorTemperature ;
-    document.getElementById('outdoor-humidity').textContent = '%' + outdoorHumidity ;
-  } catch (error) {
-    console.error('Error fetching weather data:', error);
-    document.getElementById('outdoor-temperature').textContent = 'Error';
-    document.getElementById('outdoor-humidity').textContent = 'Error';
-  }
+        // Update the temperature and humidity in the HTML
+        document.getElementById('outdoor-temperature').textContent =  '°'+ outdoorTemperature ;
+        document.getElementById('outdoor-humidity').textContent = '%' + outdoorHumidity ;
+
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+        document.getElementById('outdoor-temperature').textContent = 'Error';
+        document.getElementById('outdoor-humidity').textContent = 'Error';
+    }
+
+    try {
+        // Fetch air quality data
+        const airQualityResponse = await fetch(airQualityApiUrl);
+        const airQualityData = await airQualityResponse.json();
+        const airQualityIndex = airQualityData.list[0].main.aqi;
+
+        // Update air quality index in the HTML
+        document.getElementById('air-quality-index').textContent = airQualityIndex;
+    } catch (error) {
+        console.error('Error fetching air quality data:', error);
+        document.getElementById('air-quality-index').textContent = 'Error';
+    }
 }
 
-// Fetch the weather data when the page loads
+// Fetch the weather and air quality data when the page loads
 fetchWeatherData();
 </script>
 

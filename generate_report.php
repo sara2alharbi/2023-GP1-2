@@ -44,6 +44,34 @@ session_start();
     $endDate = date('Y-m-d');
     $startDate = date('Y-m-d', strtotime('-7 days', strtotime($endDate)));
 
+        // Check if data for the specified date range already exists in the database
+        $existingDataQuery = "SELECT COUNT(*) AS data_count FROM history WHERE room = '$room' AND start_date = '$startDate' AND end_date = '$endDate'";
+        $existingDataResult = $conn->query($existingDataQuery);
+        $dataCount = $existingDataResult->fetch_assoc()['data_count'];
+    
+        if ($dataCount == 0) {
+            // Data doesn't exist, insert it into the database
+            // Your code to fetch and calculate data (similar to your existing code)
+    
+            // Your code to insert the report data into the database (similar to your existing code)
+    
+            try {
+                // Insert the report data into the "history" table, including low and high temperatures
+                $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature)
+                    VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature)";
+    
+                if ($conn->query($insert_query) === TRUE) {
+                    echo "console.log('تم حفظ التقرير في الجدول \"history\"');";
+                } else {
+                    echo "console.error('Error: " . $insert_query . "', '" . $conn->error . "');";
+                }
+            } catch (error) {
+                echo "console.error('Error:', error);";
+            }
+        } else {
+            echo "";
+        }
+
     // Fetch temperature, humidity, and noise data
     $temperature_query = "SELECT temperature, humidity, Date_today FROM temperature WHERE microID = '$microID' AND Date_today BETWEEN '$startDate' AND '$endDate'";
     $temperature_result = $conn->query($temperature_query);
@@ -147,15 +175,6 @@ session_start();
             echo "<br>";
             echo "<hr>";
 
-        }
-
-        // Insert the report data into the "history" table, including low and high temperatures
-        $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature)
-        VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature)";
-        if ($conn->query($insert_query) === TRUE) {
-        echo "تم حفظ التقرير في الجدول 'history'";
-        } else {
-        echo "Error: " . $insert_query . "<br>" . $conn->error;
         }
 
         // Display the charts side by side
