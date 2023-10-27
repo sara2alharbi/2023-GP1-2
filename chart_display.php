@@ -1,4 +1,5 @@
 <?php
+//this code for displaying the chart based on the room and date
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room = $_POST["room"];
     $date = $_POST["date"];

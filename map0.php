@@ -862,6 +862,7 @@ include "base/session_checker.php";?>
       // error : (e) =>console.log(e),
     });
   }
+  //repeatedly call the updateDate function at 1-second intervals.
   setInterval(function () { updateDate(); }, 1000);
   $('.mytc').on('click', function () {
     $("#room-no").text($(this).find('.rm-no').text());

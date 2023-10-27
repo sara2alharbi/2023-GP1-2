@@ -310,29 +310,7 @@ $pdfUrl = 'download_report.php?reportData=' . urlencode(json_encode($reportData)
         }
     });
 
-    // Save charts as images when the page loads
-    temperatureChart.toImage('image/jpeg', 1, function (imageData) {
-        var a = document.createElement('a');
-        a.href = imageData;
-        a.download = 'temperature_chart.jpg';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    });
-
-    noiseChart.toImage('image/jpeg', 1, function (imageData) {
-        var a = document.createElement('a');
-        a.href = imageData;
-        a.download = 'noise_chart.jpg';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    });
 </script>
-
-
 
     <br><br>
     <form method="post" action="download_report.php">

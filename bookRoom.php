@@ -95,9 +95,6 @@ include "base/session_checker.php";?>
 
     <div class="card ">
         <div class="card-body">
-            <!-- JavaScript -->
-
-
             <!-- Form General ------------------------------------------------------------------------->
             <div class="fSet1" id="first-form">
                 <br>
@@ -155,7 +152,6 @@ include "base/session_checker.php";?>
                     </div>
                     <div class="col-2 text-right">
                         <button onclick="showPreviousPage()" id="backBtn" class="btn btn-light">
-
                             عوده
                             &larr;
                         </button>
