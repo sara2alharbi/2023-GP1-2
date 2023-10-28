@@ -1,4 +1,6 @@
 <?php
+
+// for giiting the current time every sec
 date_default_timezone_set('Asia/Riyadh');
 $currentTime = date('H:i');
 $currentDay = strftime('%A');

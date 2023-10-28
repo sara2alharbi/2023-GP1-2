@@ -1,6 +1,6 @@
 <?php
 include "DB.php";
-
+//get a the room based on the capacity
 $type = $_POST['type'];
 $day = $_POST['day'];
 $capacity =(int) $_POST['capacity'];

@@ -40,6 +40,8 @@ session_start();
     $room = $_POST['room'];
     $microID = ($room == 'G9') ? 'ESP12F' : 'ESP12E';
 
+    
+
     // Get the date range for the last 7 days
     $endDate = date('Y-m-d');
     $startDate = date('Y-m-d', strtotime('-7 days', strtotime($endDate)));
@@ -161,9 +163,10 @@ session_start();
             // Your code to insert the report data into the database (similar to your existing code)
     
             try {
+                
                 // Insert the report data into the "history" table, including low and high temperatures
-                $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature)
-                    VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature)";
+                $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature, microID)
+        VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature, '$microID')";
     
                 if ($conn->query($insert_query) === TRUE) {
                     echo "";

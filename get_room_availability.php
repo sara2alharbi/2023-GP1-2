@@ -1,7 +1,7 @@
                      <?php 
             include 'DB.php';
             date_default_timezone_set('Asia/Riyadh');
-
+//checking for the avilable if the room avilable based on the scehdule or no
 // Get the current time and day
 $currentTime = date("H:i");
 $currentDay = strftime('%A'); // Get the current day name in Arabic

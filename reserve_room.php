@@ -1,6 +1,6 @@
 <?php
 include "DB.php";
-
+//this for reserve a room and store it in lecture table
 $day = $_POST['day'];
 $course = $_POST['course'];
 $section = $_POST['sectionNumber'];

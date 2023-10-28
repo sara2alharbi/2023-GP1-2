@@ -3,6 +3,8 @@
 <?php include "DB.php"; 
 include "base/session_checker.php";?>
 
+<!--This page for making room reservation-->
+
 <head>
     <?php include "base/head_imports.php"; ?>
 

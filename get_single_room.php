@@ -1,6 +1,6 @@
 <?php
 include "DB.php";
-
+// get a room based on room number user choose
 $roomNo = $_POST['roomNo'];
 $day = $_POST['day'];
 $startDate = $_POST['startDate'];
