@@ -4,8 +4,9 @@ var loading = '<span id="loadingBtn" class="spinner-border spinner-border-sm"\n'
 var alreadyFound = false;
 var reqType = 0;
 
-function searchRooms(type, capacity, day, startDate, endDate) {
+function searchRooms(type, capacity, day, startDate, endDate, semester) {
 
+    recreateTable();
     document.getElementById('closeModalButton').addEventListener('click', closeModal);
     reqType = 1;
     var generalRes;
@@ -23,7 +24,8 @@ function searchRooms(type, capacity, day, startDate, endDate) {
                 capacity: capacity,
                 day: day,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
+                semester: semester
             }, // Send data to the server
             success: function (response) {
                 if (response.length === 0) {
@@ -120,15 +122,21 @@ function searchRooms(type, capacity, day, startDate, endDate) {
             $("#roomNumber").text(roomNumber);
 
 
+            console.log('semester2');
+            console.log(semester);
             console.log('Room');
             console.log(roomNumber);
             $("#day1").val(day);  // Replace dayValue with the actual value
             $("#startTime1").val(startDate); // Replace startTimeValue
+            $("#semester1").val(semester); // Replace startTimeValue
 
             $("#endTime1").val(endDate);     // Replace endTimeValue
             $("#course").val("");     // Replace endTimeValue
             $("#sectionNumber").val("");     // Replace endTimeValue
 
+            const reserveBtn = document.getElementById('reserveButton');
+            reserveBtn.disabled = false;
+            reserveBtn.innerHTML = 'حجز';
             // Show the modal
             $("#roomModal").modal("show");
 
@@ -137,7 +145,10 @@ function searchRooms(type, capacity, day, startDate, endDate) {
 
 }
 
-function searchSingleRooms(roomNumber, day, startDate, endDate) {
+function searchSingleRooms(roomNumber, day, startDate, endDate, semester) {
+    recreateTable();
+    console.log("Semester");
+    console.log(semester);
     reqType = 1;
     const noDataMessage = document.getElementById("noDataMessage");
     document.getElementById('bookRoom').disabled = true;
@@ -152,7 +163,8 @@ function searchSingleRooms(roomNumber, day, startDate, endDate) {
                 roomNo: roomNumber,
                 day: day,
                 startDate: startDate,
-                endDate: endDate
+                endDate: endDate,
+                semester: semester
             }, // Send data to the server
             success: function (response) {
                 if (response.length === 0) {
@@ -263,8 +275,12 @@ function searchSingleRooms(roomNumber, day, startDate, endDate) {
         $("#startTime1").val(startDate); // Replace startTimeValue
 
         $("#endTime1").val(endDate);     // Replace endTimeValue
+        $("#semester1").val(semester);     // Replace endTimeValue
         $("#course").val("");     // Replace endTimeValue
         $("#sectionNumber").val("");     // Replace endTimeValue
+
+        document.getElementById('reserveButton').textContent = 'حجز';
+        document.getElementById('reserveButton').disabled = false;
 
         // Show the modal
         $("#roomModal").modal("show");
@@ -276,12 +292,64 @@ function searchSingleRooms(roomNumber, day, startDate, endDate) {
 
 function closeModal() {
     $('#roomModal').modal('hide');
+    const reserveBtn = document.getElementById('reserveButton');
+    reserveBtn.disabled = false;
+    reserveBtn.innerHTML = 'حجز';
+
+}
+
+function recreateTable() {
+    const existingTableWrapper = document.getElementById('table_wrapper');
+
+    // Remove the existing table wrapper if it exists
+    if (existingTableWrapper) {
+        existingTableWrapper.parentNode.removeChild(existingTableWrapper);
+    }
+
+    const existingTable = document.getElementById('table');
+
+    // Remove the existing table
+    if (existingTable) {
+        existingTable.parentNode.removeChild(existingTable);
+    }
+
+    // Create a new table element
+    const newTable = document.createElement('table');
+    newTable.id = 'table';
+    newTable.classList.add('table');
+    newTable.style.visibility = 'hidden';
+
+    // Create the table header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    headerRow.innerHTML = `
+    <th>#</th>
+    <th>رقم الغرفة</th>
+    <th>الدور</th>
+    <th>السعة</th>
+    <th>الحجز</th>
+  `;
+    thead.appendChild(headerRow);
+
+    // Create the table body
+    const tbody = document.createElement('tbody');
+    tbody.id = 'table-body';
+
+    // Append the header and body to the new table
+    newTable.appendChild(thead);
+    newTable.appendChild(tbody);
+
+    // Append the new table to the document
+    const tableContainer = document.getElementById('tableContainer');
+    tableContainer.appendChild(newTable);
 }
 
 function reserveRoom() {
     console.log('Clicked');
     var formData = $('#reservationForm').serialize();
+    var $form = $('#reservationForm');
 
+    console.log(formData);
     const reserveBtn = document.getElementById('reserveButton');
     reserveBtn.disabled = true;
     reserveBtn.innerHTML = loading + 'جاري الحجز';
@@ -313,17 +381,31 @@ function reserveRoom() {
             // Close the modal
             closeModal();
             if (reqType === 1) {
-                var tr = document.getElementsByTagName("tr")[1];
+                var rows = document.getElementsByTagName("tr");
 
-                var lastTd = tr.lastChild;
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    var cells = row.getElementsByTagName("td");
 
+                    if (cells.length >= 3) {
+                        var thirdColumnData = cells[1].textContent.trim();
 
-                if (lastTd && lastTd.querySelector("button")) {
-                    // Change the text of the button
-                    var button = lastTd.querySelector("button");
-                    button.textContent = "تم الحجز";
-                    button.disabled = true;
+                        var roomValue = $form.find('[name="roomNo"]').val();
+
+                        if (thirdColumnData === roomValue) {
+                            // You found the row with 'hi' in the third column
+                            var lastTd = row.lastChild;
+
+                            if (lastTd && lastTd.querySelector("button")) {
+                                // Change the text of the button
+                                var button = lastTd.querySelector("button");
+                                button.textContent = "تم الحجز";
+                                button.disabled = true;
+                            }
+                        }
+                    }
                 }
+
             }
         },
         error: function (error) {

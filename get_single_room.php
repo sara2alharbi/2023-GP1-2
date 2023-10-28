@@ -5,6 +5,7 @@ $roomNo = $_POST['roomNo'];
 $day = $_POST['day'];
 $startDate = $_POST['startDate'];
 $endDate = $_POST['endDate'];
+$semester = $_POST['semester'];
 
 $sqlGetRoom = "SELECT * FROM room r WHERE r.roomNo = '$roomNo'";
 $resultGetRoom = mysqli_query($conn, $sqlGetRoom);
@@ -21,6 +22,7 @@ if (!empty($roomData)) {
     $sqlCheckAvailability = "SELECT 1 FROM lecture l
         WHERE l.roomNo = '$roomNo'
         AND l.day = '$day'
+        AND l.semester = '$semester'
         AND l.startTime <= '$endDate'
         AND l.endTime >= '$startDate'";
 

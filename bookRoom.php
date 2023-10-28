@@ -95,6 +95,9 @@ include "base/session_checker.php";?>
 
     <div class="card ">
         <div class="card-body">
+            <!-- JavaScript -->
+
+
             <!-- Form General ------------------------------------------------------------------------->
             <div class="fSet1" id="first-form">
                 <br>
@@ -152,6 +155,7 @@ include "base/session_checker.php";?>
                     </div>
                     <div class="col-2 text-right">
                         <button onclick="showPreviousPage()" id="backBtn" class="btn btn-light">
+
                             عوده
                             &larr;
                         </button>
@@ -276,21 +280,23 @@ include "base/session_checker.php";?>
         </div>
 
         <h5 id="noDataMessage" style="display: none; text-align: center">لا يوجد بيانات</h5>
+        <div id="tableContainer">
 
-        <table id="table" class="table" style="visibility: hidden">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>رقم الغرفة</th>
-                <th>الدور</th>
-                <th>السعة</th>
-                <th>الحجز</th>
-            </tr>
-            </thead>
-            <tbody id="table-body">
-            <!-- Add more rows as needed, each with a button -->
-            </tbody>
-        </table>
+            <table id="table" class="table" style="visibility: hidden">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>رقم الغرفة</th>
+                    <th>الدور</th>
+                    <th>السعة</th>
+                    <th>الحجز</th>
+                </tr>
+                </thead>
+                <tbody id="table-body">
+                <!-- Add more rows as needed, each with a button -->
+                </tbody>
+            </table>
+        </div>
 
 
         <div class="modal fade" id="roomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -318,6 +324,7 @@ include "base/session_checker.php";?>
                             <input type="hidden" id="roomNo1" name="roomNo"/>
                             <input type="hidden" id="startTime1" name="startTime"/>
                             <input type="hidden" id="endTime1" name="endTime"/>
+                            <input type="hidden" id="semester1" name="semester"/>
 
                             <br>
                             <br>
@@ -362,15 +369,18 @@ include "base/session_checker.php";?>
             let error2 = document.getElementById("error2");
             let error3 = document.getElementById("error3");
 
-            var semester = document.querySelector('input[name="semester"]:checked');
             var type = document.querySelector('input[name="type"]:checked');
 
+            var semester = null;
             function showFieldset() {
                 const capacityRadio = document.querySelector('input[name="capacity"]:checked');
                 const semesterRadio = document.querySelector('input[name="semester"]:checked');
                 const firstFieldset = document.getElementById("first-form");
                 const secondFieldset = document.getElementById("second-form");
                 const thirdFieldset = document.getElementById("third-form");
+                 semester = semesterRadio.value;
+                console.log('Semeter Checked');
+                console.log(semester);
 
                 document.getElementById('backBtn').style.display = '';
 
@@ -481,7 +491,9 @@ include "base/session_checker.php";?>
                     errorElement.removeAttribute("hidden");
                 } else {
                     errorElement.setAttribute("hidden", "true");
-                    searchRooms(Chosetype, InputCapacity, day, InputStartTime, InputEndTime);
+                    console.log("Semester before call");
+                    console.log(semester);
+                    searchRooms(Chosetype, InputCapacity, day, InputStartTime, InputEndTime,semester);
                 }
 
             }
@@ -525,7 +537,7 @@ include "base/session_checker.php";?>
                 } else {
                     console.log('Capacity Clicked');
                     errorElement.setAttribute("hidden", "true");
-                    searchSingleRooms(roomNo, day2, inputStartTime2, inputEndTime2)
+                    searchSingleRooms(roomNo, day2, inputStartTime2, inputEndTime2,semester);
                 }
 
             }

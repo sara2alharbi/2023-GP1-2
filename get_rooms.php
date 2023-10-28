@@ -6,6 +6,7 @@ $day = $_POST['day'];
 $capacity =(int) $_POST['capacity'];
 $startDate = $_POST['startDate'];
 $endDate = $_POST['endDate'];
+$semester = $_POST['semester'];
 
 if (isset($_POST['roomNo'])){
 
@@ -20,6 +21,7 @@ $sql = "SELECT * FROM room r
             AND l.day = '$day'
             AND l.startTime <= '$endDate'
             AND l.endTime >= '$startDate'
+            AND l.semester = '$semester'
         )";
 
 
