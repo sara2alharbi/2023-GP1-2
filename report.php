@@ -36,7 +36,7 @@ include "base/session_checker.php";?>
       <div class="row">
       <div class="form-container">
       <div class="card info-card sales-card">
-    <h2>اختر الغرفة للحصول على التقرير الإسبوعي</h2> 
+    <h5>اختر الغرفة للحصول على التقرير الإسبوعي</h5> 
     <br><br>
     <form method="post" action="generate_report.php" id="report-form">
     <div class="label-select-container">

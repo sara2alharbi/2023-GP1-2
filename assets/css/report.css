@@ -74,14 +74,14 @@
 
 /* Data labels */
 .data-label {
-    font-size: 18px;
+    font-size: 10px;
     color: #333;
     margin-bottom: 10px;
 }
 
 /* Data values */
 .data-value {
-    font-size: 20px;
+    font-size: 10px;
     color: #333;
     margin-bottom: 20px;
 }
