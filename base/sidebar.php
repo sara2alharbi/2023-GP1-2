@@ -54,6 +54,11 @@
               <i class="bi bi-circle"></i><span>مراقبة حالة الغرفة</span>
             </a>
           </li>
+              <li>
+            <a href="spaceUtilization.php">
+              <i class="bi bi-circle"></i><span>استغلال الغرف</span>
+            </a>
+          </li>
           <li>
             <a href="room-date.php">
               <i class="bi bi-circle"></i><span> إحصائية درجة الحرارة و الضوضاء</span>
