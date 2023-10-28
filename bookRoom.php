@@ -202,11 +202,11 @@ include "base/session_checker.php";?>
                 <div class="col-md-6">
                     <select id="inputState" class="form-select" name="day">
                         <option selected>اختر اليوم</option>
-                        <option value="الأحد">الأحد</option>
-                        <option value="الاثنين">الاثنين</option>
-                        <option value="الثلاثاء">الثلاثاء</option>
-                        <option value="الأربعاء">الأربعاء</option>
-                        <option value="الخميس">الخميس</option>
+                        <option value="Sunday">الأحد</option>
+                        <option value="Monday">الاثنين</option>
+                        <option value="Tuesday">الثلاثاء</option>
+                        <option value="Wednesday">الأربعاء</option>
+                        <option value="Thursday">الخميس</option>
                     </select>
                 </div>
 
@@ -251,12 +251,12 @@ include "base/session_checker.php";?>
             </div>
             <div class="col-md-6">
                 <select id="day2" class="form-select" name="day2">
-                    <option selected>اختر اليوم</option>
-                    <option value="الأحد">الأحد</option>
-                    <option value="الاثنين">الاثنين</option>
-                    <option value="الثلاثاء">الثلاثاء</option>
-                    <option value="الأربعاء">الأربعاء</option>
-                    <option value="الخميس">الخميس</option>
+                <option selected>اختر اليوم</option>
+                        <option value="Sunday">الأحد</option>
+                        <option value="Monday">الاثنين</option>
+                        <option value="Tuesday">الثلاثاء</option>
+                        <option value="Wednesday">الأربعاء</option>
+                        <option value="Thursday">الخميس</option>
                 </select>
             </div>
 

@@ -22,13 +22,13 @@ include "base/session_checker.php";?>
 <main id="main" class="main" dir="rtl">
 
     <div class="pagetitle">
-      <h1>بيانات الغرف</h1>
+      <h1>استغلال الغرف</h1>
       <br>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="room-info.php">غرف </a></li>
           <li class="breadcrumb-item">المبنى</li>
-          <li class="breadcrumb-item active">الغرف المتاحة</li>
+          <li class="breadcrumb-item active">الغرف المستغلة حسب الضوضاء والجدول الدراسي</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -49,6 +49,7 @@ include "base/session_checker.php";?>
                     <tr>
                         <th>الأسم</th>
                         <th>الحجز</th>
+                        <th>الحالة</th>
                     </tr>
                 </thead>
                 <tbody id="room-status">
@@ -101,7 +102,7 @@ include "base/session_checker.php";?>
             updateRoomAvailability();
             updateCurrentTimeAndDay();
 
-            setInterval(updateRoomAvailability, 1000); // Update every minute
+            setInterval(updateRoomAvailability, 1000); // Update every second
             setInterval(updateCurrentTimeAndDay, 1000); // Update every second
         });
     </script>
