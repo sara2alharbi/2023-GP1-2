@@ -23,7 +23,7 @@ if ($stmt->execute()) {
 
     $stmt->close();
 }
-
+date_default_timezone_set('Asia/Riyadh');
 // Calculate the current minute
 $currentMinute = date('i');
 
@@ -32,9 +32,19 @@ $airIdList = implode(',', $airIds); // Convert the array to a comma-separated st
 $currentDate = (string)date('Y-m-d');
 $currentTime = (string)date('H:i:s');
 
+//$currentDate = '2023-10-19';
+//$currentTime = '23:58:38';
 
-$queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate' AND temperature > 25 AND id NOT IN ($idList)";
+$windowStart = date('H:i:s', strtotime("$currentTime -60 minutes"));
+$windowEnd = $currentTime;
+
+
+$queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate'
+                            AND temperature > 25
+                            AND id NOT IN ($idList)
+                                AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 $resultTemperature = $mysqli->query($queryTemperature);
+
 
 if ($resultTemperature === false) {
     die("Error: " . $mysqli->error);
@@ -62,11 +72,35 @@ while ($row = $resultTemperature->fetch_assoc()) {
         'room' => $room,
         'temperature' => $temperature,
         'temperature_id' => $temperature_id];
+
 }
+
+$temperatureToDelete = [];
+$temperatureToDelete[] = 0;
+$selectedData = []; // Array to store the selected data
+$lastMinute = null; // Variable to track the last selected minute
+
+foreach ($temperature_alerts as $row) {
+    $timeParts = explode(":", $row["time"]);
+    $minute = isset($timeParts[1]) ? (int)$timeParts[1] : null;
+
+    if ($minute !== $lastMinute) {
+        $selectedData[] = $row;
+        $lastMinute = $minute;
+    } else {
+        $temperatureToDelete[] = $row['temperature_id'];
+    }
+}
+
+$temperature_alerts = $selectedData;
 $all_alerts['temperature_alerts'] = $temperature_alerts;
 
+
 $queryAirQuality =
-    "SELECT * FROM airquality WHERE Date_today = '$currentDate'  AND airquality = 0  AND id NOT IN ($airIdList)";
+    "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
+                           AND airquality = 0 
+                           AND id NOT IN ($airIdList)
+                              AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 
 $resultAirQuality = $mysqli->query($queryAirQuality);
 
@@ -96,6 +130,24 @@ while ($row = $resultAirQuality->fetch_assoc()) {
     ];
 
 }
+$airToDelete = [];
+$airToDelete[] = 0;
+$selectedData = []; // Array to store the selected data
+$lastMinute = null; // Variable to track the last selected minute
+
+foreach ($air_alerts as $row) {
+    $timeParts = explode(":", $row["time"]);
+    $minute = isset($timeParts[1]) ? (int)$timeParts[1] : null;
+
+    if ($minute !== $lastMinute) {
+        $selectedData[] = $row;
+        $lastMinute = $minute;
+    } else {
+        $airToDelete[] = $row['air_id'];
+    }
+}
+$air_alerts = $selectedData;
+
 foreach ($temperature_alerts as $tempAlert) {
     $tempTime = $tempAlert['time'];
 
@@ -108,6 +160,9 @@ foreach ($temperature_alerts as $tempAlert) {
 
         // Compare the time values
         if ($tempTime === $airTime) {
+            if ($airAlert['room'] !== $tempAlert['room']) {
+                return;
+            }
             $airAlert['type'] = 'combined';
             $airAlert['temperature_id'] = $tempAlert['temperature_id'];
             $airAlert['temperature'] = $tempAlert['temperature'];
@@ -133,6 +188,64 @@ $remainingAirAlerts = array_values($air_alerts) !== null ? array_values($air_ale
 $all_alerts['mix'] = $mix_alerts;
 $all_alerts['air_alerts'] = $remainingAirAlerts;
 
+$result = [];
+$lastTimestamp = null;
+
+
+foreach ($all_alerts['temperature_alerts'] as $entry) {
+    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
+
+    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
+        $result[] = $entry;
+        $lastTimestamp = $currentTimestamp;
+    } else {
+        $temperatureToDelete[] = $entry['temperature_id'];
+    }
+}
+
+$IdList = implode(',', $temperatureToDelete); // Convert the array to a comma-separated string
+
+$queryDelete = "DELETE FROM temperature WHERE id IN ($IdList)";
+$mysqli->query($queryDelete);
+$all_alerts['temperature_alerts'] = $result;
+
+
+$result = [];
+$lastTimestamp = null;
+
+
+foreach ($all_alerts['air_alerts'] as $entry) {
+    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
+
+    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
+        $result[] = $entry;
+        $lastTimestamp = $currentTimestamp;
+    } else {
+        $airToDelete[] = $entry['air_id'];
+    }
+}
+
+$IdList = implode(',', $airToDelete); // Convert the array to a comma-separated string
+
+$queryDelete = "DELETE FROM airquality WHERE id IN ($IdList)";
+$mysqli->query($queryDelete);
+
+$all_alerts['air_alerts'] = $result;
+
+$result = [];
+$lastTimestamp = null;
+
+foreach ($all_alerts['mix'] as $entry) {
+    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
+
+    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
+        $result[] = $entry;
+        $lastTimestamp = $currentTimestamp;
+    }
+}
+$all_alerts['mix'] = $result;
+
+
 $individualAlerts = [];
 
 // Loop through the input array and merge the alerts into the new array
@@ -141,6 +254,16 @@ foreach ($all_alerts as $key => $alerts) {
 }
 $outputArray = $individualAlerts;
 
+function compareByTimeDesc($a, $b)
+{
+    $timeA = strtotime($a['date'] . ' ' . $a['time']);
+    $timeB = strtotime($b['date'] . ' ' . $b['time']);
+
+    return $timeB - $timeA; // Sort in descending order
+}
+
+// Sort the array using the custom comparison function
+usort($outputArray, 'compareByTimeDesc');
 
 header('Content-Type: application/json');
 echo json_encode($outputArray);

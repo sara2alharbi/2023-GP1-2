@@ -97,7 +97,7 @@ include "base/session_checker.php";?>
               <div class="card info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title"> درجة الرطوبة <span>| الآن </span></h5>
-                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من40 %.</p>
+                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من40 جم / م 3.</p>
 
 
                   <div class="d-flex align-items-center">

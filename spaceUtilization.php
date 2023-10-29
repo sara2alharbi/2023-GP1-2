@@ -49,7 +49,6 @@ include "base/session_checker.php";?>
                     <tr>
                         <th>الأسم</th>
                         <th>الحجز</th>
-                        <th>الحالة</th>
                     </tr>
                 </thead>
                 <tbody id="room-status">

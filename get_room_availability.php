@@ -39,7 +39,7 @@ $currentDay = strftime('%A'); // Get the current day name in Arabic
 
                     // Display the room availability
                     foreach ($roomAvailability as $room => $status) {
-                        echo "<tr><td>$room</td><td>$status</td><td></td></tr>";
+                        echo "<tr><td>$room</td><td>$status</td></tr>";
                     }
 
                
