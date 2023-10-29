@@ -379,7 +379,7 @@ include "base/session_checker.php";?>
               <h5 class="card-title">خريطة الجامعة</h5>
               <div class="row">
                 <div class='col-md-6'>
-                  <button class="btn btn-primary" onClick="showInfo(this)">إظهار/إخفاء القراءات</button>
+                  <button class="btn btn-primary ourBtn" onClick="showInfo(this)">إظهار/إخفاء القراءات</button>
                 </div>
               </div>
               <br><br>

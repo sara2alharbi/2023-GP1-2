@@ -65,7 +65,7 @@ if (isset($_POST["login"]))
                 <div class="card-body">
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">تسجيل الدخول</h5>
-                    <p class="text-center small">أدخل الإسم وكلمة المرور</p>
+                    <p class="text-center small ourSubTitle">أدخل الإسم وكلمة المرور</p>
                   </div>
 
                   <form action="login.php" method="post" class="row g-3">
@@ -84,11 +84,11 @@ if (isset($_POST["login"]))
                     </div>
 
                     <div class="col-12">
-                      <input class="btn btn-primary w-100" type="submit" name="login" value="تسجيل الدخول">
+                      <input class="btn btn-primary w-100 ourBtn" type="submit" name="login" value="تسجيل الدخول">
                     </div>
 
                     <div class="col-12">
-                      <p class="small mb-0">ليس لديك حساب؟ <a href="registration.php">سجل الآن</a></p>
+                      <p class="small mb-0">ليس لديك حساب؟   <a href="registration.php">سجل الآن</a></p>
                     </div>
                   </form>
                 </div>
@@ -99,7 +99,8 @@ if (isset($_POST["login"]))
       </section>
     </div>
   </main><!-- End #main -->
-
+  
+<div id="preloader"></div>
     <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -112,6 +113,6 @@ if (isset($_POST["login"]))
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+  <script src="assets/js/main_home.js"></script>
 </body>
 </html>

@@ -183,3 +183,8 @@ p {
     text-align: center;
 }
 
+.btn-primary.ourBtn a {
+    color: white;
+}
+
+

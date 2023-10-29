@@ -53,7 +53,7 @@
 
     /* Style the "Show Charts" button */
     #showChartsButton {
-        background-color: #52B69A;
+        background-color: #1A759F;
         color: #fff;
         border: none;
         padding: 10px 20px;
@@ -62,7 +62,8 @@
     }
 
     #showChartsButton:hover {
-        background-color: #B5E48C;
+        background: #168AAD;
+        border-color: #168AAD;
     }
 
     /* Style the charts container */
@@ -72,7 +73,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-}
+    }
 
 
     /* Style the "No data available" message */
@@ -87,6 +88,8 @@
     canvas {
         margin: 10px 0;
     }
+
+
 </style>
 </head>
 

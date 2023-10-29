@@ -46,7 +46,7 @@ include "base/session_checker.php";?>
             <option value="G35">G35</option>
         </select>
     </div>
-        <button type="submit" class="button">اختيار</button>
+        <button type="submit" class="btn btn-primary ourBtn">اختيار</button>
     </form>
       </div>
       </div>

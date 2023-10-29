@@ -11,7 +11,7 @@ session_start();
     <meta content="" name="description">
     <meta content="" name="keywords">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
+    <?php include "base/head_imports.php"; ?>
     <link href="assets/css/report.css" rel="stylesheet">
 
 </head>
@@ -20,11 +20,12 @@ session_start();
     <div class='class="card info-card sales-card"' id = 'head'>
     <img class='logo1' src='assets/img/elmam-logo.png' alt=' Logo' >
     <h2>
+    التقرير الإسبوعي لغرفة رقم
     <?php
     if (isset($_POST['room'])) {
         echo $_POST['room'];
     }
-    ?> التقرير الإسبوعي لغرفة رقم
+    ?>
 </h2>
 <hr>
 </div>
@@ -135,18 +136,18 @@ session_start();
         echo "<br>";
 
         echo "<div class='averages'>";
-        echo "<p>متوسط درجة الحرارة: <strong>° $average_temperature</strong> <span class='icon'>🌡️</span></p>";
-        echo "<p>متوسط درجة الرطوبة: <strong>% $average_humidity</strong> <span class='icon'>💧</span></p>";
-        echo "<p>متوسط الضوضاء:  <strong>$average_noise </strong> <span class='icon'>🔊</span></p>";
+        echo "<p><span class='icon'>🌡️</span>متوسط درجة الحرارة: <strong>° $average_temperature</strong></p>";
+        echo "<p><span class='icon'>💧</span>متوسط درجة الرطوبة: <strong>% $average_humidity</strong></p>";
+        echo "<p><span class='icon'>🔊</span>متوسط الضوضاء:  <strong>$average_noise </strong></p>";
         echo "</div>";
         echo "<div class='temp'>";
-        echo "<p>أعلى درجة الحرارة: <strong>° $high_temperature</strong> <span class='icon'>🔥</span></p>";
-        echo "<p>أقل درجة الحرارة: <strong>° $low_temperature</strong> <span class='icon'>❄️</span></p>";
+        echo "<p><span class='icon'>🔥</span>أعلى درجة الحرارة: <strong>° $high_temperature</strong></p>";
+        echo "<p><span class='icon'>❄️</span>أقل درجة الحرارة: <strong>° $low_temperature</strong></p>";
         echo "</div>";
 
 
         if ($air_quality_affected) {
-            echo "<p class ='air'>جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام🌫️</p>";
+            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام</p>";
             echo "<br>";
             echo "<hr>";
         } else {
@@ -321,8 +322,9 @@ $pdfUrl = 'download_report.php?reportData=' . urlencode(json_encode($reportData)
     <input type="hidden" name="temperatures" value="<?php echo implode(',', $temperatures); ?>">
     <input type="hidden" name="dates" value="<?php echo implode(',', $dates); ?>">
     <input type="hidden" name="noises" value="<?php echo implode(',', array_column($dailyNoiseAverages, 'noise')); ?>">
-    <button type="submit"> <a href="<?php echo $pdfUrl; ?>" target="_blank">تحميل التقرير</a>
-</button>
+    <button type="submit" style="color:white;"> 
+    <a href="<?php echo $pdfUrl; ?>" target="_blank">تحميل التقرير</a>
+    </button>
 </form>
 
     </div>

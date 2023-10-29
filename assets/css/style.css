@@ -30,14 +30,53 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Nunito", sans-serif;
+/*--------------------------------------------------------------
+# Preloader load
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #fff;
 }
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #168AAD;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Main
@@ -56,6 +95,21 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# overide btn bootstarb ---> buttons
+--------------------------------------------------------------*/
+
+.ourBtn {
+    color: #fff;
+    background-color: #1A759F ;
+    border-color: #1A759F ;
+}
+.ourBtn:hover {
+  color: #fff;
+  background: #168AAD;
+ border-color: #168AAD ;
+}
+
+/*--------------------------------------------------------------
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
@@ -66,7 +120,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #012970;  /* tect color for heaader ...........*/
 }
 
 /*--------------------------------------------------------------
@@ -106,8 +160,6 @@ h6 {
 # Override some default Bootstrap stylings
 --------------------------------------------------------------*/
 /* Dropdown menus */
-
-
 
 .dropdown-menu {
   border-radius: 4px;
@@ -885,10 +937,6 @@ h6 {
   border-radius: 5px;
   max-width: 60px;
 }
-/*--------------------------------------------------------------
-# BookRoom page
---------------------------------------------------------------*/
-
 
 
 

@@ -65,7 +65,7 @@ include 'DB.php';
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">إنشاء حساب</h5>
-                    <p class="text-center small">أدخل المعلومات التالية</p>
+                    <p class="text-center small ourSubTitle">أدخل المعلومات التالية</p>
                   </div>
 
                     <form action="registration.php" method="post" class="row g-3" >
@@ -140,16 +140,16 @@ include 'DB.php';
                         
                      <div class="col-12">
                       <label for="yourPassword" class="form-label">إعادة كلمة المرور</label>
-                      <input type="password" name="repeat_password" class="form-control" id="yourPassword">
+                      <input type="password" name="repeat_password" class="form-control b11" id="yourPassword">
                     </div>
 
                  
                     <div class="col-12">
-                        <input class="btn btn-primary w-100" type="submit" name="submit" value="إنشاء الحساب">
+                        <input class="btn btn-primary w-100 ourBtn" type="submit" name="submit" value="إنشاء الحساب">
                     </div>
                         
                     <div class="col-12">
-                      <p class="small mb-0">هل لديك حساب؟<a href="login.php">تسجيل الدخول</a></p>
+                      <p class="small mb-0">هل لديك حساب؟  <a href="login.php">تسجيل الدخول</a></p>
                     </div>
                         
                   </form>
@@ -163,7 +163,7 @@ include 'DB.php';
 
     </div>
   </main><!-- End #main -->
-
+<div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -178,7 +178,7 @@ include 'DB.php';
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="assets/js/main_home.js"></script>
 </body>
 
 </html>

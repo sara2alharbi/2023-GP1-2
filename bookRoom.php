@@ -139,7 +139,7 @@ include "base/session_checker.php";?>
                 <!-- Start button -->
                 <div class="text-center">
                     <br>
-                    <button onclick="showFieldset()" type="button" name="next" class="btn btn-primary" id="next-button">
+                    <button onclick="showFieldset()" type="button" name="next" class="btn btn-primary ourBtn" id="next-button">
                         التالي
                     </button>
                 </div>
@@ -224,7 +224,7 @@ include "base/session_checker.php";?>
                 </div>
                 <div class="text-center">
                     <br>
-                    <button onclick="ValidateFieldset2()" class="btn btn-primary" type="button" id="searchButton"
+                    <button onclick="ValidateFieldset2()" class="btn btn-primary ourBtn" type="button" id="searchButton"
                             name="search">
 
                         بحث
@@ -273,7 +273,7 @@ include "base/session_checker.php";?>
             </div>
             <div class="text-center">
                 <button onclick="ValidateFieldset3()" type="button" id="bookRoom" name="bookRoom"
-                        class="btn btn-primary">
+                        class="btn btn-primary ourBtn">
                     احجز
                 </button>
             </div>
@@ -330,10 +330,10 @@ include "base/session_checker.php";?>
 
                             <br>
                             <br>
-                            <button type="button" onclick="closeModal()" class="btn btn-secondary" data-dismiss="modal"
+                            <button type="button" onclick="closeModal()" class="btn btn-secondary ourBtn" data-dismiss="modal"
                                     id="closeModalButton">إغلاق
                             </button>
-                            <button type="button" onclick="reserveRoom()" class="btn btn-primary"
+                            <button type="button" onclick="reserveRoom()" class="btn btn-primary ourBtn"
                                     id="reserveButton">حجز
                             </button>
                         </form>
@@ -547,47 +547,6 @@ include "base/session_checker.php";?>
 
         </script>
 
-        <script>
-
-
-        </script>
-
-        <!----------<form class="row g-3 book" method="POST" action="">
-
-            <div class="col-md-6">
-                    <input type="text" name="courseCo" class="form-control" placeholder="رمز المقرر">
-                  </div>
-                  <div class="col-md-6">
-                    <input type="text" name="roomNo"  class="form-control" placeholder="رقم الغرفة">
-                  </div>
-                  <div class="col-md-6">
-                    <input type="text" name="section" class="form-control" placeholder="رقم الشعبة">
-                  </div>
-                  <div class="col-md-6">
-                    <select id="inputState" class="form-select" name="day" >
-                      <option selected>اختر اليوم</option>
-                      <option value="الأحد">الأحد</option>
-                      <option value="الاثنين" >الاثنين</option>
-                      <option value="الثلاثاء" >الثلاثاء</option>
-                      <option value="الأربعاء" >الأربعاء</option>
-                      <option value="الخميس" >الخميس</option>
-                    </select>
-                  </div>
-                    <div class="col-md-6">
-                    <input type="text" name="startTime" class="form-control" placeholder="وقت بداية المحاضرة">
-                  </div>
-                  <div class="col-md-6">
-                    <input type="text" name="endTime" class="form-control" placeholder="وقت نهاية المحاضرة">
-                  </div>
-
-
-                  <div class="text-center">
-                      <button type="submit" name="add" class="btn btn-primary">Submit</button>
-
-                  </div>
-                </form>  End No Labels Form -->
-
-
     </div>
     </div>
 
@@ -611,10 +570,9 @@ include "base/session_checker.php";?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/main_home.js"></script>
 
-<script>
 
-</script>
 <?php
 
 if (isset($_POST['bookRoom'])) {

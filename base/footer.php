@@ -18,3 +18,4 @@
     </div>
   </footer><!-- End Footer -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center" style ="background-color:#34A0A4;"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>

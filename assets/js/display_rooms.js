@@ -55,7 +55,7 @@ function searchRooms(type, capacity, day, startDate, endDate, semester) {
                         // Add a button in the last cell
                         const actionCell = row.insertCell(4);
                         const button = document.createElement("button");
-                        button.className = "btn btn-primary";
+                        button.className = "btn btn-primary ourBtn";
                         button.textContent = "حجز";
                         actionCell.appendChild(button);
                     });
@@ -193,7 +193,7 @@ function searchSingleRooms(roomNumber, day, startDate, endDate, semester) {
                         // Add a button in the last cell
                         const actionCell = row.insertCell(4);
                         const button = document.createElement("button");
-                        button.className = "btn btn-primary";
+                        button.className = "btn btn-primary ourBtn";
                         button.textContent = "حجز";
                         actionCell.appendChild(button);
                     });

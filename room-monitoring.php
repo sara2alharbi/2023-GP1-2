@@ -34,8 +34,8 @@ include "base/session_checker.php";?>
     <form method="post">
     <label for="roomSelect">اختر الغرفة :</label>&nbsp;&nbsp;
     <select name="roomSelect" id="roomSelect">
-        <option value="ESP12F">G9 - ESP12F</option>
-        <option value="ESP12E">G35 - ESP12E</option>
+        <option value="ESP12F">G9</option>
+        <option value="ESP12E">G35</option>
     </select>&nbsp;
   <!--  <input type="submit" name="submit" value="اعرض البيانات">-->
    </form>
