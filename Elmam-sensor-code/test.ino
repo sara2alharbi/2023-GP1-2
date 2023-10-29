@@ -73,66 +73,56 @@ int Gas1 = digitalRead(D0);
 mic_3v3Val = mic_3v3.read();
 float dB_sound = readingToDecibels(mic_3v3Val); //convert volt to decibels
 
-  if(isnan(temperature) || isnan(humidity) || isnan(mic_3v3Val) || isnan(Gas1)){
-    Serial.println("Failed to read ");
-  }else{
-    Serial.print("Humidity: ");
-    Serial.print(humidity);
-    Serial.print(" %\t");
-    Serial.print("Temperature: ");
-    Serial.print(temperature);
-    Serial.println(" *C");
-    Serial.print("Noise: ");
-    Serial.println(dB_sound);
-    Serial.print("AirQuality: ");
-    Serial.println(Gas1);
-    Serial.println(microID);
-    delay(3000);
-  }
-   
-    Serial.print("connecting to ");
-    Serial.println(host);
+    if (!isnan(temperature) && !isnan(humidity) && !isnan(mic_3v3Val) && !isnan(Gas1)) {
+        Serial.print("Humidity: ");
+        Serial.print(humidity);
+        Serial.print(" %\t");
+        Serial.print("Temperature: ");
+        Serial.print(temperature);
+        Serial.println(" *C");
+        Serial.print("Noise: ");
+        Serial.println(dB_sound);
+        Serial.print("AirQuality: ");
+        Serial.println(Gas1);
+        Serial.println(microID);
+        Serial.print("connecting to ");
+        Serial.println(host);
 
-    // Use WiFiClient class to create TCP connections
-    WiFiClient client;
-    const int httpPort = 80;
-    if (!client.connect(host, httpPort)) {
-        Serial.println("connection failed");
-        return;
-    }
-
- 
-
-
-
-    // This will send the request to the server
- client.print(String("GET http://192.168.8.193/iot_project/connect.php?") + 
+        WiFiClient client;
+        const int httpPort = 80;
+        if (client.connect(host, httpPort)) {
+            client.print(String("GET http://192.168.8.193/GP1-code/connect.php?") +
                           ("&temperature=") + temperature +
                           ("&humidity=") + humidity +
                           ("&noise=") + dB_sound +
                           ("&airquality=") + Gas1 +
-                          ("&microID=") + microID + // Send Arduino type to the server
+                          ("&microID=") + microID +
                           " HTTP/1.1\r\n" +
-                 "Host: " + host + "\r\n" +
-                 "Connection: close\r\n\r\n");
-    unsigned long timeout = millis();
-    while (client.available() == 0) {
-        if (millis() - timeout > 1000) {
-            Serial.println(">>> Client Timeout !");
-            client.stop();
-            return;
+                          "Host: " + host + "\r\n" +
+                          "Connection: close\r\n\r\n");
+
+            unsigned long timeout = millis();
+            while (client.available() == 0) {
+                if (millis() - timeout > 1000) {
+                    Serial.println(">>> Client Timeout !");
+                    client.stop();
+                    return;
+                }
+            }
+
+            while (client.available()) {
+                String line = client.readStringUntil('\r');
+                Serial.print(line);
+            }
+            Serial.println();
+            Serial.println("closing connection");
+        } else {
+            Serial.println("connection failed");
         }
+    } else {
+        Serial.println("One or more sensor readings are empty.");
     }
-
-    // Read all the lines of the reply from server and print them to Serial
-    while(client.available()) {
-        String line = client.readStringUntil('\r');
-        Serial.print(line);
-        
-    }
-
-    Serial.println();
-    Serial.println("closing connection");
+    delay(1000);
 }
 
 float readingToDecibels(int reading) {    
