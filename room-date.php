@@ -124,20 +124,20 @@
                     <div class="card-body">
                         <h5 class="card-title"> درجة الحرارة الضوضاء</h5>
     <form id="chartForm">
-<!-- Create a container for the radio button and its label -->
-<div class="radio-container">
-        <label for="roomG9">اختر الغرفة:</label>
-        <input type="radio" id="roomG9" name="room" value="G9">
-        <label for="roomG9">G9</label>
-        <input type="radio" id="roomG35" name="room" value="G35">
-        <label for="roomG35">G35</label>
-    </div>
+        <!-- Create a container for the dropdown menu and its label -->
+        <div class="radio-container">
+            <label for="roomSelect">اختر الغرفة:</label>
+            <select id="roomSelect" name="room">
+                <option value="G9">G9</option>
+                <option value="G35">G35</option>
+            </select>
+        </div>
 
-            <!-- Create a container for the date label and input -->
-    <div class="date-container">
-        <label for="date">اختر تاريخ:</label>
-        <input type="date" id="date" name="date">
-    </div>
+        <!-- Create a container for the date label and input -->
+        <div class="date-container">
+            <label for="date">اختر تاريخ:</label>
+            <input type="date" id="date" name="date">
+        </div>
 
         <input type="button" id="showChartsButton" value="أظهر الرسم البياني">
     </form>
@@ -175,23 +175,24 @@
         var noiseChart = null;
     
         $(document).ready(function () {
+    $("#chartsContainer").hide();
+
+    $("#showChartsButton").click(function () {
+        var room = $("#roomSelect").val(); // Get the selected room from the dropdown
+        var date = $("#date").val();
+
+        // Check if room and date are selected
+        if (!room || !date) {
             $("#chartsContainer").hide();
-    
-            $("#showChartsButton").click(function () {
-                var room = $("input[name='room']:checked").val();
-                var date = $("#date").val();
-    
-                // Check if room and date are selected
-                if (!room || !date) {
-                    $("#chartsContainer").hide();
-                    $("#noDataMessage").text("الرجاء تحديد الغرفة والتاريخ.");
-                    $("#noDataMessage").show();
-                } else {
-                    $("#noDataMessage").hide();
-                    updateCharts(room, date);
-                }
-            });
-        });
+            $("#noDataMessage").text("الرجاء تحديد الغرفة والتاريخ.");
+            $("#noDataMessage").show();
+        } else {
+            $("#noDataMessage").hide();
+            updateCharts(room, date);
+        }
+    });
+});
+
     
         function formatTimeTo12Hour(time) {
             var date = new Date("1970-01-01 " + time);
@@ -199,48 +200,60 @@
         }
     
         function updateCharts(room, date) {
-            if (temperatureChart) {
-                temperatureChart.destroy(); // Destroy the existing chart
+    if (!room || !date) {
+        // If room or date is not selected, show a message
+        $("#chartsContainer").hide();
+        $("#noDataMessage").text("الرجاء تحديد الغرفة والتاريخ.");
+        $("#noDataMessage").show();
+        return; // Exit the function early
+    }
+
+    if (temperatureChart) {
+        temperatureChart.destroy(); // Destroy the existing chart
+    }
+    if (noiseChart) {
+        noiseChart.destroy(); // Destroy the existing chart
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "chart_display.php",
+        data: { room: room, date: date },
+        success: function (data) {
+            if (data === '.لايوجد بيانات للغرفة المختارة في هذا التاريخ') {
+                // If there is no data for the selected date, show a message
+                $("#chartsContainer").hide();
+                $("#noDataMessage").text(data);
+                $("#noDataMessage").show();
+            } else {
+                // If there is data, hide the message and update the charts
+                $("#noDataMessage").hide();
+                var jsonData = JSON.parse(data);
+                var temperatureData = jsonData.temperatureData;
+                var noiseData = jsonData.noiseData;
+
+                temperatureData.labels = temperatureData.labels.map(formatTimeTo12Hour);
+                noiseData.labels = noiseData.labels.map(formatTimeTo12Hour);
+
+                var temperatureChartCanvas = document.getElementById('temperatureChart');
+                var noiseChartCanvas = document.getElementById('noiseChart');
+
+                temperatureChart = new Chart(temperatureChartCanvas.getContext('2d'), {
+                    type: 'line',
+                    data: temperatureData,
+                });
+
+                noiseChart = new Chart(noiseChartCanvas.getContext('2d'), {
+                    type: 'line',
+                    data: noiseData,
+                });
+
+                $("#chartsContainer").show();
             }
-            if (noiseChart) {
-                noiseChart.destroy(); // Destroy the existing chart
-            }
-    
-            $.ajax({
-                type: "POST",
-                url: "chart_display.php",
-                data: { room: room, date: date },
-                success: function (data) {
-                    if (data === '.لايوجد بيانات للغرفة المختارة في هذا التاريخ') {
-                        $("#chartsContainer").hide();
-                        $("#noDataMessage").show();
-                    } else {
-                        $("#noDataMessage").hide();
-                        var jsonData = JSON.parse(data);
-                        var temperatureData = jsonData.temperatureData;
-                        var noiseData = jsonData.noiseData;
-    
-                        temperatureData.labels = temperatureData.labels.map(formatTimeTo12Hour);
-                        noiseData.labels = noiseData.labels.map(formatTimeTo12Hour);
-    
-                        var temperatureChartCanvas = document.getElementById('temperatureChart');
-                        var noiseChartCanvas = document.getElementById('noiseChart');
-    
-                        temperatureChart = new Chart(temperatureChartCanvas.getContext('2d'), {
-                            type: 'line',
-                            data: temperatureData,
-                        });
-    
-                        noiseChart = new Chart(noiseChartCanvas.getContext('2d'), {
-                            type: 'line',
-                            data: noiseData,
-                        });
-    
-                        $("#chartsContainer").show();
-                    }
-                }
-            });
         }
+    });
+}
+
     </script>
 
 

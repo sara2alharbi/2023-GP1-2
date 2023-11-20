@@ -512,7 +512,7 @@ include "base/session_checker.php";?>
                 // Validate each input field
 
                 if (roomNo.trim() === '') {
-                    error += 'يرجى إدخال السعة.<br>';
+                    error += 'يرجى إدخال رقم الغرفة.<br>';
                 }
                 if (day2 === 'اختر اليوم') {
                     error += 'يرجى اختيار اليوم.<br>';

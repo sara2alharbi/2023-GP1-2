@@ -114,7 +114,7 @@ function removeNotification(button) {
     console.log("Notification Type : " + type);
 
     $.ajax({
-        url: 'delete_notification.php', // Replace with the URL of your PHP script
+        url: 'delete_notification.php', 
         method: 'POST', // You can use POST or GET depending on your needs
         data: {
             temperature_id: temperatureId,
@@ -153,4 +153,4 @@ function toggleAlerts() {
 checkForAlerts();
 
 // Periodically check for alerts (every 10 seconds in this example)
-setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
+setInterval(checkForAlerts, 30000); 

@@ -27,10 +27,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.form-container {
-    margin-bottom: 50px;
-    text-align: center; /* Center the contents horizontally */
-}
+
+
 
 /* Style for the label-select container */
 .label-select-container {
@@ -54,16 +52,28 @@
 
 }
 
+/*--------------------------------------------------------------
+# overide btn bootstarb ---> buttons
+--------------------------------------------------------------*/
+
+.ourBtn {
+    color: #fff;
+    background-color: #1A759F ;
+    border-color: #1A759F ;
+
+}
+.ourBtn:hover {
+  color: #fff;
+  background: #168AAD;
+ border-color: #168AAD ;
+}
 
 .button {
     background-color: #184E77;
     color: #fff;
     border: none;
-    padding: 7px 22px; /* Adjust the padding to reduce height */
     font-size: 16px;
     cursor: pointer;
-    margin-right: 10px; /* Add margin to the right to separate from the select */
-
 }
 
 /* Data section */

@@ -13,10 +13,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <?php include "base/head_imports.php"; ?>
     <link href="assets/css/report.css" rel="stylesheet">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
 
 </head>
+
 <body>
-<div class="container">
+    <div id="report-container" class="container">
     <div class='class="card info-card sales-card"' id = 'head'>
     <img class='logo1' src='assets/img/elmam-logo.png' alt=' Logo' >
     <h2>
@@ -41,19 +44,26 @@ session_start();
     $room = $_POST['room'];
     $microID = ($room == 'G9') ? 'ESP12F' : 'ESP12E';
 
-    
 
-    // Get the date range for the last 7 days
-    $endDate = date('Y-m-d');
-    $startDate = date('Y-m-d', strtotime('-7 days', strtotime($endDate)));
+// Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+$currentDayOfWeek = date('w');
 
-        // Check if data for the specified date range already exists in the database
-        $existingDataQuery = "SELECT COUNT(*) AS data_count FROM history WHERE room = '$room' AND start_date = '$startDate' AND end_date = '$endDate'";
-        $existingDataResult = $conn->query($existingDataQuery);
-        $dataCount = $existingDataResult->fetch_assoc()['data_count'];
+// Calculate the start date (Sunday) and end date (Saturday) of the current week
+$startOfCurrentWeek = date('Y-m-d', strtotime('-' . $currentDayOfWeek . ' days'));
+$endOfCurrentWeek = date('Y-m-d', strtotime('+' . (6 - $currentDayOfWeek) . ' days'));
+
+// Calculate the start date (Sunday) and end date (Saturday) of the previous week
+$startOfPreviousWeek = date('Y-m-d', strtotime('-7 days', strtotime($startOfCurrentWeek)));
+$endOfPreviousWeek = date('Y-m-d', strtotime('-1 day', strtotime($startOfCurrentWeek)));
+
+    // Check if data for the specified date range already exists in the database
+    $existingDataQuery = "SELECT COUNT(*) AS data_count FROM history WHERE room = '$room' AND start_date = '$startOfPreviousWeek' AND end_date = '$endOfPreviousWeek'";
+    $existingDataResult = $conn->query($existingDataQuery);
+    $dataCount = $existingDataResult->fetch_assoc()['data_count'];
+   
     
     // Fetch temperature, humidity, and noise data
-    $temperature_query = "SELECT temperature, humidity, Date_today FROM temperature WHERE microID = '$microID' AND Date_today BETWEEN '$startDate' AND '$endDate'";
+    $temperature_query = "SELECT temperature, humidity, Date_today FROM temperature WHERE microID = '$microID' AND Date_today BETWEEN '$startOfPreviousWeek' AND '$endOfPreviousWeek'";
     $temperature_result = $conn->query($temperature_query);
 
     $temperatures = [];
@@ -67,7 +77,7 @@ session_start();
     }
 
     // Fetch noise data
-    $noise_query = "SELECT noise, Date_today FROM noise WHERE microID = '$microID' AND Date_today BETWEEN '$startDate' AND '$endDate'";
+    $noise_query = "SELECT noise, Date_today FROM noise WHERE microID = '$microID' AND Date_today BETWEEN '$startOfPreviousWeek' AND '$endOfPreviousWeek'";
     $noise_result = $conn->query($noise_query);
 
     $noiseData = [];
@@ -105,7 +115,7 @@ session_start();
 
     // Check if there is no data for the selected room
     if (empty($temperatures) || empty($dailyNoiseAverages)) {
-        echo "<div style ='text-align:center;'>لاتوجد بيانات لآخر 7 أيام</div>";
+        echo "<div style ='text-align:center;'>لاتوجد بيانات من تاريخ <strong>$startOfPreviousWeek</strong> إلى <strong>$endOfPreviousWeek</strong></div>";
     } else {
         // Calculate averages with 2 decimal places
         $average_temperature = number_format(array_sum($temperatures) / count($temperatures), 2);
@@ -117,7 +127,7 @@ session_start();
         $low_temperature = min($temperatures);
 
         // Check air quality
-        $air_quality_query = "SELECT airquality FROM airquality WHERE microID = '$microID' AND Date_today BETWEEN '$startDate' AND '$endDate'";
+        $air_quality_query = "SELECT airquality FROM airquality WHERE microID = '$microID' AND Date_today BETWEEN '$startOfPreviousWeek' AND '$endOfPreviousWeek'";
         $air_quality_result = $conn->query($air_quality_query);
 
         $air_quality_affected = false;
@@ -130,20 +140,20 @@ session_start();
         }
 
         // Display the report
-        echo "<p class='dates'>التقرير للتاريخ من <strong>$startDate</strong> إلى <strong>$endDate</strong></p>";
+        echo "<p class='dates'>التقرير للتاريخ من <strong>$startOfPreviousWeek</strong> إلى <strong>$endOfPreviousWeek</strong></p>";
         echo "<br>";
         echo "<hr>";
         echo "<br>";
 
-        echo "<div class='averages'>";
-        echo "<p><span class='icon'>🌡️</span>متوسط درجة الحرارة: <strong>° $average_temperature</strong></p>";
-        echo "<p><span class='icon'>💧</span>متوسط درجة الرطوبة: <strong>% $average_humidity</strong></p>";
-        echo "<p><span class='icon'>🔊</span>متوسط الضوضاء:  <strong>$average_noise </strong></p>";
-        echo "</div>";
-        echo "<div class='temp'>";
-        echo "<p><span class='icon'>🔥</span>أعلى درجة الحرارة: <strong>° $high_temperature</strong></p>";
-        echo "<p><span class='icon'>❄️</span>أقل درجة الحرارة: <strong>° $low_temperature</strong></p>";
-        echo "</div>";
+// Display the averages data as a centered table with a border
+echo "<table style='width: 50%; margin: auto; border-collapse: collapse; text-align: center;' border='1'>";
+echo "<tr><th>المتغير</th><th>القيمة</th></tr>";
+echo "<tr><td style='border: 1px solid #dddddd;'>متوسط درجة الحرارة</td><td style='border: 1px solid #dddddd;'>$average_temperature</td></tr>";
+echo "<tr><td style='border: 1px solid #dddddd;'>متوسط درجة الرطوبة</td><td style='border: 1px solid #dddddd;'>$average_humidity</td></tr>";
+echo "<tr><td style='border: 1px solid #dddddd;'>متوسط الضوضاء</td><td style='border: 1px solid #dddddd;'>$average_noise</td></tr>";
+echo "<tr><td style='border: 1px solid #dddddd;'>أعلى درجة حرارة</td><td style='border: 1px solid #dddddd;'>$high_temperature</td></tr>";
+echo "<tr><td style='border: 1px solid #dddddd;'>أقل درجة حرارة</td><td style='border: 1px solid #dddddd;'>$low_temperature</td></tr>";
+echo "</table>";
 
 
         if ($air_quality_affected) {
@@ -167,7 +177,7 @@ session_start();
                 
                 // Insert the report data into the "history" table, including low and high temperatures
                 $insert_query = "INSERT INTO history (room, start_date, end_date, average_temperature, average_humidity, average_noise, low_temperature, high_temperature, microID)
-        VALUES ('$room', '$startDate', '$endDate', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature, '$microID')";
+        VALUES ('$room', '$startOfPreviousWeek', '$endOfPreviousWeek', $average_temperature, $average_humidity, $average_noise, $low_temperature, $high_temperature, '$microID')";
     
                 if ($conn->query($insert_query) === TRUE) {
                     echo "";
@@ -195,49 +205,12 @@ session_start();
         echo '<div style="width: 50%;">'; // Adjust the width as needed
         echo '<p class="chat_title">متوسط مستوى الضوضاء لكل  يوم</p>';
         echo "<br>";
-        echo '<canvas id="noiseChart" width="400" height="200">متوسط نسبة الضوضاء لكل يوم</canvas>';
+        echo '<canvas id="noiseChart" width="400" height="200"></canvas>';
         echo '</div>';
         echo '</div>';
 
     }
-    // Prepare data for the report
-// Prepare data for the report
-$room = isset($_POST['room']) ? $_POST['room'] : '';
-
-// Check if the required variables are defined
-if (isset($average_temperature, $average_humidity, $average_noise, $high_temperature, $low_temperature)) {
-    $reportData = [
-        'room' => $room,
-        'startDate' => $startDate,
-        'endDate' => $endDate,
-        'average_temperature' => $average_temperature,
-        'average_humidity' => $average_humidity,
-        'average_noise' => $average_noise,
-        'high_temperature' => $high_temperature,
-        'low_temperature' => $low_temperature,
-    ];
-    
-
-} else {
-    // Handle the case where there's no data
-    $reportData = [
-        'room' => $room,
-        'startDate' => $startDate,
-        'endDate' => $endDate,
-        'average_temperature' => ' لايوجد بيانات',
-        'average_humidity' => 'لايوجد بيانات',
-        'average_noise' => ' لايوجد بيانات',
-        'high_temperature' => ' لايوجد بيانات',
-        'low_temperature' => ' لايوجد بيانات',
-        'temperatures' => ' لايوجد بيانات',
-    ];
-}
-
-
-// Create a URL with query parameters to pass the data to the download_report.php script
-$pdfUrl = 'download_report.php?reportData=' . urlencode(json_encode($reportData));
-
-
+   
     // Close the database connection
     $conn->close();
     ?>
@@ -317,17 +290,41 @@ $pdfUrl = 'download_report.php?reportData=' . urlencode(json_encode($reportData)
 </script>
 
     <br><br>
-    <form method="post" action="download_report.php">
-    <input type="hidden" name="reportData" value='<?php echo json_encode($reportData); ?>'>
-    <input type="hidden" name="temperatures" value="<?php echo implode(',', $temperatures); ?>">
-    <input type="hidden" name="dates" value="<?php echo implode(',', $dates); ?>">
-    <input type="hidden" name="noises" value="<?php echo implode(',', array_column($dailyNoiseAverages, 'noise')); ?>">
-    <button type="submit" style="color:white;"> 
-    <a href="<?php echo $pdfUrl; ?>" target="_blank">تحميل التقرير</a>
-    </button>
-</form>
+    <button  class="ourBtn" onclick="downloadImage()">تحميل التقرير</button>
 
     </div>
+
+    <script>
+function downloadImage() {
+    // Hide the download button temporarily
+    var downloadButton = document.querySelector('button');
+    downloadButton.style.display = 'none';
+
+    // Specify the element to capture (excluding the button)
+    var elementToCapture = document.getElementById('report-container');
+
+    // Use html2canvas to capture the specified element as an image
+    html2canvas(elementToCapture).then(function (canvas) {
+        // Convert the canvas to a data URL
+        var imageData = canvas.toDataURL("image/png");
+
+        // Create a temporary link element
+        var link = document.createElement('a');
+        link.href = imageData;
+        link.download = 'التقرير الإسبوعي.png'; // Set the desired file name
+
+        // Append the link to the document and trigger the download
+        document.body.appendChild(link);
+        link.click();
+
+        // Remove the link from the document
+        document.body.removeChild(link);
+
+        // Show the download button again
+        downloadButton.style.display = 'block';
+    });
+}
+    </script>
 
 </body>
 </html>

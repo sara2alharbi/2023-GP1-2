@@ -47,7 +47,7 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">معلومات المبنى</h5>
-                  <p style = "font-size:10px;">معلومات مبنى كلية الحاسب والمعلومات</p>
+                  <p style = "font-size:13px; font-weight:bold ;">معلومات مبنى كلية الحاسب والمعلومات</p>
                   <canvas id="myPieChart" width="100" height="100"></canvas>
                   <br>
                 </div>
@@ -57,7 +57,7 @@ include "base/session_checker.php";?>
               <div class="card info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">نسبة استغلال المساحة </h5> 
-                  <p style = "font-size:10px;"> نسبة اتسغلال المساحة حسب الجداول</p>
+                  <p style = "font-size:13px; font-weight:bold ;"> نسبة اتسغلال المساحة حسب الجداول</p>
                   <canvas id="myDoughnutChart" width="100" height="100"></canvas>
                   <br>
                 </div>
@@ -79,7 +79,7 @@ include "base/session_checker.php";?>
                 <div class="card info-card sales-card">
         <div class="card-body">
             <h5 class="card-title">جودة الهواء:</h5>
-            <p style = "font-size:10px;">0-50:نوعية الهواء مرضية ولا تشكل أي خطر على الصحة .</p>
+            <p style = "font-size:13px; font-weight:bold ;">0-50 :نوعية الهواء مرضية ولا تشكل أي خطر على الصحة .</p>
             <p>مؤشر جودة الهواء: <span id="air-quality-index">تحميل...</span></p>
         </div>
     </div>

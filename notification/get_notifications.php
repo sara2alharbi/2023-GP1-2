@@ -23,6 +23,8 @@ if ($stmt->execute()) {
 
     $stmt->close();
 }
+
+
 date_default_timezone_set('Asia/Riyadh');
 // Calculate the current minute
 $currentMinute = date('i');
