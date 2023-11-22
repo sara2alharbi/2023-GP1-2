@@ -354,18 +354,28 @@ include "base/session_checker.php";?>
         </script>
         <script>
             // JavaScript
-            function showPreviousPage() {
-                const firstFieldset = document.getElementById("first-form");
-                const secondFieldset = document.getElementById("second-form");
-                const thirdFieldset = document.getElementById("third-form");
-                firstFieldset.style.display = "block";
-                secondFieldset.style.display = "none";
-                thirdFieldset.style.display = "none";
-                document.getElementById('backBtn').style.display = 'none';
-                document.getElementById("table").style.display = 'none';
-                document.getElementById("noDataMessage").style.display='none';
-                document.getElementById("table_wrapper").style.display = 'none';
-            }
+    function showPreviousPage() {
+    const firstFieldset = document.getElementById("first-form");
+    const secondFieldset = document.getElementById("second-form");
+    const thirdFieldset = document.getElementById("third-form");
+
+    // Close the modal
+    const roomModal = document.getElementById("roomModal");
+    if (roomModal) {
+        const modal = new bootstrap.Modal(roomModal);
+        modal.hide();
+    }
+
+    firstFieldset.style.display = "block";
+    secondFieldset.style.display = "none";
+    thirdFieldset.style.display = "none";
+    document.getElementById('backBtn').style.display = 'none';
+    document.getElementById("table").style.display = 'none';
+    document.getElementById("noDataMessage").style.display = 'none';
+    document.getElementById("table_wrapper").style.display = 'none';
+}
+
+
 
             let error1 = document.getElementById("error1");
             let error2 = document.getElementById("error2");
@@ -373,50 +383,44 @@ include "base/session_checker.php";?>
 
             var type = document.querySelector('input[name="type"]:checked');
 
-            var semester = null;
-            function showFieldset() {
-                const capacityRadio = document.querySelector('input[name="capacity"]:checked');
-                const semesterRadio = document.querySelector('input[name="semester"]:checked');
-                const firstFieldset = document.getElementById("first-form");
-                const secondFieldset = document.getElementById("second-form");
-                const thirdFieldset = document.getElementById("third-form");
-                 semester = semesterRadio.value;
-                console.log('Semeter Checked');
-                console.log(semester);
+            let semester = null; // Declare semester variable here
+    function showFieldset() {
+    const capacityRadio = document.querySelector('input[name="capacity"]:checked');
+    const semesterRadio = document.querySelector('input[name="semester"]:checked');
+    const firstFieldset = document.getElementById("first-form");
+    const secondFieldset = document.getElementById("second-form");
+    const thirdFieldset = document.getElementById("third-form");
 
-                document.getElementById('backBtn').style.display = '';
+    document.getElementById('backBtn').style.display = '';
 
 
-                let semesterError = false;
-                let capacityError = false;
-                if (capacityRadio) {
-                    if (semesterRadio) {
-                        if (capacityRadio.value === "السعة") {
-                            firstFieldset.style.display = "none";
-                            secondFieldset.style.display = "block";
-                            thirdFieldset.style.display = "none";
-                        } else if (capacityRadio.value === "رقم الغرفة") {
-                            firstFieldset.style.display = "none";
-                            secondFieldset.style.display = "none";
-                            thirdFieldset.style.display = "block";
-                        }
-                    } else {
-                        semesterError = true;
-                    }
+    let semesterError = false;
+    let capacityError = false;
 
-                } else {
-                    capacityError = true;
-                    if (!semesterRadio) {
-                        semesterError = true;
-                    }
-                    // Show the error message
-
-                }
-
-                checkFirstErrors(capacityError, semesterError);
-
+    if (capacityRadio) {
+        if (semesterRadio) {
+            semester = semesterRadio.value; // Update the value of semester
+            if (capacityRadio.value === "السعة") {
+                firstFieldset.style.display = "none";
+                secondFieldset.style.display = "block";
+                thirdFieldset.style.display = "none";
+            } else if (capacityRadio.value === "رقم الغرفة") {
+                firstFieldset.style.display = "none";
+                secondFieldset.style.display = "none";
+                thirdFieldset.style.display = "block";
             }
+        } else {
+            semesterError = true;
+        }
+    } else {
+        capacityError = true;
+        if (!semesterRadio) {
+            semesterError = true;
+        }
+    }
 
+    checkFirstErrors(capacityError, semesterError);
+}
 
             function checkFirstErrors(capacityError, semesterError) {
                 let error1 = document.getElementById("error1");
@@ -495,7 +499,7 @@ include "base/session_checker.php";?>
                     errorElement.setAttribute("hidden", "true");
                     console.log("Semester before call");
                     console.log(semester);
-                    searchRooms(Chosetype, InputCapacity, day, InputStartTime, InputEndTime,semester);
+                    searchRooms(Chosetype, InputCapacity, day, InputStartTime, InputEndTime, semester);
                 }
 
             }
@@ -539,7 +543,7 @@ include "base/session_checker.php";?>
                 } else {
                     console.log('Capacity Clicked');
                     errorElement.setAttribute("hidden", "true");
-                    searchSingleRooms(roomNo, day2, inputStartTime2, inputEndTime2,semester);
+                    searchSingleRooms(roomNo, day2, inputStartTime2, inputEndTime2, semester);
                 }
 
             }

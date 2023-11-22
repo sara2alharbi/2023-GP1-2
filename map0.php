@@ -314,6 +314,10 @@ include "base/session_checker.php";?>
   .popover__wrapper:hover{
     color: black;
   }
+  
+  .pagination{
+      justify-content: center; 
+  } 
 </style>
 <!-- End POPOVER-->
 
@@ -376,12 +380,34 @@ include "base/session_checker.php";?>
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">خريطة الجامعة</h5>
-              <div class="row">
+                
+            <div>
+                <h5 class="card-title">خريطة الجامعة</h5>
+                
+               
+            </div>
+
+              <div>
+
                 <div class='col-md-6'>
                   <button class="btn btn-primary ourBtn" onClick="showInfo(this)">إظهار/إخفاء القراءات</button>
                 </div>
-              </div>
+                  
+                  
+                  <h6 class="card-title" style="text-align: center;">الدور</h6>
+                  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="map0.php">الأرضي</a></li>
+    <li class="page-item"><a class="page-link" href="map1.php">الأول</a></li>
+    <li class="page-item"><a class="page-link" href="map2.php">الثاني</a></li>
+  </ul>
+</nav>
+              
+              
+              
+                
+                 
+            </div>
               <br><br>
 
               <div class="mycard">

@@ -291,7 +291,7 @@ echo "</table>";
 
     <br><br>
     <button  class="ourBtn" onclick="downloadImage()">تحميل التقرير</button>
-
+    <button class="ourBtn" onclick="shareByEmail()">مشاركة عبر البريد الإلكتروني</button>
     </div>
 
     <script>
@@ -324,6 +324,65 @@ function downloadImage() {
         downloadButton.style.display = 'block';
     });
 }
+
+function shareByEmail() {
+    var subject = 'تقرير أسبوعي'; // Set the email subject
+    var body = 'يرجى العثور على التقرير الأسبوعي المرفق.'; // Set the email body
+
+    // Ask the user to enter their email address
+    var userEmail = prompt('Please enter your email address:');
+
+    if (userEmail) {
+        // Ask the user to enter the recipient's email address
+        var recipientEmail = prompt('Please enter the recipient\'s email address:');
+
+        if (recipientEmail) {
+            // Specify the element to capture (excluding the button)
+            var elementToCapture = document.getElementById('report-container');
+
+            // Use html2canvas to capture the specified element as an image
+            html2canvas(elementToCapture).then(function (canvas) {
+                // Convert the canvas to a data URL
+                var imageData = canvas.toDataURL("image/png");
+
+                // Create a form element
+                var form = document.createElement('form');
+                form.action = 'send_email.php';
+                form.method = 'post';
+
+                // Append the userEmail, recipientEmail, and imageData as hidden input fields
+                var userInput = document.createElement('input');
+                userInput.type = 'hidden';
+                userInput.name = 'user';
+                userInput.value = userEmail;
+                form.appendChild(userInput);
+
+                var recipientInput = document.createElement('input');
+                recipientInput.type = 'hidden';
+                recipientInput.name = 'recipient';
+                recipientInput.value = recipientEmail;
+                form.appendChild(recipientInput);
+
+                var imageInput = document.createElement('input');
+                imageInput.type = 'hidden';
+                imageInput.name = 'image';
+                imageInput.value = imageData;
+                form.appendChild(imageInput);
+
+                // Append the form to the document and submit it
+                document.body.appendChild(form);
+                form.submit();
+
+                // Remove the form from the document
+                document.body.removeChild(form);
+            });
+        }
+    }
+}
+
+
+
+
     </script>
 
 </body>

@@ -247,6 +247,10 @@ include "base/session_checker.php";?>
     font-size: 1.5rem;
     /* font-weight: 900; */
   }
+  
+  .pagination{
+justify-content: center; 
+  }
 </style>
 <!-- End Map2 Style-->
 
@@ -312,6 +316,14 @@ include "base/session_checker.php";?>
               <h5 class="card-title">خريطة الجامعة</h5>
               <div class="row">
 
+                  <h6 class="card-title" style="text-align: center;">الدور</h6>
+                                <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="map0.php">الأرضي</a></li>
+    <li class="page-item"><a class="page-link" href="map1.php">الأول</a></li>
+    <li class="page-item"><a class="page-link" href="map2.php">الثاني</a></li>
+  </ul>
+</nav>
               </div>
               <br><br>
 
