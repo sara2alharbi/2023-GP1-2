@@ -35,19 +35,19 @@ $result3 = mysqli_query($connect,$querya);
 
 echo "Insertion Success!<br>";
 
-// Calculate the date 7 days ago from the current date
-$sevenDaysAgo = date("Y-m-d H:i:s", strtotime('-7 days'));
+// Calculate the date 12 days ago from the current date
+$twelveDaysAgo = date("Y-m-d H:i:s", strtotime('-12 days'));
 
 // Delete rows older than 7 days based on the Date_today column in temperature table
-$deleteTemperatureQuery = "DELETE FROM temperature WHERE Date_today < '$sevenDaysAgo'";
+$deleteTemperatureQuery = "DELETE FROM temperature WHERE Date_today < '$twelveDaysAgo'";
 $resultDeleteTemperature = mysqli_query($connect, $deleteTemperatureQuery);
 
 // Delete rows older than 7 days based on the Date_today column in noise table
-$deleteNoiseQuery = "DELETE FROM noise WHERE Date_today < '$sevenDaysAgo'";
+$deleteNoiseQuery = "DELETE FROM noise WHERE Date_today < '$twelveDaysAgo'";
 $resultDeleteNoise = mysqli_query($connect, $deleteNoiseQuery);
 
 // Delete rows older than 7 days based on the Date_today column in airquality table
-$deleteAirQualityQuery = "DELETE FROM airquality WHERE Date_today < '$sevenDaysAgo'";
+$deleteAirQualityQuery = "DELETE FROM airquality WHERE Date_today < '$twelveDaysAgo'";
 $resultDeleteAirQuality = mysqli_query($connect, $deleteAirQualityQuery);
 
 // Check if any of the deletions encountered errors

@@ -47,8 +47,9 @@ include "base/session_checker.php";?>
             <table class="table table-striped table-class" id="table-id">
                 <thead>
                     <tr>
-                        <th>الأسم</th>
-                        <th>الحجز</th>
+                        <th>رقم الغرفة</th>
+                        <th>حسب الجدول الدراسي</th>
+                        <th>حسب الضوضاء </th>
                     </tr>
                 </thead>
                 <tbody id="room-status">
