@@ -46,26 +46,25 @@ include "base/session_checker.php";?>
     <div class="container">
 	  <div class="header_wrap">
    <div class="center">
-  <span class="qs">? <span class="popover above">تتوزع الغرف في المبنى على ثلاثة أدوار وأنواعها قاعة دراسية، معمل، قاعة بحث، قاعة بث. وتتراوح سعاتها بين 12 و62</span>
+  <span class="qs">?  <span class="popover above">تتوزع الغرف في المبنى على ثلاثة أدوار وأنواعها قاعة دراسية، معمل، قاعة بحث، قاعة بث. وتتراوح سعاتها بين 12 و62</span>
 </div>
               <style>
 
 
 /* Just to center things */
 .center {
-    margin-right: 1010px;
+  
     margin-bottom: 15px;
-width: 30px;
+    width: 30px;
 }
 
 /* The element to hover over */
 .qs {
-  background-color: blue;
+  background-color: #34A0A4;
   border-radius: 16px;
   color: #e3fbff;
   cursor: default;
   display: inline-block;
-  font-family: 'Helvetica',sans-serif;
   font-size: 18px;
   font-weight: bold;
   height: 30px;
@@ -83,23 +82,13 @@ width: 30px;
     display: none;
     font-size: 12px;
  
-    left: -95px;
+    left: -160px;
     padding: 7px 10px;
     position: absolute;
     width: 200px;
     z-index: 4;
     
-    &:before {
-        border-top: 7px solid rgba(0,0,0,0.85);
-        border-right: 7px solid transparent;
-        border-left: 7px solid transparent;
-        bottom: -7px;
-        content: '';
-        display: block;
-        left: 50%;
-        margin-left: -7px;
-        position: absolute;
-      }
+
   }
   
   &:hover {

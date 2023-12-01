@@ -86,6 +86,7 @@ include "base/session_checker.php";?>
 
     <div class="pagetitle">
         <h1>حجز غرفة </h1>
+        <br>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">غرف المبنى</li>
@@ -199,7 +200,7 @@ include "base/session_checker.php";?>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" id="InputCapacity" name="InputCapacity" class="form-control" placeholder="السعة">
+                    <input type="number" id="InputCapacity" name="InputCapacity" class="form-control" placeholder="السعة">
                 </div>
                 <div class="col-md-6">
                     <select id="inputState" class="form-select" name="day">
@@ -316,7 +317,7 @@ include "base/session_checker.php";?>
 
                             <div class="form-group">
                                 <label for="sectionNumber" class="col-form-label">الشعبة</label>
-                                <input type="text" class="form-control" id="sectionNumber" name="sectionNumber">
+                                <input type="text" class="form-control" id="sectionNumber" name="sectionNumber" >
                             </div>
                             <div class="form-group">
                                 <label for="course" class="col-form-label">كود المقرر</label>

@@ -79,7 +79,7 @@ a:hover {
 
 
 /*--------------------------------------------------------------
-# Main
+# section
 --------------------------------------------------------------*/
 #main {
   margin-top: 60px;
@@ -311,10 +311,54 @@ a:hover {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+.subHeader1 {
+  font-size: 20px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #012970;  /* tect color for heaader ...........*/   
+}
+
+.subHeader2 {
+  font-size: 22px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #012970;  /* tect color for heaader ...........*/   
+}
+
+.subHeader3 {
+  font-size: 18px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #012970;  /* tect color for heaader ...........*/   
+}
+.infoo {
+   font-size: 12px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: black;  /* tect color for heaader ...........*/     
+}
+
+.redd {
+  font-size: 12px;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: red;  /* tect color for heaader ...........*/     
+}
+.greenn {
+   font-size: 12px;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: #50C878;  /* tect color for heaader ...........*/   
+}
+
+#roomSelect {
+    width: 150px;
+
+}
+
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
   font-size: 20px;
 }
 
@@ -1013,6 +1057,8 @@ a:hover {
   font-size: 15px;
 }
 
+
+
 .profile .profile-overview .card-title {
   color: #012970;
 }
@@ -1047,6 +1093,14 @@ a:hover {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+.aa {
+
+margin-right: 300px; 
+display: flex;
+}
+
+
+
 .contact .info-box {
   padding: 28px 30px;
 }

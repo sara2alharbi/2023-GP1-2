@@ -35,7 +35,7 @@ include "base/session_checker.php";?>
 
       <div class="row gy-4">
 
-        <div class="col-xl-6">
+        <div class="col-xl-6 aa">
 
           <div class="row">
             <div class="col-lg-6">

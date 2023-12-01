@@ -67,20 +67,20 @@ include "base/session_checker.php";?>
                 <div class="card info-card sales-card">
                     <div class="card-body">
                     <h5 class="card-title">درجة الحرارة الخارجية:</h5>
-                    <p>درجة الحرارة الآن: <span id="outdoor-temperature">تحميل...</span></p>
+                    <p>درجة الحرارة الآن:&nbsp;<span id="outdoor-temperature" class="subHeader3">تحميل...</span></p>
                     </div>
                 </div>
                 <div class="card info-card sales-card">
                     <div class="card-body">
                         <h5 class="card-title">درجة الرطوبة الخارجية:</h5>
-                        <p class="card-text">درجة الرطوبة الآن <span id="outdoor-humidity">تحميل...</span></p>
+                        <p class="card-text">درجة الرطوبة الآن:&nbsp;<span id="outdoor-humidity" class="subHeader3">تحميل...</span></p>
                     </div>
                 </div>
                 <div class="card info-card sales-card">
         <div class="card-body">
             <h5 class="card-title">جودة الهواء:</h5>
-            <p style = "font-size:13px; font-weight:bold ;">0-50 :نوعية الهواء مرضية ولا تشكل أي خطر على الصحة .</p>
-            <p>مؤشر جودة الهواء: <span id="air-quality-index">تحميل...</span></p>
+            <p style = "font-size:13px; font-weight:bold ;"><span class="greenn">0-50 </span> :نوعية الهواء مرضية ولا تشكل أي خطر على الصحة .</p>
+            <p>مؤشر جودة الهواء:&nbsp;<span id="air-quality-index" class="subHeader3">تحميل...</span></p>
         </div>
     </div>
             </div>

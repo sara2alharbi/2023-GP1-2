@@ -20,44 +20,45 @@ include "base/session_checker.php";?>
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>مراقبة الغرفة </h1>
+      <h1>مراقبة حالة الغرفة</h1>
       <br>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="room-monitoring.php">مراقبة الغرفة</a></li>
+          <li class="breadcrumb-item">غرف المبنى</li>
           <li class="breadcrumb-item"></li>
-          <li class="breadcrumb-item active">حالة الغرفة</li>
+          <li class="breadcrumb-item active">مراقبة حالة الغرفة</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
     <br>
     <form method="post">
-    <label for="roomSelect">اختر الغرفة :</label>&nbsp;&nbsp;
+        <label for="roomSelect" class="subHeader1">اختر الغرفة :</label>&nbsp;&nbsp;
     <select name="roomSelect" id="roomSelect">
         <option value="ESP12F">G9</option>
         <option value="ESP12E">G35</option>
-    </select>&nbsp;
+    </select>&nbsp; <br> <br>
   <!--  <input type="submit" name="submit" value="اعرض البيانات">-->
    </form>
-    <br><br>
+    <br>
     <section class="section dashboard">
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="row">
 
             <!-- noise Card -->
-            <div class="col-xxl-6 col-md-6">
+            <div class="col-xxl-6 col-md-5">
               <div class="card info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">الضوضاء <span>| الآن</span></h5>
-                  <p style="font-size:10px;">أعلى قيمة للضوضاء داخل الغرف 30 ديسيبل</p>
-
+                  <h5 class="card-title subHeader2">الضوضاء <span>| الآن</span></h5>
+                  <p class="infoo">أعلى قيمة للضوضاء داخل الغرف <span class="redd">30</span> ديسيبل</p>
+ <br>
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> 
                       <i class="bi bi-volume-up-fill"></i>
-                    </div>
+                      
+                    </div> &nbsp;&nbsp;
                     <div class="ps-3">
                       <h6 id="viewNoise"></h6>
 
@@ -69,19 +70,19 @@ include "base/session_checker.php";?>
             </div><!-- End noise Card -->
 
             <!-- air Card -->
-            <div class="col-xxl-6 col-md-6">
+            <div class="col-xxl-6 col-md-5">
               <div class="card info-card sales-card">
 
                 
 
                 <div class="card-body">
-                  <h5 class="card-title">جودة الهواء <span>| الآن</span></h5>
-                  <p style="font-size:10px;">تتأثر بوجود الكحول - الغاز - أو الدخان</p>
-
+                  <h5 class="card-title subHeader2">جودة الهواء <span>| الآن</span></h5>
+                  <p  class="infoo">تتأثر بوجود <span class="redd"> الكحول - الغاز - أو الدخان </span></p>
+ <br>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cloud-fog2"></i>
-                    </div>
+                    </div> &nbsp;&nbsp;
                     <div class="ps-3">
                       <h6 id="viewAir"></h6>
 
@@ -93,17 +94,17 @@ include "base/session_checker.php";?>
             </div><!-- End air Card -->
 
             <!-- humidity Card -->
-            <div class="col-xxl-6 col-md-6">
+            <div class="col-xxl-6 col-md-5">
               <div class="card info-card revenue-card">
                 <div class="card-body">
-                  <h5 class="card-title"> درجة الرطوبة <span>| الآن </span></h5>
-                  <p style="font-size:10px;">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من40 جم / م 3.</p>
-
+                  <h5 class="card-title subHeader2"> درجة الرطوبة <span>| الآن </span></h5>
+                  <p  class="infoo">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من <span class="greenn">40 جم / م 3.</span></p>
+ <br>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-moisture"></i>
-                    </div>
+                    </div> &nbsp;&nbsp;
                     <div class="ps-3">
                       <h6 id="viewHum"></h6>
                      
@@ -116,17 +117,17 @@ include "base/session_checker.php";?>
             </div><!-- End humidity Card -->
 
             <!-- temp Card -->
-            <div class="col-xxl-6 col-md-6">
+            <div class="col-xxl-6 col-md-5">
 
               <div class="card info-card customers-card">
                 <div class="card-body">
-                  <h5 class="card-title">درجة الحرارة <span>| الآن </span></h5>
-                  <p style="font-size:9px;">درجة حرارة الغرفة المريحة لمعظم الناس عادة ما تكون بين 18-25 درجة مئوية</p>
-
+                  <h5 class="card-title subHeader2">درجة الحرارة <span>| الآن </span></h5>
+                  <p  class="infoo">درجة حرارة الغرفة المريحة لمعظم الناس عادة ما تكون بين <span class="greenn" >18-25 درجة مئوية </span></p>
+                  <br>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-thermometer-sun"></i>
-                    </div>
+                    </div>&nbsp;&nbsp;
                     <div class="ps-3">
                     <h6 id="viewTemp"></h6>
                     <script>

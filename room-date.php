@@ -105,13 +105,13 @@
 <!-- ======= Main ======= -->
 <main id="main" class="main" dir="rtl">
     <div class="pagetitle">
-        <h1> إحصائية درجة الحرارة الضوضاء </h1>
+        <h1>قراءات درجات الحرارة و الضوضاء </h1>
         <br>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="room-date.php"> درجة الحرارة الضوضاء</a></li>
+                <li class="breadcrumb-item"> غرف المبنى</li>
                 <li class="breadcrumb-item"></li>
-                <li class="breadcrumb-item active"> حسب تاريخ محدد</li>
+                <li class="breadcrumb-item active">قراءات درجات الحرارة و الضوضاء</li>
             </ol>
             <br>
         </nav>

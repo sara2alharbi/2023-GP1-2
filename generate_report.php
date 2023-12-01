@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "base/session_checker.php";?>
 ?>
 
 <!DOCTYPE html>
@@ -20,22 +20,25 @@ session_start();
 
 <body>
     <div id="report-container" class="container">
-    <div class='class="card info-card sales-card"' id = 'head'>
     <img class='logo1' src='assets/img/elmam-logo.png' alt=' Logo' >
-    <h2>
-    التقرير الإسبوعي لغرفة رقم
+    
+    <div class="repHeader">
+        
+    <!-- first ul info --------------------------------------------------->
+    <ul class="ulOne">
+        <li> <strong>التقرير الإسبوعي لغرفة رقم:</strong> 
     <?php
     if (isset($_POST['room'])) {
         echo $_POST['room'];
     }
-    ?>
-</h2>
-<hr>
-</div>
-    <div class='static-data'>
-    <div><strong>الدور:</strong> الأرضي</div>
-    <div><strong>الكلية:</strong> كلية علوم الحاسب والمعلومات</div>
-    </div>
+    ?></li>
+        <li><strong>الكلية:</strong> علوم الحاسب والمعلومات</li>
+        <li><strong>الدور:</strong>الأرضي</li>   
+    </ul>
+        
+    <!-- second ul info --------------------------------------------------->
+    
+    <ul class="ulTwo">   
 
     <?php
     include "DB.php";
@@ -112,10 +115,41 @@ $endOfPreviousWeek = date('Y-m-d', strtotime('-1 day', strtotime($startOfCurrent
             'noise' => number_format($sumNoise / $count, 2),
         );
     }
+?>
+                  <li><strong>اسم المدير:</strong> <?php echo $userName; ?></li> 
+              <li>
+                  <?php
+            date_default_timezone_set('Asia/Riyadh');
+          
+            $arabicDays = [
+    'Saturday' => 'السبت',
+    'Sunday' => 'الأحد',
+    'Monday' => 'الاثنين',
+    'Tuesday' => 'الثلاثاء',
+    'Wednesday' => 'الأربعاء',
+    'Thursday' => 'الخميس',
+    'Friday' => 'الجمعة'
+];
 
+            // Get the current time and day
+$currentTime = date("H:i");
+$currentDay = strftime('%A'); // Get the current day name in English
+
+// Get the Arabic equivalent of the current day
+$currentDayArabic = isset($arabicDays[$currentDay]) ? $arabicDays[$currentDay] : 'Unknown';
+            ?>
+             <strong>تم إنشاء التقرير:</strong> <?php echo $currentDayArabic .' , ' .$currentTime ?>
+              </li>
+          <li><strong> التاريخ: </strong>  من&nbsp;<?php echo $startOfPreviousWeek;?> إلى <?php echo $endOfPreviousWeek ; ?></li>
+    </ul>   
+        
+        
+    </div>
+    
+    <?php
     // Check if there is no data for the selected room
     if (empty($temperatures) || empty($dailyNoiseAverages)) {
-        echo "<div style ='text-align:center;'>لاتوجد بيانات من تاريخ <strong>$startOfPreviousWeek</strong> إلى <strong>$endOfPreviousWeek</strong></div>";
+        echo "<div class= 'error' >لاتوجد بيانات من تاريخ </div>";
     } else {
         // Calculate averages with 2 decimal places
         $average_temperature = number_format(array_sum($temperatures) / count($temperatures), 2);
@@ -140,32 +174,25 @@ $endOfPreviousWeek = date('Y-m-d', strtotime('-1 day', strtotime($startOfCurrent
         }
 
         // Display the report
-        echo "<p class='dates'>التقرير للتاريخ من <strong>$startOfPreviousWeek</strong> إلى <strong>$endOfPreviousWeek</strong></p>";
-        echo "<br>";
-        echo "<hr>";
-        echo "<br>";
+   
+  ?> 
 
-// Display the averages data as a centered table with a border
-echo "<table style='width: 50%; margin: auto; border-collapse: collapse; text-align: center;' border='1'>";
+<div class="line"></div>
+<div class="firstRow">  
+
+   <?php 
+   //line 2
+  // Display the averages data as a centered table with a border.................................................      
+
+echo "<table class='table'>";
 echo "<tr><th>المتغير</th><th>القيمة</th></tr>";
-echo "<tr><td style='border: 1px solid #dddddd;'>متوسط درجة الحرارة</td><td style='border: 1px solid #dddddd;'>$average_temperature</td></tr>";
-echo "<tr><td style='border: 1px solid #dddddd;'>متوسط درجة الرطوبة</td><td style='border: 1px solid #dddddd;'>$average_humidity</td></tr>";
-echo "<tr><td style='border: 1px solid #dddddd;'>متوسط الضوضاء</td><td style='border: 1px solid #dddddd;'>$average_noise</td></tr>";
-echo "<tr><td style='border: 1px solid #dddddd;'>أعلى درجة حرارة</td><td style='border: 1px solid #dddddd;'>$high_temperature</td></tr>";
-echo "<tr><td style='border: 1px solid #dddddd;'>أقل درجة حرارة</td><td style='border: 1px solid #dddddd;'>$low_temperature</td></tr>";
+echo "<tr><td >متوسط درجة الحرارة</td><td >$average_temperature</td></tr>";
+echo "<tr><td >متوسط درجة الرطوبة</td><td >$average_humidity</td></tr>";
+echo "<tr><td >متوسط الضوضاء</td><td >$average_noise</td></tr>";
+echo "<tr><td >أعلى درجة حرارة</td><td class='red'>$high_temperature</td></tr>";
+echo "<tr><td >أقل درجة حرارة</td><td class='blue' >$low_temperature</td></tr>";
 echo "</table>";
 
-
-        if ($air_quality_affected) {
-            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام</p>";
-            echo "<br>";
-            echo "<hr>";
-        } else {
-            echo "<p class ='air'>جودة الهواء <strong class='highlight'>لم تتأثر </strong> خلال 7 أيام</p>";
-            echo "<br>";
-            echo "<hr>";
-
-        }
 
         if ($dataCount == 0) {
             // Data doesn't exist, insert it into the database
@@ -194,26 +221,36 @@ echo "</table>";
         // Display the charts side by side
         echo "<br>";
         echo '<div class="chart-container">';
-        echo '<div style="width: 50%;">'; // Adjust the width as needed
-        echo '<p class="chat_title">متوسط درجة الحرارة لكل  يوم</p>';
+        echo '<div>'; // Adjust the width as needed
         echo "<br>";
-        echo '<canvas id="temperatureChart" width="400" height="200"></canvas>';
+        echo '<canvas id="temperatureChart" ></canvas>';
         echo '</div>';
         echo '</div>';
-        echo '<div class="chart-container">';
-        echo "<br>";
-        echo '<div style="width: 50%;">'; // Adjust the width as needed
-        echo '<p class="chat_title">متوسط مستوى الضوضاء لكل  يوم</p>';
-        echo "<br>";
-        echo '<canvas id="noiseChart" width="400" height="200"></canvas>';
-        echo '</div>';
-        echo '</div>';
-
     }
-   
+    
+
     // Close the database connection
     $conn->close();
     ?>
+    </div>
+ 
+    <div class="rowTwo">
+        <?php
+        if ($air_quality_affected) {
+            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام</p>";
+            echo "<br>";
+            
+        } else {
+            echo "<p class ='air'>جودة الهواء <strong class='highlight'>لم تتأثر </strong> خلال 7 أيام</p>";
+            echo "<br>";
+            
+
+        }
+        echo '<p class="chat_title">متوسط درجة الحرارة لكل  يوم</p>';
+        echo "<hr>";
+   
+?>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-to-image"></script>
@@ -221,11 +258,9 @@ echo "</table>";
     <script>
     // JavaScript for chart rendering and handling form submission
     var temperatureData = <?php echo json_encode($temperatures); ?>;
-    var noiseData = <?php echo json_encode(array_column($dailyNoiseAverages, 'noise')); ?>;
     var chartLabels = <?php echo json_encode(array_column($dailyNoiseAverages, 'date')); ?>;
 
     var temperatureCtx = document.getElementById("temperatureChart").getContext('2d');
-    var noiseCtx = document.getElementById("noiseChart").getContext('2d');
 
     var temperatureChart = new Chart(temperatureCtx, {
         type: 'line',
@@ -257,40 +292,12 @@ echo "</table>";
         }
     });
 
-    var noiseChart = new Chart(noiseCtx, {
-        type: 'bar',
-        data: {
-            labels: chartLabels,
-            datasets: [{
-                label: 'Noise',
-                data: noiseData,
-                backgroundColor: 'rgb(54, 162, 235)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            scales: {
-                x: [{
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
-                }],
-                y: [{
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'متوسط مستوى الضوضاء (db)'
-                    }
-                }]
-            }
-        }
-    });
+
 
 </script>
 
     <br><br>
-    <button  class="ourBtn" onclick="downloadImage()">تحميل التقرير</button>
+    <button  class="btn btn-primary ourBtn" onclick="downloadImage()">تحميل التقرير</button>
     </div>
 
     <script>

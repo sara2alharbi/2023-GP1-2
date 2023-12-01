@@ -25,7 +25,7 @@ include "base/session_checker.php";?>
       <br>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="report.php"> تقارير أسبوعية</a></li>
+          <li class="breadcrumb-item"> تقارير أسبوعية</li>
           <li class="breadcrumb-item"></li>
           <li class="breadcrumb-item active"> حسب الغرفة</li>
         </ol>
@@ -36,8 +36,8 @@ include "base/session_checker.php";?>
       <div class="row">
       <div class="form-container">
       <div class="card info-card sales-card">
-    <h5 style="text-align: center;">اختر الغرفة للحصول على التقرير الإسبوعي</h5> 
-    <br><br>
+    <h5 class="card-title pad">اختر الغرفة للحصول على التقرير الإسبوعي</h5> 
+    <br>
     <form method="post" action="generate_report.php" id="report-form" style="text-align: center;">
     <div class="label-select-container">
     <label for="room" class="label">اختر الغرفة:</label>
@@ -52,7 +52,7 @@ include "base/session_checker.php";?>
       </div>
       </div>
     </section>
-
+    
 </main>
 <!-- End Main -->
 

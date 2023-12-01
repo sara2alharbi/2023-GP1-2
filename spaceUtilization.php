@@ -22,13 +22,13 @@ include "base/session_checker.php";?>
 <main id="main" class="main" dir="rtl">
 
     <div class="pagetitle">
-      <h1>استغلال الغرف</h1>
+      <h1>حالة الغرف</h1>
       <br>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="room-info.php">غرف </a></li>
-          <li class="breadcrumb-item">المبنى</li>
-          <li class="breadcrumb-item active">الغرف المستغلة حسب الضوضاء والجدول الدراسي</li>
+          <li class="breadcrumb-item">غرف المبنى </li>
+          <li class="breadcrumb-item"></li>
+          <li class="breadcrumb-item active">حالة الغرف حسب الجدول الدراسي والضوضاء</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -48,8 +48,8 @@ include "base/session_checker.php";?>
                 <thead>
                     <tr>
                         <th>رقم الغرفة</th>
-                        <th>حسب الجدول الدراسي</th>
-                        <th>حسب الضوضاء </th>
+                        <th>حالة الغرفة حسب الجدول الدراسي</th>
+                        <th>حالة الغرفة حسب الضوضاء </th>
                     </tr>
                 </thead>
                 <tbody id="room-status">

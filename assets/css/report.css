@@ -1,14 +1,17 @@
-
-.logo1 {
-    float: right;
-    margin-right: 25px;
-    width: 60px; /* Adjust the width as needed */
-    margin-bottom: 20px;
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-#head{
-    padding-top:10px;
-  }
+.error {
+  margin-top: 30px; 
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
 
 
   h2 {
@@ -18,17 +21,76 @@
 
 }
 
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+.logo1 {
+    float: right;
+    margin-right: 25px;
+    width: 90px; /* Adjust the width as needed */
+    margin-bottom: 20px;
 }
 
+.repHeader {
+  display: flex;
+  justify-content: space-between; /* Distribute space between ul elements */
+}
 
+.ulOne {
+  margin-right: 50px; /* Adjust margins to reduce space between ul elements */
+}
 
+/* You can adjust margins for ulTwo or use padding/margins as needed */
+.ulTwo {
+  margin-left: 30px; /* Adjust margins to reduce space between ul elements */
+}
+ul {
+  padding: 0; /* Remove default padding from the ul */
+}
+
+li {
+  margin: 1px 0; /* Adjust margins to reduce space above and below each li */
+  /* You can also adjust padding or line-height as needed */
+  padding: 1px 0;
+  /* line-height: 1; (if necessary, adjust line-height to reduce vertical space) */
+}
+.line {
+  margin-top: 10px;
+  margin-bottom:20px;
+  border-bottom: 1px solid black; /* Creates a solid black line */
+}
+/* ---------------------------------------------------------------------- end header */
+
+.firstRow {
+    display: flex;
+    justify-content: space-between;
+}
+.rowTwo {
+    display: flex;
+    justify-content: space-between;
+}
+
+table, td, th {
+  text-align: center;
+  border: 1px solid;
+}
+.table th {
+  background-color: #76C893;
+  color: white;
+}
+
+.table {
+  width: 50%;
+  border-collapse: collapse;
+}
+
+.table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px; 
+}
+td.red {
+    color: red;
+}
+td.blue {
+    color: #0583d2;
+}
 
 /* Style for the label-select container */
 .label-select-container {
@@ -97,14 +159,22 @@
 }
 
 /* Charts */
+
+#temperatureChart {
+    width: 60vh ;
+    padding: 0 ;
+    margin-right: 100px;
+      
+}
+
 .chart {
     margin: 20px auto;
     max-width: 400px;
 }
 
 .chart-container{
-    display: flex;
-justify-content: center;
+   
+justify-content: left;
 }
 
 /* Download button */
@@ -182,7 +252,8 @@ p {
 .air{
     font-size: 18px;
     margin-top: 10px;
-    text-align: center;  
+    margin-right: 8vh;
+    text-align: right;  
 }
 
 .highlight {
@@ -197,4 +268,6 @@ p {
     color: white;
 }
 
-
+.pad {
+  margin-right: 10px;
+}
