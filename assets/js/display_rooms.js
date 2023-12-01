@@ -346,6 +346,29 @@ function recreateTable() {
 
 function reserveRoom() {
     console.log('Clicked');
+
+    // Validate form fields
+    var sectionNumber = $('#sectionNumber').val().trim();
+    var course = $('#course').val().trim();
+
+    if (sectionNumber === '' || course === '') {
+        alert('الرجاء تعبئة جميع البيانات المطلوبة للحجز');
+        return;
+    }
+
+    // Validate الشعبة (sectionNumber) field to accept only numbers
+    if (!/^\d+$/.test(sectionNumber)) {
+        alert('الرجاء إدخال أرقام فقط في رقم الشعبة');
+        return;
+    }
+
+    // Validate كود المقرر (course) field to accept Arabic and English letters and numbers
+    if (!/^[a-zA-Z0-9\u0600-\u06FF\s]+$/.test(course)) {
+        alert('الرجاء التأكد من كود المقرر');
+        return;
+    }
+
+    // Continue with form submission
     var formData = $('#reservationForm').serialize();
     var $form = $('#reservationForm');
 
@@ -353,7 +376,6 @@ function reserveRoom() {
     const reserveBtn = document.getElementById('reserveButton');
     reserveBtn.disabled = true;
     reserveBtn.innerHTML = loading + 'جاري الحجز';
-
 
     // Make an AJAX request to reserve_room.php
     $.ajax({
@@ -367,7 +389,6 @@ function reserveRoom() {
                 {
                     icon: 'bi bi-exclamation-circle',
                     title: 'Reserved Successfully'
-
                 }, {
                     type: "success",
                     delay: 3000,
@@ -375,7 +396,6 @@ function reserveRoom() {
                         enter: 'animate__animated animate__bounceInUp',
                         exit: 'animate__animated animate__bounceOutDown'
                     },
-
                 });
 
             // Close the modal
@@ -389,7 +409,6 @@ function reserveRoom() {
 
                     if (cells.length >= 3) {
                         var thirdColumnData = cells[1].textContent.trim();
-
                         var roomValue = $form.find('[name="roomNo"]').val();
 
                         if (thirdColumnData === roomValue) {
@@ -405,17 +424,15 @@ function reserveRoom() {
                         }
                     }
                 }
-
             }
         },
         error: function (error) {
             console.error('Error:', error);
             reserveBtn.disabled = false;
             reserveBtn.innerHTML = 'حجز';
-
         }
     });
 
-
     document.getElementById('closeModalButton').addEventListener('click', closeModal);
 }
+
