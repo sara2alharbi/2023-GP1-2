@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "elmam");
+    $conn = mysqli_connect("localhost","u169182990_elmam","E123l123", "u169182990_elmam");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);

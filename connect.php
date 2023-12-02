@@ -3,12 +3,9 @@
 <!-- This page takes the sensor data from Arduino  and then sote it to the database -->
 <?php
 
-$dbname = 'elmam';
-$dbuser = 'root';  
-$dbpass = ''; 
-$dbhost = 'localhost'; 
 
-$connect = @mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+
+$connect =  mysqli_connect("localhost","u169182990_elmam","E123l123", "u169182990_elmam");
 
 if(!$connect){
 	echo "Error: " . mysqli_connect_error();
