@@ -22,10 +22,6 @@
   <link href="assets/vendor_home/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="assets/css/style1_home.css" rel="stylesheet">
-    <!-- Template Main JS File -->
-    <script src="assets/js/main_home.js"></script>
-  <script src="assets/vendor_home/glightbox/js/glightbox.min.js"></script>
-
 </head>
 
 <body>
@@ -226,12 +222,15 @@
   <script src="assets/vendor_home/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor_home/aos/aos.js"></script>
   <script src="assets/vendor_home/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor_home/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor_home/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor_home/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor_home/typed.js/typed.umd.js"></script>
   <script src="assets/vendor_home/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor_home/php-email-form/validate.js"></script>
 
+  <!-- Template Main JS File -->
+  <script src="assets/js/main_home.js"></script>
 
 </body>
 
