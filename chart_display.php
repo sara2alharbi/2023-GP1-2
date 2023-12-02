@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $microID = ($room === 'G9') ? 'ESP12F' : 'ESP12E';
 
     // Connect to your database (adjust the database credentials)
-    $db = new PDO('mysql:host=localhost;dbname=elmam', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=u169182990_elmam', 'u169182990_elmam', 'E123l123');
 
     // Fetch temperature data based on user selections
     $query = "SELECT Temperature, Humidity, Date_today, DATE_FORMAT(Time_today, '%H:%i') AS MinuteTime 
