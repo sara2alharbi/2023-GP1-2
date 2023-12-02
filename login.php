@@ -45,10 +45,10 @@ if (isset($_POST["login"]))
 <header id="header" class="d-flex flex-column justify-content-center">
      <nav id="navbar" class="navbar nav-menu">
        <ul>
-         <li><a href="home.php #hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
+         <li><a href="home.php#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>الرئيسية</span></a></li>
          <li><a href="" class="nav-link scrollto"><i class="bx bx-user"></i> <span>تسجيل الدخول</span></a></li>
-         <li><a href="home.php #about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
-         <li><a href="home.php #services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
+         <li><a href="home.php#about" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>من نحن</span></a></li>
+         <li><a href="home.php#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>خدماتنا</span></a></li>
        </ul>
      </nav><!-- .nav-menu -->
  
