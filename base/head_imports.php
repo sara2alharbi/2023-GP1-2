@@ -37,11 +37,11 @@
     #notifications {
         cursor: pointer;
         position: fixed;
-        right: 0px;
+        left: 0px;
         z-index: 9999;
-        bottom: 0px;
-        margin-bottom: 22px;
-        margin-right: 15px;
+        top: 0px;
+        margin-top: 22px;
+        margin-left: 15px;
     }
 
 </style>
