@@ -2,7 +2,7 @@
 if (isset($_POST['temperature_id'])) {
 
     // Create a connection
-    $conn = new mysqli("localhost", "root", "", "elmam");
+    $conn = mysqli_connect("localhost","u169182990_elmam","E123l123", "u169182990_elmam");
 
     // Check the connection
     if ($conn->connect_error) {
