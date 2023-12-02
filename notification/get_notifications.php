@@ -1,5 +1,5 @@
 <?php
-$mysqli = new mysqli("localhost", "root", "", "elmam");
+$mysqli = new mysqli("localhost","root","", "elmam");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
@@ -24,8 +24,8 @@ if ($stmt->execute()) {
     $stmt->close();
 }
 
-
 date_default_timezone_set('Asia/Riyadh');
+
 // Calculate the current minute
 $currentMinute = date('i');
 
@@ -152,6 +152,8 @@ $air_alerts = $selectedData;
 
 foreach ($temperature_alerts as $tempAlert) {
     $tempTime = $tempAlert['time'];
+    $time = strtotime($tempTime);
+    $tempTimeWithoutSeconds = date("H:i", $time);
 
     // Initialize a flag to keep track of whether a match was found
     $matched = false;
@@ -159,9 +161,16 @@ foreach ($temperature_alerts as $tempAlert) {
     // Loop through the air alerts
     foreach ($air_alerts as $key => $airAlert) {
         $airTime = $airAlert['time'];
+        $time2 = strtotime($airTime);
+        $airTimeWithoutSeconds = date("H:i", $time2);
 
-        // Compare the time values
-        if ($tempTime === $airTime) {
+        // Compare the time
+
+        if ($tempTimeWithoutSeconds === $airTimeWithoutSeconds) {
+          /*  echo '----';
+            echo $tempTimeWithoutSeconds;
+            echo $airTimeWithoutSeconds;
+            echo '----';*/
             if ($airAlert['room'] !== $tempAlert['room']) {
                 return;
             }

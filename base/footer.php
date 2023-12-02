@@ -1,4 +1,5 @@
-  <!-- ======= Footer ======= -->
+<div id="notifications"></div>
+<!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
       &copy;  جميع الحقوق محفوظة <strong><span>لإلمـام</span></strong> 

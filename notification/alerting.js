@@ -35,37 +35,58 @@ function checkForAlerts() {
 
                     // Append the new notification to the dropdown list
                     var alertHtml = '';
-
+                    var notificationMessage = '';
                     console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
 
                     if (data.type === 'combined') {
-                        alertHtml = '<li class="dropdown-item" style="text-align: right;">' +
-                            '<h6 style="text-align: right;">جودة الهواء منخفضة ودرجة الحرارة مرتفعة</h6>' +
-                            '<p style="text-align: right;">التاريخ ' + data.date + '</p>' +
-                            '<p style="text-align: right;">الوقت ' + modifiedTime + '</p>' +
-                            '<p style="text-align: right;"> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p style="text-align: right;"> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)" style="text-align: right;">حذف</button>' +
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>جودة الهواء منخفضة ودرجة الحرارة مرتفعة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</li>';
+
+                        notificationMessage = '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+
                     } else if (data.type === 'temperature') {
-                        alertHtml = '<li class="dropdown-item" style="text-align: right;">' +
-                            '<h6 style="text-align: right;">درجة الحرارة مرتفعة</h6>' +
-                            '<p style="text-align: right;">التاريخ ' + data.date + '</p>' +
-                            '<p style="text-align: right;">الوقت ' + modifiedTime + '</p>' +
-                            '<p style="text-align: right;"> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p style="text-align: right;"> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)" style="text-align: right;">حذف</button>' +
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</li>';
+
+                        notificationMessage =
+                            '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+
                     } else if (data.type === 'air_quality') {
-                        alertHtml = '<li class="dropdown-item" style="text-align: right;">' +
-                            '<h6 style="text-align: right;">جودة الهواء منخفضة</h6>' +
-                            '<p style="text-align: right;">التاريخ ' + data.date + '</p>' +
-                            '<p style="text-align: right;">الوقت ' + modifiedTime + '</p>' +
-                            '<p style="text-align: right;"> في الغرفة رقم ' + data.room + '</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)" style="text-align: right;">حذف</button>' +
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>جودة الهواء منخفضة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</li>';
-                    }                    
+
+                        notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>';
+                    }
+
+
+// Pass the string as the message to the Notify function
+                    Notify(notificationMessage, null, null, 'danger');
 
                     $('#alerts-dropdown').append(alertHtml);
                 });
@@ -93,7 +114,6 @@ function removeSecondsFromTime(timeString) {
 }
 
 
-
 // Function to remove a notification from the dropdown list
 function removeNotification(button) {
     var type = (typeof $(button).data('type') !== 'undefined') ? $(button).data('type') : 'defaultType';
@@ -114,7 +134,7 @@ function removeNotification(button) {
     console.log("Notification Type : " + type);
 
     $.ajax({
-        url: 'delete_notification.php', 
+        url: 'delete_notification.php', // Replace with the URL of your PHP script
         method: 'POST', // You can use POST or GET depending on your needs
         data: {
             temperature_id: temperatureId,
@@ -153,4 +173,4 @@ function toggleAlerts() {
 checkForAlerts();
 
 // Periodically check for alerts (every 10 seconds in this example)
-setInterval(checkForAlerts, 30000); 
+setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds

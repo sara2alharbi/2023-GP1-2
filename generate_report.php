@@ -149,7 +149,7 @@ $currentDayArabic = isset($arabicDays[$currentDay]) ? $arabicDays[$currentDay] :
     <?php
     // Check if there is no data for the selected room
     if (empty($temperatures) || empty($dailyNoiseAverages)) {
-        echo "<div class= 'error' >لاتوجد بيانات من تاريخ </div>";
+        echo "<div class= 'error' >لاتوجد بيانات   </div>";
     } else {
         // Calculate averages with 2 decimal places
         $average_temperature = number_format(array_sum($temperatures) / count($temperatures), 2);
@@ -226,12 +226,7 @@ echo "</table>";
         echo '<canvas id="temperatureChart" ></canvas>';
         echo '</div>';
         echo '</div>';
-    }
-    
-
-    // Close the database connection
-    $conn->close();
-    ?>
+?>
     </div>
  
     <div class="rowTwo">
@@ -248,7 +243,12 @@ echo "</table>";
         }
         echo '<p class="chat_title">متوسط درجة الحرارة لكل  يوم</p>';
         echo "<hr>";
-   
+    }
+    
+
+    // Close the database connection
+    $conn->close();
+
 ?>
     </div>
 
