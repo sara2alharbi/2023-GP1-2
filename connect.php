@@ -18,18 +18,19 @@ $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
 $microID = $_GET["microID"];
 
-$queryt = "INSERT INTO temperature (temperature, humidity , microID, Time_today) VALUES ('$temperature', '$humidity' ,'$microID',UTC_TIMESTAMP())";
+$queryt = "INSERT INTO temperature (temperature, humidity , microID, Time_today) VALUES ('$temperature', '$humidity' ,'$microID',CURTIME())";
 $result1 = mysqli_query($connect,$queryt);
 
 $noise = $_GET["noise"];
-$queryn = "INSERT INTO noise (noise , microID, Time_today) VALUES ('$noise','$microID',UTC_TIMESTAMP())";
+$queryn = "INSERT INTO noise (noise , microID, Time_today) VALUES ('$noise','$microID',CURTIME())";
 $result2 = mysqli_query($connect,$queryn);
 
 $airquality = $_GET["airquality"];
-$querya = "INSERT INTO airquality (airquality , microID, Time_today) VALUES ('$airquality','$microID',UTC_TIMESTAMP())";
+$querya = "INSERT INTO airquality (airquality , microID, Time_today) VALUES ('$airquality','$microID',CURTIME())";
 $result3 = mysqli_query($connect,$querya);
 
 echo "Insertion Success!<br>";
+echo CURTIME();
 
 // Calculate the date 12 days ago from the current date
 $twelveDaysAgo = date("Y-m-d H:i:s", strtotime('-12 days'));
