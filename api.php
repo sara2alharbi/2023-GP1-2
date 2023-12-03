@@ -1,8 +1,13 @@
 <?php
 #for map pages**************************************************************************************************
 
+#connect to the databse
+$dbname = 'u169182990_elmam';
+$dbuser = 'u169182990_elmam';  
+$dbpass = 'E123l123'; 
+$dbhost = 'localhost'; 
 
-$con = mysqli_connect("localhost","u169182990_elmam","E123l123", "u169182990_elmam");
+$con = @mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 
 #to display the room info based on room microID , so each room has own data
 function getRoomState($id){

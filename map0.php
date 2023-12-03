@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar">
-<?php include "DB.php"; 
-include "base/session_checker.php";?>
+<?php include "DB.php";
+include "base/session_checker.php"; ?>
 
 <head>
   <?php include "base/head_imports.php"; ?>
@@ -11,6 +11,10 @@ include "base/session_checker.php";?>
 
 <!-- Start Map0 Style-->
 <style>
+  .specs {
+    display: none;
+  }
+
   .table-map {
     font-family: 'Tajawal', sans-serif !important;
     font-weight: 700;
@@ -211,7 +215,7 @@ include "base/session_checker.php";?>
   .rm-tr {
     display: none;
   }
-
+  
   .rm-no {
     text-transform: uppercase;
     font-size: 1.5rem;
@@ -219,11 +223,14 @@ include "base/session_checker.php";?>
   }
 
   @media only screen and (max-width: 600px) {
-    #header{
+    #header {
       width: 100vw;
       display: flex;
       flex-direction: row;
     }
+  }
+  .specs {
+    display: none;
   }
 </style>
 <!-- End Map0 Style-->
@@ -256,7 +263,7 @@ include "base/session_checker.php";?>
     transition-property: transform;
   }
 
- .popover__content.active {
+  .popover__content.active {
     z-index: 10;
     opacity: 1;
     visibility: visible;
@@ -306,22 +313,25 @@ include "base/session_checker.php";?>
     text-align: center;
   }
 
-  .popover__wrapper .rm-no, .popover__wrapper2 .rm-no{
+  .popover__wrapper .rm-no,
+  .popover__wrapper2 .rm-no {
     color: white;
     text-shadow: 1px 1px 3px black;
     transition: 0.3s ease;
   }
-  .popover__wrapper:hover{
+
+  .popover__wrapper:hover {
     color: black;
   }
-  
-  .pagination{
-      justify-content: center; 
-  } 
+
+  .pagination {
+    justify-content: center;
+  }
 </style>
 <!-- End POPOVER-->
 
 <!-- Start Body map-->
+
 <body>
   <div class="modal fade" id="smallModal" tabindex="-1">
     <div class="modal-dialog modal-md">
@@ -345,6 +355,22 @@ include "base/session_checker.php";?>
                 <th scope="row">السعة</th>
                 <td id="room-cp"></td>
               </tr>
+              <tr class="specs">
+                <th scope="row">الحرارة</th>
+                <td id="room-tm"></td>
+              </tr>
+              <tr class="specs">
+                <th scope="row">الرطوبة</th>
+                <td id="room-hu"></td>
+              </tr>
+              <tr class="specs">
+                <th scope="row">الضوضاء</th>
+                <td id="room-ns"></td>
+              </tr>
+              <tr class="specs">
+                <th scope="row">جودة الهواء</th>
+                <td id="room-ar"></td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -352,16 +378,16 @@ include "base/session_checker.php";?>
     </div>
   </div>
 
-<!-- ======= Header ======= -->
-<?php include "base/header.php"; ?>
-<!-- End Header -->
+  <!-- ======= Header ======= -->
+  <?php include "base/header.php"; ?>
+  <!-- End Header -->
 
-<!-- ======= Sidebar ======= -->
-<?php include "base/sidebar.php"; ?>
-<!-- End Sidebar-->
+  <!-- ======= Sidebar ======= -->
+  <?php include "base/sidebar.php"; ?>
+  <!-- End Sidebar-->
 
-<!-- ======= Main ======= -->
-<main id="main" class="main">
+  <!-- ======= Main ======= -->
+  <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>الدور الأرضي</h1>
@@ -380,34 +406,34 @@ include "base/session_checker.php";?>
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-                
-            <div>
+
+              <div>
                 <h5 class="card-title">خريطة الجامعة</h5>
-                
-               
-            </div>
+
+
+              </div>
 
               <div>
 
-                <div class='col-md-6'>
+                <!-- <div class='col-md-6'>
                   <button class="btn btn-primary ourBtn" onClick="showInfo(this)">إظهار/إخفاء القراءات</button>
-                </div>
-                  
-                  
-                  <h6 class="card-title" style="text-align: center;">الدور</h6>
-                  <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="map0.php">الأرضي</a></li>
-    <li class="page-item"><a class="page-link" href="map1.php">الأول</a></li>
-    <li class="page-item"><a class="page-link" href="map2.php">الثاني</a></li>
-  </ul>
-</nav>
-              
-              
-              
-                
-                 
-            </div>
+                </div> -->
+
+
+                <h6 class="card-title" style="text-align: center;">الدور</h6>
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="map0.php">الأرضي</a></li>
+                    <li class="page-item"><a class="page-link" href="map1.php">الأول</a></li>
+                    <li class="page-item"><a class="page-link" href="map2.php">الثاني</a></li>
+                  </ul>
+                </nav>
+
+
+
+
+
+              </div>
               <br><br>
 
               <div class="mycard">
@@ -856,21 +882,22 @@ include "base/session_checker.php";?>
         </div>
     </section>
 
-</main>
-<!-- End Main -->
+  </main>
+  <!-- End Main -->
 
-<!-- ======= Footer ======= -->
-<?php include "base/footer.php"; ?>
-<!-- End Footer -->
+  <!-- ======= Footer ======= -->
+  <?php include "base/footer.php"; ?>
+  <!-- End Footer -->
 
-<!-- Vendor JS Files -->
-<?php include "base/js_imports.php"; ?>
-<!-- End JS Files -->
+  <!-- Vendor JS Files -->
+  <?php include "base/js_imports.php"; ?>
+  <!-- End JS Files -->
 </body>
 
 
 <!--Start script code of the map0.php-->
 <script>
+  let DATA = null;
   function updateDate() {
     $.ajax({
       url: 'api.php',
@@ -878,8 +905,7 @@ include "base/session_checker.php";?>
       dataType: 'json',
       data: { 'rooms': true },
       success: function (data) {
-        $('#room1').html(`<div>الحرارة: ${data[0].temp}</div><div>الضوضاء: ${data[0].noise}</div><div>الرطوبة: ${data[0].hum}</div><div>جودة الهواء: ${data[0].air}<div>`);
-        $('#room2').html(`<div>الحرارة: ${data[1].temp}</div><div>الضوضاء: ${data[1].noise}</div><div>الرطوبة: ${data[1].hum}</div><div>جودة الهواء: ${data[1].air}<div>`);
+        DATA = data;
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.error('Errorf:', textStatus, errorThrown);
@@ -888,32 +914,48 @@ include "base/session_checker.php";?>
       // error : (e) =>console.log(e),
     });
   }
+
   //repeatedly call the updateDate function at 1-second intervals.
-  setInterval(function () { updateDate(); }, 1000);
+  setInterval(function () { updateDate(); }, 100);
   $('.mytc').on('click', function () {
     $("#room-no").text($(this).find('.rm-no').text());
     $("#room-nm").text($(this).find('.rm-nm').text());
     var id = $(this).find('.rm-no').text();
+
     console.log(id);
     $.ajax({
       url: 'api.php',
       method: 'GET',
       dataType: 'json',
-      data: { 'capacity': true, 'id': id.slice(1)},
+      data: { 'capacity': true, 'id': id.slice(1) },
       success: function (data) {
         console.log(data)
         $('#room-cp').text('');
         $('#room-cp').text(data.cp);
+        if (id === '6g9' || id === '6g35') {
+          let f = DATA[0]
+          if (id === '6g35') f = DATA[1]
+          console.log(f);
+          $('#room-tm').text(f.temp)
+          $('#room-hu').text(f.hum)
+          $('#room-ns').text(f.noise)
+          $('#room-ar').text(f.air)
+          $('.specs').css("display", "table-row");
+        }
+        else {
+          $('.specs').css("display", "none");
+        }
       },
       error: function (err) {
         $('#room-cp').text('');
         console.error('Error22f:', err);
+        $('.specs').css("display", "none");
       }
     });
     $('#smallModal').modal('show');
   });
 
-  function showInfo(event){
+  function showInfo(event) {
     event.classList.toggle('btn-secondary');
     const box1 = document.getElementsByClassName('popover__content')[0];
     const box2 = document.getElementsByClassName('popover__content2')[0];
