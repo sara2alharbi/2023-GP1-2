@@ -3,12 +3,8 @@
 <!-- This page takes the sensor data from Arduino  and then sote it to the database -->
 <?php
 
-$dbname = 'u169182990_elmam';
-$dbuser = 'u169182990_elmam';  
-$dbpass = 'E123l123'; 
-$dbhost = 'localhost'; 
 
-$connect = @mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+$connect = @mysqli_connect("localhost","u169182990_elmam",'E123l123',"u169182990_elmam");
 
 if(!$connect){
 	echo "Error: " . mysqli_connect_error();
@@ -20,7 +16,6 @@ echo "Connection Success!<br><br>";
 $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
 $microID = $_GET["microID"];
-
 
 $queryt = "INSERT INTO temperature (temperature, humidity , microID) VALUES ('$temperature', '$humidity' ,'$microID')";
 $result1 = mysqli_query($connect,$queryt);
