@@ -2,8 +2,6 @@
 <body>
 <!-- This page takes the sensor data from Arduino  and then sote it to the database -->
 <?php
-date_default_timezone_set('Asia/Riyadh');
-
 
 $connect = @mysqli_connect("localhost","u169182990_elmam",'E123l123',"u169182990_elmam");
 
@@ -13,6 +11,8 @@ if(!$connect){
 }
 
 echo "Connection Success!<br><br>";
+
+date_default_timezone_set('Asia/Riyadh');
 
 $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
