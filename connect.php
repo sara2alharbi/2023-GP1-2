@@ -14,23 +14,23 @@ echo "Connection Success!<br><br>";
 
 date_default_timezone_set('Asia/Riyadh');
 
+$current_time = date("H:i:s");  // Format: 'HH:MM:SS'
 $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
 $microID = $_GET["microID"];
 
-$queryt = "INSERT INTO temperature (temperature, humidity , microID, Time_today) VALUES ('$temperature', '$humidity' ,'$microID',CURTIME())";
+$queryt = "INSERT INTO temperature (temperature, humidity , microID, Time_today) VALUES ('$temperature', '$humidity' ,'$microID','$current_time')";
 $result1 = mysqli_query($connect,$queryt);
 
 $noise = $_GET["noise"];
-$queryn = "INSERT INTO noise (noise , microID, Time_today) VALUES ('$noise','$microID',CURTIME())";
+$queryn = "INSERT INTO noise (noise , microID, Time_today) VALUES ('$noise','$microID','$current_time')";
 $result2 = mysqli_query($connect,$queryn);
 
 $airquality = $_GET["airquality"];
-$querya = "INSERT INTO airquality (airquality , microID, Time_today) VALUES ('$airquality','$microID',CURTIME())";
+$querya = "INSERT INTO airquality (airquality , microID, Time_today) VALUES ('$airquality','$microID','$current_time')";
 $result3 = mysqli_query($connect,$querya);
 
 echo "Insertion Success!<br>";
-echo CURTIME();
 
 // Calculate the date 12 days ago from the current date
 $twelveDaysAgo = date("Y-m-d H:i:s", strtotime('-12 days'));
