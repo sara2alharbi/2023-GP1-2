@@ -18,15 +18,15 @@ $temperature = $_GET["temperature"];
 $humidity = $_GET["humidity"];
 $microID = $_GET["microID"];
 
-$queryt = "INSERT INTO temperature (temperature, humidity , microID) VALUES ('$temperature', '$humidity' ,'$microID')";
+$queryt = "INSERT INTO temperature (temperature, humidity , microID, Time_today) VALUES ('$temperature', '$humidity' ,'$microID',UTC_TIMESTAMP())";
 $result1 = mysqli_query($connect,$queryt);
 
 $noise = $_GET["noise"];
-$queryn = "INSERT INTO noise (noise , microID) VALUES ('$noise','$microID')";
+$queryn = "INSERT INTO noise (noise , microID, Time_today) VALUES ('$noise','$microID',UTC_TIMESTAMP())";
 $result2 = mysqli_query($connect,$queryn);
 
 $airquality = $_GET["airquality"];
-$querya = "INSERT INTO airquality (airquality , microID) VALUES ('$airquality','$microID')";
+$querya = "INSERT INTO airquality (airquality , microID, Time_today) VALUES ('$airquality','$microID',UTC_TIMESTAMP())";
 $result3 = mysqli_query($connect,$querya);
 
 echo "Insertion Success!<br>";
