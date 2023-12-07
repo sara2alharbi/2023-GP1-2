@@ -268,7 +268,7 @@ foreach ($individualAlerts as $notification) {
 // Insert new notifications into the table
 foreach ($outputArray as $alert) {
     $timestamp = $alert['date'] . ' ' . $alert['time'];
-    $message = getMessageFromAlert($alert); // Replace this with a function that generates a message
+    $message = getMessageFromAlert($alert); 
     $roomNumber = $alert['room'];
 
     $insertQuery = "INSERT INTO previous_notifications (timestamp, message, room_number) VALUES (?, ?, ?)";
@@ -277,6 +277,33 @@ foreach ($outputArray as $alert) {
     $stmt->execute();
     $stmt->close();
 }
+
+function getMessageFromAlert($alert)
+{
+    // Your custom logic to generate a message based on the alert type
+    $type = $alert['type'];
+    $room = $alert['room'];
+    $timestamp = $alert['date'] . ' ' . $alert['time'];
+
+    switch ($type) {
+        case 'temperature':
+            $temperature = $alert['temperature'];
+            return "Temperature alert in room $room: $temperature°C at $timestamp";
+
+        case 'air_quality':
+            return "Air quality alert in room $room at $timestamp";
+
+        case 'combined':
+            $temperature = $alert['temperature'];
+            return "Combined alert in room $room: Temperature $temperature°C at $timestamp";
+
+        // Add more cases if you have other alert types
+
+        default:
+            return "Unknown alert type at $timestamp";
+    }
+}
+
 
 // Define the comparison function
 function compareByTimeDesc($a, $b)
