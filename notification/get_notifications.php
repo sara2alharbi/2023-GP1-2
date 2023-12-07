@@ -207,8 +207,10 @@ foreach ($all_alerts as $alert) {
     }
 }
 
-// Sort the array using the custom comparison function
-usort($outputArray, 'compareByTimeDesc');
+// Sort the array using the timestamp
+usort($outputArray, function ($a, $b) {
+    return strtotime($b['date'] . ' ' . $b['time']) - strtotime($a['date'] . ' ' . $a['time']);
+});
 
 // Insert new notifications into the table
 foreach ($outputArray as $alert) {
