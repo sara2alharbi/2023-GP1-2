@@ -1,4 +1,5 @@
 <?php
+
 // Start the session at the beginning of the script
 session_start();
 
@@ -9,23 +10,12 @@ if ($mysqli->connect_error) {
 }
 
 $user_email = $_SESSION['email'];
-$query = "SELECT * FROM deleted_notifications WHERE user_email = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $user_email);
-
-if ($stmt->execute()) {
-    $result = $stmt->get_result();
-    $temperatureIds = array();
-    $airIds = array();
-    $temperatureIds[] = 0;
-    $airIds[] = 0;
-    while ($row = $result->fetch_assoc()) {
-        $temperatureIds[] = $row['temperature_id'];
-        $airIds[] = $row['airquality_id'];
-    }
-
-    $stmt->close();
-}
+// Clear all entries from the deleted_notifications table
+$clearDeletedNotificationsQuery = "DELETE FROM deleted_notifications WHERE user_email = ?";
+$clearDeletedNotificationsStmt = $mysqli->prepare($clearDeletedNotificationsQuery);
+$clearDeletedNotificationsStmt->bind_param("s", $user_email);
+$clearDeletedNotificationsStmt->execute();
+$clearDeletedNotificationsStmt->close();
 
 date_default_timezone_set('Asia/Riyadh');
 
