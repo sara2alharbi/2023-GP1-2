@@ -32,8 +32,24 @@ include "base/session_checker.php";?>
     </div><!-- End Page Title -->
   
     <section class="section dashboard">
-     
-    
+      <!-- Add this table to your HTML -->
+<table class="table" id="alerts-table">
+  <thead>
+    <tr>
+      <th>النوع</th>
+      <th>التاريخ</th>
+      <th>الوقت</th>
+      <th>الغرفة</th>
+      <th>درجة الحرارة</th>
+      <th>جودة الهواء</th>
+      <th>حذف</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Table rows will be dynamically added here -->
+  </tbody>
+</table>
+
     </section>
 
 </main><!-- End Main -->
