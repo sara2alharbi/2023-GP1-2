@@ -203,7 +203,14 @@ foreach ($all_alerts['temperature_alerts'] as $entry) {
     } else {
         $temperatureToDelete[] = $entry['temperature_id'];
     }
+
+    // Initialize $temperature here
+    $temperature = isset($entry['temperature']) ? $entry['temperature'] : null;
+
+    // Add the temperature variable to the alert entry
+    $entry['temperature'] = $temperature;
 }
+
 
 $IdList = implode(',', $temperatureToDelete); // Convert the array to a comma-separated string
 
