@@ -6,6 +6,10 @@ if ($mysqli->connect_error) {
 }
 session_start();
 $user_email = $_SESSION['email'];
+
+// Retrieve the timestamp when the user last viewed notifications
+$lastViewedTimestamp = isset($_SESSION['last_viewed_timestamp']) ? $_SESSION['last_viewed_timestamp'] : 0;
+
 $query = "SELECT * FROM deleted_notifications WHERE user_email = ?";
 $stmt = $mysqli->prepare($query);
 $stmt->bind_param("s", $user_email);
@@ -37,10 +41,13 @@ $currentTime = date('H:i:s');
 $windowStart = date('H:i:s', strtotime("$currentTime -60 minutes"));
 $windowEnd = $currentTime;
 
+// Update the query to include the last viewed timestamp
 $queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate'
                             AND temperature > 25
                             AND id NOT IN ($idList)
-                                AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
+                            AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'
+                            AND timestamp > '$lastViewedTimestamp'";
+
 $resultTemperature = $mysqli->query($queryTemperature);
 
 if ($resultTemperature === false) {
@@ -93,7 +100,8 @@ $temperature_alerts = $selectedData;
 $queryAirQuality = "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
                            AND airquality = 0 
                            AND id NOT IN ($airIdList)
-                              AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
+                           AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'
+                           AND timestamp > '$lastViewedTimestamp'";
 
 $resultAirQuality = $mysqli->query($queryAirQuality);
 
@@ -230,6 +238,9 @@ foreach ($outputArray as $alert) {
     $stmt->execute();
     $stmt->close();
 }
+
+// Update the last viewed timestamp in the session
+$_SESSION['last_viewed_timestamp'] = time();
 
 function getMessageFromAlert($alert)
 {
