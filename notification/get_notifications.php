@@ -297,16 +297,16 @@ function getMessageFromAlert($alert)
 
     switch ($type) {
         case 'temperature':
-            return "Temperature alert in room $room: " ;
+            return "درجة الحرارة مرتفعة" ;
         case 'air_quality':
-            return "Air quality alert in room $room at $timestamp";
+            return "جودة الهواء منخفضة";
 
         case 'combined':
-            return "Combined alert in room $room: Temperature " ;
+            return "درجة الحرارة مرتفعة و جودة الهواء منخفضة" ;
         // Add more cases if you have other alert types
 
         default:
-            return "Unknown alert type at $timestamp";
+            return "لم يحدد";
     }
 }
 
