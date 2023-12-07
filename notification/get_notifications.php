@@ -294,7 +294,7 @@ function getMessageFromAlert($alert)
             return "Air quality alert in room $room at $timestamp";
 
         case 'combined':
-            $temperature = $alert['temperature'];
+            $temperature = isset($alert['temperature']) ? $alert['temperature'] : 'N/A';
             return "Combined alert in room $room: Temperature $temperature°C at $timestamp";
 
         // Add more cases if you have other alert types
@@ -303,6 +303,7 @@ function getMessageFromAlert($alert)
             return "Unknown alert type at $timestamp";
     }
 }
+
 
 
 // Define the comparison function
