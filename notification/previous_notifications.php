@@ -27,7 +27,7 @@ function fetchPreviousNotifications($mysqli)
 function displayTable($notifications)
 {
     echo '<table border="1">';
-    echo '<tr><th>Time</th><th>Message</th><th>Room Number</th></tr>';
+    echo '<tr><th>الوقت</th><th>الإشعار</th><th>رقم الغرفة</th></tr>';
 
     foreach ($notifications as $notification) {
         echo '<tr>';
