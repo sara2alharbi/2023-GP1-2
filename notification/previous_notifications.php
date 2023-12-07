@@ -23,6 +23,7 @@ function fetchPreviousNotifications($mysqli)
     return $notifications;
 }
 
+
 // Function to display the table
 function displayTable($notifications)
 {
