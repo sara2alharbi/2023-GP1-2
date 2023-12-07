@@ -265,6 +265,15 @@ foreach ($individualAlerts as $notification) {
     }
 }
 
+// Define the comparison function
+function compareByTimeDesc($a, $b)
+{
+    $timeA = strtotime($a['date'] . ' ' . $a['time']);
+    $timeB = strtotime($b['date'] . ' ' . $b['time']);
+
+    return $timeB - $timeA; // Sort in descending order
+}
+
 // Sort the array using the custom comparison function
 usort($outputArray, 'compareByTimeDesc');
 
