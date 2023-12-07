@@ -17,7 +17,7 @@
       </li><!-- End map  Nav --------------->
       <li class="nav-item">
         <a class="nav-link collapsed" href="alerts.php">
-            <i class="bi bi-file-earmark-bar-graph"></i>
+            <i class="bi bi-bell"></i>
            <span>التنبيهات</span>
         </a>
       </li><!-- End alerts  Nav --------------->
