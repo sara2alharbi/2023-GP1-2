@@ -36,12 +36,9 @@ include "base/session_checker.php";?>
 <table class="table" id="alerts-table">
   <thead>
     <tr>
-      <th>النوع</th>
       <th>التاريخ</th>
       <th>الوقت</th>
       <th>الغرفة</th>
-      <th>درجة الحرارة</th>
-      <th>جودة الهواء</th>
       <th>حذف</th>
     </tr>
   </thead>
@@ -60,6 +57,7 @@ include "base/session_checker.php";?>
 
 <!-- Vendor JS Files -->
 <?php include "base/js_imports.php"; ?>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- End JS Files -->
 
 

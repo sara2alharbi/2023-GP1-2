@@ -10,10 +10,17 @@ function checkForAlerts() {
       dataType: 'json',
       success: function (items) {
         if (Object.keys(items).length === 0) {
+          // Hide the table if there are no alerts
+          $('#alerts-table').hide();
           return;
         } else {
-          items.forEach(function (data) {
+          // Show the table if there are alerts
+          $('#alerts-table').show();
   
+          // Clear existing rows from the table
+          $('#alerts-table tbody').empty();
+  
+          items.forEach(function (data) {
             // Increment the notification count
             newNotificationsCount++;
   
@@ -42,6 +49,7 @@ function checkForAlerts() {
       }
     });
   }
+  
   
   // Function to get the notification message
   function getNotificationMessage(data) {
@@ -122,11 +130,6 @@ function removeNotification(button) {
     }
 }
 
-// Function to toggle the visibility of the alerts dropdown
-function toggleAlerts() {
-    $('#alerts-dropdown').toggle();
-    $('#alerts-container').show();
-}
 
 // Initialize by checking for alerts immediately
 checkForAlerts();

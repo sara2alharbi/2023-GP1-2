@@ -9,24 +9,7 @@
   <i class="bi bi-list toggle-sidebar-btn"></i>
 </div><!-- End Logo -->
 
-<!--the notification start-------------------------------------------------------------- -->
 
-<nav class="header-nav ms-auto">
-  <ul class="d-flex align-items-center">
-  <div id="notification-bell" onclick="toggleAlerts()">
-<a class="nav-link nav-icon">
-    <i class="bi bi-bell" style="font-size:30px"></i>
-    <span id="notification-count"></span>
-</a>
-</div>
-<span id="alerts-container">
-<div id="alerts-dropdown" class="dropdown-menu">
-<!-- Alerts will be displayed here -->
-</div>
-
-
-
-<!--the notification end-------------------------------------------------------------- -->
 
     <li class="nav-item dropdown pe-3">
 
