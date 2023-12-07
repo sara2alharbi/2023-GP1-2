@@ -203,7 +203,13 @@ foreach ($all_alerts as $alert) {
     $key = $alert['type'] . '-' . $alert['date'] . ' ' . $alert['time'] . '-' . $alert['room'];
     if (!isset($uniqueAlerts[$key])) {
         $uniqueAlerts[$key] = $alert;
-        $outputArray[] = $alert;
+
+        // Filter out alerts based on the current time (last 5 minutes)
+        $alertTimestamp = strtotime($alert['date'] . ' ' . $alert['time']);
+        $currentTimestamp = time();
+        if ($currentTimestamp - $alertTimestamp <= 300) {
+            $outputArray[] = $alert;
+        }
     }
 }
 
