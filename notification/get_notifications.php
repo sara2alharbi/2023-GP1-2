@@ -275,7 +275,18 @@ function compareByTimeDesc($a, $b)
 
 // Sort the array using the custom comparison function
 usort($outputArray, 'compareByTimeDesc');
+// Add a timestamp field to each notification entry
+foreach ($all_alerts as &$alert) {
+    $alert['timestamp'] = strtotime($alert['date'] . ' ' . $alert['time']);
+}
 
+// Sort the alerts based on the timestamp in descending order
+usort($all_alerts, function ($a, $b) {
+    return $b['timestamp'] - $a['timestamp'];
+});
+
+header('Content-Type: application/json');
+echo json_encode($all_alerts);
 header('Content-Type: application/json');
 echo json_encode($outputArray);
 

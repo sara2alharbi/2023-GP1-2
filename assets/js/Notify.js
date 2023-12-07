@@ -43,3 +43,59 @@ Notify = function(text, callback, close_callback, style) {
 
 
 }
+
+// Function to fetch and display notifications
+function fetchNotifications() {
+    $.ajax({
+        url: 'get_notifications.php', // Replace with the actual PHP script URL
+        method: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            displayNotifications(data);
+        },
+        error: function (error) {
+            console.error('Error fetching notifications:', error);
+        }
+    });
+}
+
+// Function to display notifications
+function displayNotifications(notifications) {
+    // Clear existing notifications
+    $('#notifications').empty();
+
+    // Iterate through the notifications and display them
+    notifications.forEach(function (notification) {
+        // Display only notifications with timestamps in the last 5 minutes
+        var currentTime = new Date().getTime() / 1000; // Current time in seconds
+        if (currentTime - notification.timestamp <= 300) {
+            Notify(
+                notification.text,
+                function () {
+                    // Handle notification click
+                    console.log('Notification clicked:', notification);
+                },
+                function () {
+                    // Handle notification close
+                    console.log('Notification closed:', notification);
+                },
+                notification.style
+            );
+        }
+    });
+}
+
+// Function to clear notifications when navigating to a new page
+function clearNotifications() {
+    $('#notifications').empty();
+}
+
+// Fetch and display notifications when the page loads
+$(document).ready(function () {
+    fetchNotifications();
+});
+
+// Clear notifications when navigating to a new page
+$(window).on('beforeunload', function () {
+    clearNotifications();
+});
