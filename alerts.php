@@ -39,7 +39,7 @@ include "base/session_checker.php";?>
 <script>
     // Function to update the table every 5 minutes
     function updateTable() {
-        $('#previous-notifications-container').load('previous_notifications.php');
+        $('#previous-notifications-container').load('notification/previous_notifications.php');
     }
 
     // Periodically update the table (every 5 minutes)
