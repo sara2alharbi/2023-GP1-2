@@ -265,6 +265,19 @@ foreach ($individualAlerts as $notification) {
     }
 }
 
+// Insert new notifications into the table
+foreach ($outputArray as $alert) {
+    $timestamp = $alert['date'] . ' ' . $alert['time'];
+    $message = getMessageFromAlert($alert); // Replace this with a function that generates a message
+    $roomNumber = $alert['room'];
+
+    $insertQuery = "INSERT INTO previous_notifications (timestamp, message, room_number) VALUES (?, ?, ?)";
+    $stmt = $mysqli->prepare($insertQuery);
+    $stmt->bind_param("sss", $timestamp, $message, $roomNumber);
+    $stmt->execute();
+    $stmt->close();
+}
+
 // Define the comparison function
 function compareByTimeDesc($a, $b)
 {

@@ -1,12 +1,11 @@
 <?php
 $mysqli = new mysqli("localhost","u169182990_elmam",'E123l123',"u169182990_elmam");
 
-
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Function to fetch previous notifications from the database
+// Function to fetch previous notifications from the notifications_history table
 function fetchPreviousNotifications($mysqli)
 {
     $query = "SELECT * FROM previous_notifications ORDER BY timestamp DESC";
@@ -28,7 +27,7 @@ function fetchPreviousNotifications($mysqli)
 function displayTable($notifications)
 {
     echo '<table border="1">';
-    echo '<tr><th>الوقت</th><th>الإشعار</th><th>رقم الغرفة</th></tr>';
+    echo '<tr><th>Time</th><th>Message</th><th>Room Number</th></tr>';
 
     foreach ($notifications as $notification) {
         echo '<tr>';
