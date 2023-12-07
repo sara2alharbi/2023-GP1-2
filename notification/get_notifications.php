@@ -310,6 +310,7 @@ function getMessageFromAlert($alert)
     }
 }
 
+
 // Define the comparison function
 function compareByTimeDesc($a, $b)
 {
