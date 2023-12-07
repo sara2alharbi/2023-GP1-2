@@ -284,18 +284,19 @@ function getMessageFromAlert($alert)
     $type = $alert['type'];
     $room = $alert['room'];
     $timestamp = $alert['date'] . ' ' . $alert['time'];
+    
+    // Initialize the temperature variable
+    $temperature = isset($alert['temperature']) ? $alert['temperature'] : null;
 
     switch ($type) {
         case 'temperature':
-            $temperature = $alert['temperature'];
-            return "Temperature alert in room $room: $temperature°C at $timestamp";
+            return "Temperature alert in room $room: " . ($temperature !== null ? "$temperature°C" : 'N/A') . " at $timestamp";
 
         case 'air_quality':
             return "Air quality alert in room $room at $timestamp";
 
         case 'combined':
-            $temperature = isset($alert['temperature']) ? $alert['temperature'] : 'N/A';
-            return "Combined alert in room $room: Temperature $temperature°C at $timestamp";
+            return "Combined alert in room $room: Temperature " . ($temperature !== null ? "$temperature°C" : 'N/A') . " at $timestamp";
 
         // Add more cases if you have other alert types
 
@@ -303,8 +304,6 @@ function getMessageFromAlert($alert)
             return "Unknown alert type at $timestamp";
     }
 }
-
-
 
 // Define the comparison function
 function compareByTimeDesc($a, $b)
