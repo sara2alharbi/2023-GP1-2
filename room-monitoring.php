@@ -99,7 +99,6 @@ include "base/session_checker.php";?>
                 <div class="card-body">
                   <h5 class="card-title subHeader2"> درجة الرطوبة <span>| الآن </span></h5>
                   <p  class="infoo">يتراوح نطاق الرطوبة الداخلي المثالي تبدأ من <span class="greenn">40 جم / م 3.</span></p>
- <br>
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-moisture"></i>
@@ -107,7 +106,6 @@ include "base/session_checker.php";?>
                     <div class="ps-3">
                       <h6 id="viewHum"></h6>
                      
-
                     </div>
                   </div>
                 </div>

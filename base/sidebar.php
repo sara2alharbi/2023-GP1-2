@@ -28,7 +28,7 @@
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
         <li>
             <a href="bookRoom.php" >
-              <i class="bi bi-circle"></i><span>  حجز غرفة</span>
+              <i class="bi bi-circle"></i><span>حجز غرفة</span>
             </a>
           </li>
           <li>
@@ -38,7 +38,7 @@
           </li>
           <li>
             <a href="room-monitoring.php">
-              <i class="bi bi-circle"></i><span>مراقبة حالة الغرفة</span>
+              <i class="bi bi-circle"></i><span>مراقبة البيئة الداخلية</span>
             </a>
           </li>
               <li>
