@@ -47,7 +47,7 @@ Notify = function(text, callback, close_callback, style) {
 // Function to fetch and display notifications
 function fetchNotifications() {
     $.ajax({
-        url: 'get_notifications.php', // Replace with the actual PHP script URL
+        url: 'notification/get_notifications.php', // Replace with the actual PHP script URL
         method: 'GET',
         dataType: 'json',
         success: function (data) {
@@ -94,6 +94,11 @@ function clearNotifications() {
 $(document).ready(function () {
     fetchNotifications();
 });
+
+// Periodically fetch and display notifications (every 5 minutes in this example)
+setInterval(function () {
+    fetchNotifications();
+}, 300000); // 300,000 milliseconds = 5 minutes
 
 // Clear notifications when navigating to a new page
 $(window).on('beforeunload', function () {
