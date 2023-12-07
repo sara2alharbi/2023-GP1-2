@@ -792,7 +792,7 @@ include "base/session_checker.php";?>
     var id = $(this).find('.rm-no').text();
     console.log(id);
     $.ajax({
-      url: 'http://localhost/project/api.php',
+      url: 'api.php',
       method: 'GET',
       dataType: 'json',
       data: { 'capacity': true, 'id': id.slice(1)},
