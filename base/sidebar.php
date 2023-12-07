@@ -15,8 +15,12 @@
            <span>خريطة المبنى</span>
         </a>
       </li><!-- End map  Nav --------------->
-      
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="alerts.php">
+            <i class="bi bi-file-earmark-bar-graph"></i>
+           <span>التنبيهات</span>
+        </a>
+      </li><!-- End alerts  Nav --------------->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>غرف المبنى</span><i class="bi bi-chevron-down ms-auto"></i>
