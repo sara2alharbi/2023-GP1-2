@@ -5,7 +5,7 @@ var displayedNotificationIdsAir = [];
 
 function checkForAlerts() {
     $.ajax({
-        url: 'notification/get_notifications.php',
+        url: 'notification/get_notifications_bootstrap.php',
         method: 'GET',
         dataType: 'json', // Expect JSON response
         success: function (items) {
