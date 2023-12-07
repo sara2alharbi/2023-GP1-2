@@ -297,14 +297,12 @@ function getMessageFromAlert($alert)
 
     switch ($type) {
         case 'temperature':
-            return "Temperature alert in room $room: " . ($temperature !== null ? "$temperature°C" : 'N/A') . " at $timestamp";
-
+            return "Temperature alert in room $room: " ;
         case 'air_quality':
             return "Air quality alert in room $room at $timestamp";
 
         case 'combined':
-            return "Combined alert in room $room: Temperature " . ($temperature !== null ? "$temperature°C" : 'N/A') . " at $timestamp";
-
+            return "Combined alert in room $room: Temperature " ;
         // Add more cases if you have other alert types
 
         default:
