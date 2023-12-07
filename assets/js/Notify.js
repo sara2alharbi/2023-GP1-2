@@ -47,7 +47,7 @@ Notify = function(text, callback, close_callback, style) {
 // Function to fetch and display notifications
 function fetchNotifications() {
     $.ajax({
-        url: 'notification/get_notifications.php', // Replace with the actual PHP script URL
+        url: 'notification/get_notifications.php', 
         method: 'GET',
         dataType: 'json',
         success: function (data) {
