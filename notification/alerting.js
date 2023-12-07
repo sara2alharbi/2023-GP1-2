@@ -25,12 +25,9 @@ function checkForAlerts() {
             const modifiedTime = removeSecondsFromTime(data.time);
   
             var alertRow = '<tr>' +
-              '<td>' + (data.type === 'combined' ? 'تنبيه مشترك' : (data.type === 'temperature' ? 'درجة حرارة' : 'جودة هواء')) + '</td>' +
-              '<td>' + data.date + '</td>' +
               '<td>' + modifiedTime + '</td>' +
+              '<td>' + data.notification + '</td>' +
               '<td>' + data.room + '</td>' +
-              '<td>' + (data.temperature ? data.temperature + ' °C' : '-') + '</td>' +
-              '<td>' + (data.air_id ? 'منخفضة' : '-') + '</td>' +
               '<td><button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button></td>' +
               '</tr>';
   
@@ -50,26 +47,13 @@ function checkForAlerts() {
   function getNotificationMessage(data) {
     const modifiedTime = removeSecondsFromTime(data.time);
   
-    if (data.type === 'combined') {
-      return 'تنبيه مشترك - ' +
-        'التاريخ ' + data.date +
-        ' الوقت ' + modifiedTime +
-        ' في الغرفة رقم ' + data.room +
-        ' درجة الحرارة ' + data.temperature + ' °C';
-    } else if (data.type === 'temperature') {
-      return 'تنبيه درجة حرارة مرتفعة - ' +
-        'التاريخ ' + data.date +
-        ' الوقت ' + modifiedTime +
-        ' في الغرفة رقم ' + data.room +
-        ' درجة الحرارة ' + data.temperature + ' °C';
-    } else if (data.type === 'air_quality') {
-      return 'تنبيه جودة هواء منخفضة - ' +
-        'التاريخ ' + data.date +
-        ' الوقت ' + modifiedTime +
-        ' في الغرفة رقم ' + data.room;
-    }
+    return 'التاريخ ' + data.date +
+      ' الوقت ' + modifiedTime +
+      ' في الغرفة رقم ' + data.room +
+      ' الاشعار ' + data.notification;
   }
   
+
 
 function removeSecondsFromTime(timeString) {
     // Split the time string into hours, minutes, and seconds
