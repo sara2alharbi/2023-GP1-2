@@ -319,6 +319,30 @@ function compareByTimeDesc($a, $b)
     return $timeB - $timeA; // Sort in descending order
 }
 
+// Filter out notifications based on the current time
+foreach ($individualAlerts as $notification) {
+    $notificationTimestamp = strtotime($notification['date'] . ' ' . $notification['time']);
+    $currentTime = time();
+
+    // Check if a similar notification already exists in the output array
+    $notificationExists = false;
+    foreach ($outputArray as $existingNotification) {
+        $existingTimestamp = strtotime($existingNotification['date'] . ' ' . $existingNotification['time']);
+        if ($notification['type'] === $existingNotification['type'] &&
+            $notification['room'] === $existingNotification['room'] &&
+            abs($notificationTimestamp - $existingTimestamp) <= 300) {
+            $notificationExists = true;
+            break;
+        }
+    }
+
+    // Display only notifications with timestamps in the last 5 minutes and not duplicates
+    if (!$notificationExists && $currentTime - $notificationTimestamp <= 300) {
+        $outputArray[] = $notification;
+    }
+}
+
+
 // Sort the array using the custom comparison function
 usort($outputArray, 'compareByTimeDesc');
 

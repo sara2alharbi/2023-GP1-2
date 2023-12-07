@@ -8,7 +8,7 @@ if ($mysqli->connect_error) {
 // Function to fetch previous notifications from the notifications_history table
 function fetchPreviousNotifications($mysqli)
 {
-    $query = "SELECT * FROM previous_notifications ORDER BY timestamp DESC";
+    $query = "SELECT DISTINCT * FROM previous_notifications ORDER BY timestamp DESC";
     $result = $mysqli->query($query);
 
     if ($result === false) {
