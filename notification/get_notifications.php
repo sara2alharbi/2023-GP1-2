@@ -12,8 +12,8 @@ $stmt->bind_param("s", $user_email);
 
 if ($stmt->execute()) {
     $result = $stmt->get_result();
-    $temperatureIds = array();
-    $airIds = array();
+    $temperatureIds = [];
+    $airIds = [];
     $temperatureIds[] = 0;
     $airIds[] = 0;
     while ($row = $result->fetch_assoc()) {
@@ -31,8 +31,8 @@ $currentMinute = date('i');
 
 $idList = implode(',', $temperatureIds); // Convert the array to a comma-separated string
 $airIdList = implode(',', $airIds); // Convert the array to a comma-separated string
-$currentDate = (string) date('Y-m-d');
-$currentTime = (string) date('H:i:s');
+$currentDate = date('Y-m-d');
+$currentTime = date('H:i:s');
 
 $windowStart = date('H:i:s', strtotime("$currentTime -60 minutes"));
 $windowEnd = $currentTime;
@@ -56,10 +56,11 @@ while ($row = $resultTemperature->fetch_assoc()) {
     $temperature_id = $row['id'];
     $ID = $row['microID'];
 
-    if ($ID == "ESP12F")
+    if ($ID == "ESP12F") {
         $room = "G9";
-    else
+    } else {
         $room = "G35";
+    }
 
     $temperature_alerts[] = [
         'type' => 'temperature',
@@ -108,10 +109,11 @@ while ($row = $resultAirQuality->fetch_assoc()) {
     $air_id = $row['id'];
     $ID = $row['microID'];
 
-    if ($ID == "ESP12F")
+    if ($ID == "ESP12F") {
         $room = "G9";
-    else
+    } else {
         $room = "G35";
+    }
 
     // Store the air quality alert message in an array
     $air_alerts[] = [
@@ -179,6 +181,8 @@ foreach ($temperature_alerts as $tempAlert) {
 // Add the remaining temperature alerts to the result
 $temperature_alerts = isset($remainingTemperatureAlerts) ? $remainingTemperatureAlerts : [];
 
+$all_alerts = [];
+
 foreach ($temperature_alerts as $entry) {
     $all_alerts[] = $entry;
 }
@@ -193,7 +197,21 @@ foreach ($mix_alerts as $entry) {
 
 $outputArray = [];
 
+// Filter out duplicate alerts based on timestamp and type
+$uniqueAlerts = [];
 foreach ($all_alerts as $alert) {
+    $key = $alert['type'] . '-' . $alert['date'] . ' ' . $alert['time'] . '-' . $alert['room'];
+    if (!isset($uniqueAlerts[$key])) {
+        $uniqueAlerts[$key] = $alert;
+        $outputArray[] = $alert;
+    }
+}
+
+// Sort the array using the custom comparison function
+usort($outputArray, 'compareByTimeDesc');
+
+// Insert new notifications into the table
+foreach ($outputArray as $alert) {
     $timestamp = $alert['date'] . ' ' . $alert['time'];
     $message = getMessageFromAlert($alert);
     $roomNumber = $alert['room'];
@@ -203,8 +221,6 @@ foreach ($all_alerts as $alert) {
     $stmt->bind_param("sss", $timestamp, $message, $roomNumber);
     $stmt->execute();
     $stmt->close();
-
-    $outputArray[] = $alert;
 }
 
 function getMessageFromAlert($alert)
@@ -222,11 +238,9 @@ function getMessageFromAlert($alert)
             return "درجة الحرارة مرتفعة";
         case 'air_quality':
             return "جودة الهواء منخفضة";
-
         case 'combined':
             return "درجة الحرارة مرتفعة و جودة الهواء منخفضة";
         // Add more cases if you have other alert types
-
         default:
             return "لم يحدد";
     }
