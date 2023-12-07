@@ -47,10 +47,7 @@ if ($resultTemperature === false) {
     die("Error: " . $mysqli->error);
 }
 
-$all_alerts = [];
 $temperature_alerts = [];
-$air_alerts = [];
-$mix_alerts = [];
 
 while ($row = $resultTemperature->fetch_assoc()) {
     $date = $row['Date_today'];
@@ -63,6 +60,7 @@ while ($row = $resultTemperature->fetch_assoc()) {
         $room = "G9";
     else
         $room = "G35";
+
     $temperature_alerts[] = [
         'type' => 'temperature',
         'date' => $date,
@@ -73,8 +71,7 @@ while ($row = $resultTemperature->fetch_assoc()) {
     ];
 }
 
-$temperatureToDelete = [];
-$temperatureToDelete[] = 0;
+$airToDelete = [];
 $selectedData = []; // Array to store the selected data
 $lastMinute = null; // Variable to track the last selected minute
 
@@ -86,15 +83,13 @@ foreach ($temperature_alerts as $row) {
         $selectedData[] = $row;
         $lastMinute = $minute;
     } else {
-        $temperatureToDelete[] = $row['temperature_id'];
+        $airToDelete[] = $row['temperature_id'];
     }
 }
 
 $temperature_alerts = $selectedData;
-$all_alerts['temperature_alerts'] = $temperature_alerts;
 
-$queryAirQuality =
-    "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
+$queryAirQuality = "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
                            AND airquality = 0 
                            AND id NOT IN ($airIdList)
                               AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
@@ -104,6 +99,8 @@ $resultAirQuality = $mysqli->query($queryAirQuality);
 if ($resultAirQuality === false) {
     die("Error: " . $mysqli->error);
 }
+
+$air_alerts = [];
 
 while ($row = $resultAirQuality->fetch_assoc()) {
     $date = $row['Date_today'];
@@ -127,7 +124,6 @@ while ($row = $resultAirQuality->fetch_assoc()) {
 }
 
 $airToDelete = [];
-$airToDelete[] = 0;
 $selectedData = []; // Array to store the selected data
 $lastMinute = null; // Variable to track the last selected minute
 
@@ -143,6 +139,8 @@ foreach ($air_alerts as $row) {
     }
 }
 $air_alerts = $selectedData;
+
+$mix_alerts = [];
 
 foreach ($temperature_alerts as $tempAlert) {
     $tempTime = $tempAlert['time'];
@@ -160,10 +158,6 @@ foreach ($temperature_alerts as $tempAlert) {
 
         // Compare the time
         if ($tempTimeWithoutSeconds === $airTimeWithoutSeconds) {
-            /*  echo '----';
-              echo $tempTimeWithoutSeconds;
-              echo $airTimeWithoutSeconds;
-              echo '----';*/
             if ($airAlert['room'] !== $tempAlert['room']) {
                 return;
             }
@@ -183,99 +177,25 @@ foreach ($temperature_alerts as $tempAlert) {
 }
 
 // Add the remaining temperature alerts to the result
-$all_alerts['temperature_alerts'] = isset($remainingTemperatureAlerts) ? $remainingTemperatureAlerts : [];
+$temperature_alerts = isset($remainingTemperatureAlerts) ? $remainingTemperatureAlerts : [];
 
-// Use array_values to remove keys from the remaining air alerts
-$remainingAirAlerts = array_values($air_alerts) !== null ? array_values($air_alerts) : [];
-
-$all_alerts['mix'] = $mix_alerts;
-$all_alerts['air_alerts'] = $remainingAirAlerts;
-
-$result = [];
-$lastTimestamp = null;
-
-foreach ($all_alerts['temperature_alerts'] as $entry) {
-    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
-
-    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
-        $result[] = $entry;
-        $lastTimestamp = $currentTimestamp;
-    } else {
-        $temperatureToDelete[] = $entry['temperature_id'];
-    }
-
-    // Initialize $temperature here
-    $temperature = isset($entry['temperature']) ? $entry['temperature'] : null;
-
-    // Add the temperature variable to the alert entry
-    $entry['temperature'] = $temperature;
+foreach ($temperature_alerts as $entry) {
+    $all_alerts[] = $entry;
 }
 
-
-$IdList = implode(',', $temperatureToDelete); // Convert the array to a comma-separated string
-
-$queryDelete = "DELETE FROM temperature WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
-$all_alerts['temperature_alerts'] = $result;
-
-$result = [];
-$lastTimestamp = null;
-
-foreach ($all_alerts['air_alerts'] as $entry) {
-    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
-
-    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
-        $result[] = $entry;
-        $lastTimestamp = $currentTimestamp;
-    } else {
-        $airToDelete[] = $entry['air_id'];
-    }
+foreach ($air_alerts as $entry) {
+    $all_alerts[] = $entry;
 }
 
-$IdList = implode(',', $airToDelete); // Convert the array to a comma-separated string
-
-$queryDelete = "DELETE FROM airquality WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
-
-$all_alerts['air_alerts'] = $result;
-
-$result = [];
-$lastTimestamp = null;
-
-foreach ($all_alerts['mix'] as $entry) {
-    $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
-
-    if ($lastTimestamp === null || $currentTimestamp - $lastTimestamp >= 300) {
-        $result[] = $entry;
-        $lastTimestamp = $currentTimestamp;
-    }
-}
-$all_alerts['mix'] = $result;
-
-$individualAlerts = [];
-
-// Loop through the input array and merge the alerts into the new array
-foreach ($all_alerts as $key => $alerts) {
-    $individualAlerts = array_merge($individualAlerts, $alerts);
+foreach ($mix_alerts as $entry) {
+    $all_alerts[] = $entry;
 }
 
 $outputArray = [];
 
-// Filter out notifications based on the current time
-foreach ($individualAlerts as $notification) {
-    $notificationTimestamp = strtotime($notification['date'] . ' ' . $notification['time']);
-    $currentTime = time();
-
-    // Display only notifications with timestamps in the last 5 minutes
-    if ($currentTime - $notificationTimestamp <= 300) {
-        $outputArray[] = $notification;
-    }
-}
-
-// Insert new notifications into the table
-foreach ($outputArray as $alert) {
+foreach ($all_alerts as $alert) {
     $timestamp = $alert['date'] . ' ' . $alert['time'];
-    $message = getMessageFromAlert($alert); 
+    $message = getMessageFromAlert($alert);
     $roomNumber = $alert['room'];
 
     $insertQuery = "INSERT INTO previous_notifications (timestamp, message, room_number) VALUES (?, ?, ?)";
@@ -283,6 +203,8 @@ foreach ($outputArray as $alert) {
     $stmt->bind_param("sss", $timestamp, $message, $roomNumber);
     $stmt->execute();
     $stmt->close();
+
+    $outputArray[] = $alert;
 }
 
 function getMessageFromAlert($alert)
@@ -291,60 +213,24 @@ function getMessageFromAlert($alert)
     $type = $alert['type'];
     $room = $alert['room'];
     $timestamp = $alert['date'] . ' ' . $alert['time'];
-    
+
     // Initialize the temperature variable
     $temperature = isset($alert['temperature']) ? $alert['temperature'] : null;
 
     switch ($type) {
         case 'temperature':
-            return "درجة الحرارة مرتفعة" ;
+            return "درجة الحرارة مرتفعة";
         case 'air_quality':
             return "جودة الهواء منخفضة";
 
         case 'combined':
-            return "درجة الحرارة مرتفعة و جودة الهواء منخفضة" ;
+            return "درجة الحرارة مرتفعة و جودة الهواء منخفضة";
         // Add more cases if you have other alert types
 
         default:
             return "لم يحدد";
     }
 }
-
-// Define the comparison function
-function compareByTimeDesc($a, $b)
-{
-    $timeA = strtotime($a['date'] . ' ' . $a['time']);
-    $timeB = strtotime($b['date'] . ' ' . $b['time']);
-
-    return $timeB - $timeA; // Sort in descending order
-}
-
-// Filter out notifications based on the current time
-foreach ($individualAlerts as $notification) {
-    $notificationTimestamp = strtotime($notification['date'] . ' ' . $notification['time']);
-    $currentTime = time();
-
-    // Check if a similar notification already exists in the output array
-    $notificationExists = false;
-    foreach ($outputArray as $existingNotification) {
-        $existingTimestamp = strtotime($existingNotification['date'] . ' ' . $existingNotification['time']);
-        if ($notification['type'] === $existingNotification['type'] &&
-            $notification['room'] === $existingNotification['room'] &&
-            abs($notificationTimestamp - $existingTimestamp) <= 300) {
-            $notificationExists = true;
-            break;
-        }
-    }
-
-    // Display only notifications with timestamps in the last 5 minutes and not duplicates
-    if (!$notificationExists && $currentTime - $notificationTimestamp <= 300) {
-        $outputArray[] = $notification;
-    }
-}
-
-
-// Sort the array using the custom comparison function
-usort($outputArray, 'compareByTimeDesc');
 
 header('Content-Type: application/json');
 echo json_encode($outputArray);
