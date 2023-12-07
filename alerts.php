@@ -32,27 +32,7 @@ include "base/session_checker.php";?>
     </div><!-- End Page Title -->
   
     <section class="section dashboard">
-        <!-- Container to display the table -->
-<div id="previous-notifications-container"></div>
-
-<!-- JavaScript to update the table every 5 minutes -->
-<script>
-    // Function to update the table every 5 minutes
-    function updateTable() {
-        $('#previous-notifications-container').load('notification/previous_notifications.php');
-    }
-
-    // Periodically update the table (every 5 minutes)
-    setInterval(function () {
-        updateTable();
-    }, 300000); // 300,000 milliseconds = 5 minutes
-
-    // Initial update when the page loads
-    $(document).ready(function () {
-        updateTable();
-    });
-</script>
-
+     
     
     </section>
 
