@@ -9,11 +9,14 @@ function checkForAlerts() {
       method: 'GET',
       dataType: 'json',
       success: function (items) {
+        console.log("Received items:", items);  // Log the received data
           if (Object.keys(items).length === 0) {
+            console.log("No alerts to display");
               // Hide the table if there are no alerts
               $('#alerts-table').hide();
               return;
           } else {
+            console.log("Processing alerts...");
               // Show the table if there are alerts
               $('#alerts-table').show();
 
@@ -21,6 +24,7 @@ function checkForAlerts() {
               $('#alerts-table tbody').empty();
 
               items.forEach(function (data) {
+                console.log("Processing data:", data);  // Log the data being processed
                   // Append the new notification to the table
                   const modifiedTime = removeSecondsFromTime(data.time);
 
@@ -32,6 +36,7 @@ function checkForAlerts() {
 
                   // Append the row to the table body
                   $('#alerts-table tbody').append(alertRow);
+                  console.log("Row appended to the table");
               });
 
               // Display a notification message if needed
