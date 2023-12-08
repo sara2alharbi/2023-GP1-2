@@ -33,7 +33,7 @@ include "base/session_checker.php";?>
   
     <section class="section dashboard">
       <!-- Add this table to your HTML -->
-<table class="table" id="alerts-table">
+<table class="table-alert" id="alerts-table">
   <thead>
     <tr>
       <th>الوقت</th>
