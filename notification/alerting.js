@@ -5,63 +5,96 @@ var displayedNotificationIdsAir = [];
 
 function checkForAlerts() {
     $.ajax({
-      url: 'notification/get_notifications.php',
-      method: 'GET',
-      dataType: 'json',
-      success: function (items) {
-        if (Object.keys(items).length === 0) {
-          // Hide the table if there are no alerts
-          $('#alerts-table').hide();
-          return;
-        } else {
-          // Show the table if there are alerts
-          $('#alerts-table').show();
-  
-          // Clear existing rows from the table
-          $('#alerts-table tbody').empty();
-  
-          items.forEach(function (data) {
-            // Increment the notification count
-            newNotificationsCount++;
-  
-            // Update the notification count
-            $('#notification-count').text(newNotificationsCount);
-            $('#notification-count').show();
-  
-            // Append the new notification to the table
-            const modifiedTime = removeSecondsFromTime(data.time);
-  
-            var alertRow = '<tr>' +
-              '<td>' + modifiedTime + '</td>' +
-              '<td>' + data.notification + '</td>' +
-              '<td>' + data.room + '</td>' +
-              '<td><button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button></td>' +
-              '</tr>';
-  
-            // Append the row to the table body
-            $('#alerts-table tbody').append(alertRow);
-  
-            // Display a notification message
-            var notificationMessage = getNotificationMessage(data);
-            Notify(notificationMessage, null, null, 'danger');
-          });
-        }
-      }
-    });
-  }
-  
-  
-  // Function to get the notification message
-  function getNotificationMessage(data) {
-    const modifiedTime = removeSecondsFromTime(data.time);
-  
-    return 'التاريخ ' + data.date +
-      ' الوقت ' + modifiedTime +
-      ' في الغرفة رقم ' + data.room +
-      ' الاشعار ' + data.notification;
-  }
-  
+        url: 'notification/get_notifications.php',
+        method: 'GET',
+        dataType: 'json', // Expect JSON response
+        success: function (items) {
+            if (Object.keys(items).length === 0) {
+                return;
+            } else {
+                items.forEach(function (data) {
 
+                    if (data.type === "temperature") {
+                        if (displayedNotificationIdsTemps.includes(data.temperature_id)) {
+                            return; // Skip if already displayed
+                        }
+                        displayedNotificationIdsTemps.push(data.temperature_id);
+                    } else {
+                        if (displayedNotificationIdsAir.includes(data.air_id)) {
+                            return; // Skip if already displayed
+                        }
+                        displayedNotificationIdsAir.push(data.air_id);
+                    }
+                    // Increment the notification count
+                    newNotificationsCount++;
+
+
+                    // Update the notification count
+                    $('#notification-count').text(newNotificationsCount);
+                    $('#notification-count').show();
+
+                    // Append the new notification to the dropdown list
+                    var alertHtml = '';
+                    var notificationMessage = '';
+                    console.log('General air Id' + data.air_id);
+                    const modifiedTime = removeSecondsFromTime(data.time);
+
+                    if (data.type === 'combined') {
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>جودة الهواء منخفضة ودرجة الحرارة مرتفعة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+                            '</li>';
+
+                        notificationMessage = '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+
+                    } else if (data.type === 'temperature') {
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+                            '</li>';
+
+                        notificationMessage =
+                            '<h6>درجة الحرارة مرتفعة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+
+                    } else if (data.type === 'air_quality') {
+                        alertHtml = '<li class="dropdown-item">' +
+                            '<h6>جودة الهواء منخفضة</h6>' +
+                            '<p>التاريخ ' + data.date + '</p>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>' +
+                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+                            '</li>';
+
+                        notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
+                            '<p>الوقت ' + modifiedTime + '</p>' +
+                            '<p> في الغرفة رقم ' + data.room + '</p>';
+                    }
+
+
+// Pass the string as the message to the Notify function
+                    Notify(notificationMessage, null, null, 'danger');
+
+                    $('#alerts-dropdown').append(alertHtml);
+                });
+
+            }
+        }
+    });
+}
 
 function removeSecondsFromTime(timeString) {
     // Split the time string into hours, minutes, and seconds
@@ -101,7 +134,7 @@ function removeNotification(button) {
     console.log("Notification Type : " + type);
 
     $.ajax({
-        url: 'delete_notification.php', 
+        url: 'delete_notification.php', // Replace with the URL of your PHP script
         method: 'POST', // You can use POST or GET depending on your needs
         data: {
             temperature_id: temperatureId,
@@ -130,6 +163,11 @@ function removeNotification(button) {
     }
 }
 
+// Function to toggle the visibility of the alerts dropdown
+function toggleAlerts() {
+    $('#alerts-dropdown').toggle();
+    $('#alerts-container').show();
+}
 
 // Initialize by checking for alerts immediately
 checkForAlerts();
