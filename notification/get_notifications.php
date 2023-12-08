@@ -274,12 +274,9 @@ function compareByTimeDesc($a, $b)
     return $timeB - $timeA; // Sort in descending order
 }
 
-
-
 // Sort the array using the custom comparison function
 usort($outputArray, 'compareByTimeDesc');
 
 header('Content-Type: application/json');
 echo json_encode($outputArray);
 ?>
-
