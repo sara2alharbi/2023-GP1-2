@@ -56,7 +56,6 @@ include "base/session_checker.php";?>
 
 <!-- Vendor JS Files -->
 <?php include "base/js_imports.php"; ?>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- End JS Files -->
 
 
