@@ -4,58 +4,59 @@ var displayedNotificationIdsTemps = [];
 var displayedNotificationIdsAir = [];
 
 function checkForAlerts() {
-  $.ajax({
+    $.ajax({
       url: 'notification/get_notifications.php',
       method: 'GET',
       dataType: 'json',
       success: function (items) {
-        console.log("Received items:", items);  // Log the received data
-          if (Object.keys(items).length === 0) {
-            console.log("No alerts to display");
-              // Hide the table if there are no alerts
-              $('#alerts-table').hide();
-              return;
-          } else {
-            console.log("Processing alerts...");
-              // Show the table if there are alerts
-              $('#alerts-table').show();
-
-              // Clear existing rows from the table
-              $('#alerts-table tbody').empty();
-
-              items.forEach(function (data) {
-                console.log("Processing data:", data);  // Log the data being processed
-                  // Append the new notification to the table
-                  const modifiedTime = removeSecondsFromTime(data.time);
-
-                  var alertRow = '<tr>' +
-                      '<td>' + modifiedTime + '</td>' +
-                      '<td>' + data.room + '</td>' +
-                      '<td>' + data.notification + '</td>' +
-                      '</tr>';
-
-                  // Append the row to the table body
-                  $('#alerts-table tbody').append(alertRow);
-                  console.log("Row appended to the table");
-              });
-
-              // Display a notification message if needed
-              if (items.length > 0) {
-                  var notificationMessage = getNotificationMessage(items[0]); // You can customize the message
-                  Notify(notificationMessage, null, null, 'danger');
-              }
-          }
+        if (Object.keys(items).length === 0) {
+          // Hide the table if there are no alerts
+          $('#alerts-table').hide();
+          return;
+        } else {
+          // Show the table if there are alerts
+          $('#alerts-table').show();
+  
+          // Clear existing rows from the table
+          $('#alerts-table tbody').empty();
+  
+          items.forEach(function (data) {
+            // Increment the notification count
+            newNotificationsCount++;
+  
+            // Update the notification count
+            $('#notification-count').text(newNotificationsCount);
+            $('#notification-count').show();
+  
+            // Append the new notification to the table
+            const modifiedTime = removeSecondsFromTime(data.time);
+  
+            var alertRow = '<tr>' +
+              '<td>' + modifiedTime + '</td>' +
+              '<td>' + data.notification + '</td>' +
+              '<td>' + data.room + '</td>' +
+              '<td><button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button></td>' +
+              '</tr>';
+  
+            // Append the row to the table body
+            $('#alerts-table tbody').append(alertRow);
+  
+            // Display a notification message
+            var notificationMessage = getNotificationMessage(data);
+            Notify(notificationMessage, null, null, 'danger');
+          });
+        }
       }
-  });
-}
-
+    });
+  }
   
   
   // Function to get the notification message
   function getNotificationMessage(data) {
     const modifiedTime = removeSecondsFromTime(data.time);
   
-    return  ' الوقت ' + modifiedTime +
+    return 'التاريخ ' + data.date +
+      ' الوقت ' + modifiedTime +
       ' في الغرفة رقم ' + data.room +
       ' الاشعار ' + data.notification;
   }
@@ -128,6 +129,7 @@ function removeNotification(button) {
         $('#notification-count').text(newNotificationsCount);
     }
 }
+
 
 // Initialize by checking for alerts immediately
 checkForAlerts();
