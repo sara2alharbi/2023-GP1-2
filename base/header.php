@@ -13,21 +13,6 @@
 
 <nav class="header-nav ms-auto">
   <ul class="d-flex align-items-center">
-  <div id="notification-bell" onclick="toggleAlerts()">
-<a class="nav-link nav-icon">
-    <i class="bi bi-bell" style="font-size:30px"></i>
-    <span id="notification-count"></span>
-</a>
-</div>
-<span id="alerts-container">
-<div id="alerts-dropdown" class="dropdown-menu">
-<!-- Alerts will be displayed here -->
-</div>
-
-
-
-<!--the notification end-------------------------------------------------------------- -->
-
     <li class="nav-item dropdown pe-3">
 
       <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

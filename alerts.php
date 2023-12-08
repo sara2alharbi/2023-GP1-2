@@ -36,10 +36,9 @@ include "base/session_checker.php";?>
 <table class="table" id="alerts-table">
   <thead>
     <tr>
-      <th>التاريخ</th>
       <th>الوقت</th>
       <th>الغرفة</th>
-      <th>حذف</th>
+      <th>الإشعار</th>
     </tr>
   </thead>
   <tbody>

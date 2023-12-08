@@ -101,7 +101,7 @@ function removeNotification(button) {
     console.log("Notification Type : " + type);
 
     $.ajax({
-        url: 'delete_notification.php', // Replace with the URL of your PHP script
+        url: 'delete_notification.php', 
         method: 'POST', // You can use POST or GET depending on your needs
         data: {
             temperature_id: temperatureId,
