@@ -50,6 +50,18 @@ function checkForAlerts() {
 }
 
   
+  
+  // Function to get the notification message
+  function getNotificationMessage(data) {
+    const modifiedTime = removeSecondsFromTime(data.time);
+  
+    return  ' الوقت ' + modifiedTime +
+      ' في الغرفة رقم ' + data.room +
+      ' الاشعار ' + data.notification;
+  }
+  
+
+
 function removeSecondsFromTime(timeString) {
     // Split the time string into hours, minutes, and seconds
     const [hours, minutes] = timeString.split(':').map(Number);
