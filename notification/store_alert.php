@@ -5,7 +5,6 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Assuming you have a table named 'alerts' with columns: id, time, date, room, notification
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $time = $_POST["time"];
     $date = $_POST["date"];
