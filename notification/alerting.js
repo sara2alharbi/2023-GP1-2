@@ -3,6 +3,25 @@ var newNotificationsCount = 0;
 var displayedNotificationIdsTemps = [];
 var displayedNotificationIdsAir = [];
 
+function storeAlertInDatabase(data) {
+    $.ajax({
+        url: 'notification/store_alert.php',
+        method: 'POST',
+        data: {
+            time: data.time,
+            date: data.date,
+            room: data.room,
+            notification: data.notification
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error storing alert in the database:', error);
+        }
+    });
+}
+
 function checkForAlerts() {
     $.ajax({
         url: 'notification/get_notifications.php',
@@ -93,12 +112,18 @@ function checkForAlerts() {
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>';
                     }
-                    
+
+                    storeAlertInDatabase({
+                        time: modifiedTime,
+                        date: data.date,
+                        room: data.room,
+                        notification: notificationMessage
+                    });
                     // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
                     
                     // Append the new row to the table
-                    $('#alerts-table').append(alertHtml);
+                    //$('#alerts-table').append(alertHtml);
                 });
             }
         }
