@@ -56,8 +56,8 @@ $startOfCurrentWeek = date('Y-m-d', strtotime('-' . $currentDayOfWeek . ' days')
 $endOfCurrentWeek = date('Y-m-d', strtotime('+' . (6 - $currentDayOfWeek) . ' days'));
 
 // Calculate the start date (Sunday) and end date (Thursday) of the previous week
-$startOfPreviousWeek = date('Y-m-d', strtotime('-6 days', strtotime($startOfCurrentWeek)));
-$endOfPreviousWeek = date('Y-m-d', strtotime('+3 days', strtotime($startOfPreviousWeek)));
+$startOfPreviousWeek = date('Y-m-d', strtotime('last Sunday', strtotime($startOfCurrentWeek)));
+$endOfPreviousWeek = date('Y-m-d', strtotime('next Thursday', strtotime($startOfPreviousWeek)));
 
     // Check if data for the specified date range already exists in the database
     $existingDataQuery = "SELECT COUNT(*) AS data_count FROM history WHERE room = '$room' AND start_date = '$startOfPreviousWeek' AND end_date = '$endOfPreviousWeek'";
