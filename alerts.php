@@ -7,19 +7,31 @@ include "base/session_checker.php";?>
     <?php include "base/head_imports.php"; ?>
     <style>
     table {
-        border-collapse: collapse;
-        width: 100%;
+      border-collapse: collapse;
+      width: 100%;
     }
 
     th, td {
-        border: 1px solid #dddddd;
-        text-align: right;
-        padding: 8px;
+      border: 1px solid #ddd;
+      padding: 8px;
     }
 
     th {
-        background-color: #f2f2f2;
-    }
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #76C893;
+  color: white;
+  font-size: 20px;   
+   }
+
+   td{
+    text-align: center;
+    font-size: 15px;
+   }
+
+   table tr:hover {background-color: #ddd;}
+
 </style>
 
 </head>
