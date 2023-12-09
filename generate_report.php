@@ -51,13 +51,13 @@ include "base/session_checker.php";?>
 // Get the current day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
 $currentDayOfWeek = date('w');
 
-// Calculate the start date (Sunday) and end date (Saturday) of the current week
+// Calculate the start date (Sunday) and end date (Thursday) of the current week
 $startOfCurrentWeek = date('Y-m-d', strtotime('-' . $currentDayOfWeek . ' days'));
 $endOfCurrentWeek = date('Y-m-d', strtotime('+' . (6 - $currentDayOfWeek) . ' days'));
 
-// Calculate the start date (Sunday) and end date (Saturday) of the previous week
-$startOfPreviousWeek = date('Y-m-d', strtotime('-7 days', strtotime($startOfCurrentWeek)));
-$endOfPreviousWeek = date('Y-m-d', strtotime('-1 day', strtotime($startOfCurrentWeek)));
+// Calculate the start date (Sunday) and end date (Thursday) of the previous week
+$startOfPreviousWeek = date('Y-m-d', strtotime('-6 days', strtotime($startOfCurrentWeek)));
+$endOfPreviousWeek = date('Y-m-d', strtotime('+3 days', strtotime($startOfPreviousWeek)));
 
     // Check if data for the specified date range already exists in the database
     $existingDataQuery = "SELECT COUNT(*) AS data_count FROM history WHERE room = '$room' AND start_date = '$startOfPreviousWeek' AND end_date = '$endOfPreviousWeek'";
