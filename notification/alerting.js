@@ -39,58 +39,62 @@ function checkForAlerts() {
                     console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
 
-                    if (data.type === 'combined') {
-                        alertHtml = '<li class="dropdown-item">' +
-                            '<h6>جودة الهواء منخفضة ودرجة الحرارة مرتفعة</h6>' +
-                            '<p>التاريخ ' + data.date + '</p>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
-                            '</li>';
+if (data.type === 'combined') {
+    alertHtml = '<tr class="table-alert">' +
+        '<td>' +
+            'جودة الهواء منخفضة ودرجة الحرارة مرتفعة' +
+            '<p>التاريخ ' + data.date + '</p>' +
+            '<p>الوقت ' + modifiedTime + '</p>' +
+            '<p> في الغرفة رقم ' + data.room + '</p>' +
+            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+        '</td>' +
+    '</tr>';
 
-                        notificationMessage = '<h6>درجة الحرارة مرتفعة</h6>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+    notificationMessage = '<h6>درجة الحرارة مرتفعة</h6>' +
+        '<p>الوقت ' + modifiedTime + '</p>' +
+        '<p> في الغرفة رقم ' + data.room + '</p>' +
+        '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
 
-                    } else if (data.type === 'temperature') {
-                        alertHtml = '<li class="dropdown-item">' +
-                            '<h6>درجة الحرارة مرتفعة</h6>' +
-                            '<p>التاريخ ' + data.date + '</p>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
-                            '</li>';
+} else if (data.type === 'temperature') {
+    alertHtml = '<tr class="table-alert">' +
+        '<td>' +
+            'درجة الحرارة مرتفعة' +
+            '<p>التاريخ ' + data.date + '</p>' +
+            '<p>الوقت ' + modifiedTime + '</p>' +
+            '<p> في الغرفة رقم ' + data.room + '</p>' +
+            '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
+            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+        '</td>' +
+    '</tr>';
 
-                        notificationMessage =
-                            '<h6>درجة الحرارة مرتفعة</h6>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>' +
-                            '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+    notificationMessage =
+        '<h6>درجة الحرارة مرتفعة</h6>' +
+        '<p>الوقت ' + modifiedTime + '</p>' +
+        '<p> في الغرفة رقم ' + data.room + '</p>' +
+        '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
 
-                    } else if (data.type === 'air_quality') {
-                        alertHtml = '<li class="dropdown-item">' +
-                            '<h6>جودة الهواء منخفضة</h6>' +
-                            '<p>التاريخ ' + data.date + '</p>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>' +
-                            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
-                            '</li>';
+} else if (data.type === 'air_quality') {
+    alertHtml = '<tr class="table-alert">' +
+        '<td>' +
+            'جودة الهواء منخفضة' +
+            '<p>التاريخ ' + data.date + '</p>' +
+            '<p>الوقت ' + modifiedTime + '</p>' +
+            '<p> في الغرفة رقم ' + data.room + '</p>' +
+            '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
+        '</td>' +
+    '</tr>';
 
-                        notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
-                            '<p>الوقت ' + modifiedTime + '</p>' +
-                            '<p> في الغرفة رقم ' + data.room + '</p>';
-                    }
-
+    notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
+        '<p>الوقت ' + modifiedTime + '</p>' +
+        '<p> في الغرفة رقم ' + data.room + '</p>';
+}
 
 // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
 
-                    $('#alerts-dropdown').append(alertHtml);
+                    $('#alerts-table').append(alertHtml);
                 });
-
             }
         }
     });
