@@ -232,11 +232,11 @@ echo "</table>";
     <div class="rowTwo">
         <?php
         if ($air_quality_affected) {
-            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 7 أيام</p>";
+            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 5 أيام</p>";
             echo "<br>";
             
         } else {
-            echo "<p class ='air'>جودة الهواء <strong class='highlight'>لم تتأثر </strong> خلال 7 أيام</p>";
+            echo "<p class ='air'>جودة الهواء <strong class='highlight'>لم تتأثر </strong> خلال 5 أيام</p>";
             echo "<br>";
             
 
