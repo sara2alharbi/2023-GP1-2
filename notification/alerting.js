@@ -3,6 +3,17 @@ var newNotificationsCount = 0;
 var displayedNotificationIdsTemps = [];
 var displayedNotificationIdsAir = [];
 
+// Save alerts to local storage
+function saveAlertsToStorage(alerts) {
+    localStorage.setItem('alerts', JSON.stringify(alerts));
+}
+
+// Retrieve alerts from local storage
+function getAlertsFromStorage() {
+    const storedAlerts = localStorage.getItem('alerts');
+    return storedAlerts ? JSON.parse(storedAlerts) : [];
+}
+
 function checkForAlerts() {
     $.ajax({
         url: 'notification/get_notifications.php',
@@ -93,16 +104,32 @@ function checkForAlerts() {
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>';
                     }
-                    
+
+                     // Retrieve stored alerts
+                     const storedAlerts = getAlertsFromStorage();
+
                     // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
                     
-                    // Append the new row to the table
-                    $('#alerts-table').append(alertHtml);
+                    storedAlerts.forEach(function (storedAlert) {
+                        $('#alerts-table').append(storedAlert);
+                    });
+                
                 });
             }
         }
     });
+}
+
+
+// Function to append a new alert and save it to local storage
+function appendAlertAndSaveToStorage(alertHtml) {
+    $('#alerts-table').append(alertHtml);
+    
+    // Save updated alerts to local storage
+    const currentAlerts = getAlertsFromStorage();
+    currentAlerts.push(alertHtml);
+    saveAlertsToStorage(currentAlerts);
 }
 
 function removeSecondsFromTime(timeString) {
