@@ -5,7 +5,6 @@ include "base/session_checker.php";?>
 
 <head>
     <?php include "base/head_imports.php"; ?>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +32,7 @@ include "base/session_checker.php";?>
   
     <section class="section dashboard">
       <!-- Add this table to your HTML -->
-<table class="table-alert" id="alerts-table">
+<table>
   <thead>
     <tr>
       <th>الوقت</th>
@@ -41,7 +40,7 @@ include "base/session_checker.php";?>
       <th>الإشعار</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-alert" id="alerts-table">
     <!-- Table rows will be dynamically added here -->
   </tbody>
 </table>
