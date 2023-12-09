@@ -10,6 +10,8 @@ include "base/session_checker.php";?>
     <title>التقرير الإسبوعي</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <!-- Favicons -->
+<link href="assets/img/elmam-logo.png" rel="icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <?php include "base/head_imports.php"; ?>
     <link href="assets/css/report.css" rel="stylesheet">
