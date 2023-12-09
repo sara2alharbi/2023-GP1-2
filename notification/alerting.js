@@ -69,7 +69,7 @@ function checkForAlerts() {
                         room: data.room,
                         notification: message
                     });
-                    
+
                     // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
                     // Append the new row to the table
@@ -81,22 +81,35 @@ function checkForAlerts() {
 }
 
 function storeAlertInDatabase(data) {
-    $.ajax({
-        url: 'notification/store_alert.php',
-        method: 'POST',
-        data: {
-            time: data.time,
-            date: data.date,
-            room: data.room,
-            notification: data.notification
-        },
-        success: function (response) {
-            console.log(response);
-        },
-        error: function (xhr, status, error) {
-            console.error('Error storing alert in the database:', error);
-        }
-    });
+    // Check if an alert with the same time already exists
+    if (!isDuplicateAlert(data.time)) {
+        // If not a duplicate, store the alert in the database
+        $.ajax({
+            url: 'notification/store_alert.php',
+            method: 'POST',
+            data: {
+                time: data.time,
+                date: data.date,
+                room: data.room,
+                notification: data.notification
+            },
+            success: function (response) {
+                console.log(response);
+                // Add the stored time to the array
+                storedAlertTimes.push(data.time);
+            },
+            error: function (xhr, status, error) {
+                console.error('Error storing alert in the database:', error);
+            }
+        });
+    } else {
+        console.log('Duplicate alert found. Skipping storage.');
+    }
+}
+
+function isDuplicateAlert(alertTime) {
+    // Check if the alert time is in the array of stored alert times
+    return storedAlertTimes.includes(alertTime);
 }
 
 function removeSecondsFromTime(timeString) {
