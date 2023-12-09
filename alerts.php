@@ -31,7 +31,6 @@ include "base/session_checker.php";?>
     </div><!-- End Page Title -->
   
     <section class="section dashboard">
-      <!-- Add this table to your HTML -->
 <table>
   <thead>
     <tr>
@@ -40,10 +39,11 @@ include "base/session_checker.php";?>
       <th>الإشعار</th>
     </tr>
   </thead>
-  <tbody class="table-alert" id="alerts-table">
+  <tbody id="alerts-table">
     <!-- Table rows will be dynamically added here -->
   </tbody>
 </table>
+
 
     </section>
 
