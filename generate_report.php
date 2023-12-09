@@ -174,8 +174,6 @@ $currentDayArabic = isset($arabicDays[$currentDay]) ? $arabicDays[$currentDay] :
                 break;
             }
         }
-
-        // Display the report
    
   ?> 
 
@@ -183,7 +181,6 @@ $currentDayArabic = isset($arabicDays[$currentDay]) ? $arabicDays[$currentDay] :
 <div class="firstRow">  
 
    <?php 
-   //line 2
   // Display the averages data as a centered table with a border.................................................      
 
 echo "<table class='table'>";
@@ -198,10 +195,6 @@ echo "</table>";
 
         if ($dataCount == 0) {
             // Data doesn't exist, insert it into the database
-            // Your code to fetch and calculate data (similar to your existing code)
-    
-            // Your code to insert the report data into the database (similar to your existing code)
-    
             try {
                 
                 // Insert the report data into the "history" table, including low and high temperatures
