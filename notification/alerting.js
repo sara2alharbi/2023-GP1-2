@@ -39,73 +39,41 @@ function checkForAlerts() {
                     console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
 
-                    if (data.type === 'combined') {
-                        alertHtml = '<tr class="table-alert">' +
-                            '<td>' +
-                                modifiedTime +
-                                '</td>' +
-                            '<td>' +
-                                data.room +
-                                '</td>' +
-                            '<td>' +
-                                'جودة الهواء منخفضة ودرجة الحرارة مرتفعة' +
-                            '</td>' +
-                        '</tr>';
-                    
+                    if (data.type === 'combined') {                    
                         notificationMessage = '<h6>درجة الحرارة مرتفعة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>' +
                             '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+                        
+                        message = "جودة الهواء منخفضة و درجة الحرارة مرتفعة";
                     
                     } else if (data.type === 'temperature') {
-                        alertHtml = '<tr class="table-alert">' +
-                            '<td>' +
-                                modifiedTime +
-                                '</td>' +
-                            '<td>' +
-                                data.room +
-                                '</td>' +
-                            '<td>' +
-                                'درجة الحرارة مرتفعة' +
-                            '</td>' +
-                        '</tr>';
-                    
                         notificationMessage =
                             '<h6>درجة الحرارة مرتفعة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>' +
                             '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
+                        message = "درجة الحرارة مرتفعة";
+
                     
-                    } else if (data.type === 'air_quality') {
-                        alertHtml = '<tr class="table-alert">' +
-                            '<td>' +
-                                modifiedTime +
-                                '</td>' +
-                            '<td>' +
-                                data.room +
-                                '</td>' +
-                            '<td>' +
-                                'جودة الهواء منخفضة' +
-                            '</td>' +
-                        '</tr>';
-                    
+                    } else if (data.type === 'air_quality') {                    
                         notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>';
+                        message = "جودة الهواء منخفضة";
                     }
-
-                    // Pass the string as the message to the Notify function
-                    Notify(notificationMessage, null, null, 'danger');
 
                     storeAlertInDatabase({
                         time: modifiedTime,
                         date: data.date,
                         room: data.room,
-                        notification: notificationMessage
+                        notification: message
                     });
-
+                    
+                    // Pass the string as the message to the Notify function
+                    Notify(notificationMessage, null, null, 'danger');
                     // Append the new row to the table
-                    $('#alerts-table').append(alertHtml);
+                    //$('#alerts-table').append(alertHtml);
                 });
             }
         }

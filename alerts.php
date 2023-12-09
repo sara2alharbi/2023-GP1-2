@@ -97,6 +97,29 @@ include "base/session_checker.php";
     <?php include "base/js_imports.php"; ?>
     <!-- End JS Files -->
 
+    <script>
+        $.ajax({
+            url: 'notification/fetch_alerts.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function (alerts) {
+                var alertsTable = $('#alerts-table');
+                alertsTable.empty(); // Clear existing rows
+
+                alerts.forEach(function (alert) {
+                    var row = '<tr>' +
+                        '<td>' + alert.time + '</td>' +
+                        '<td>' + alert.room + '</td>' +
+                        '<td>' + alert.notification + '</td>' +
+                        '</tr>';
+                    alertsTable.append(row);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching alerts from the database:', error);
+            }
+        });
+    </script>
 
 </body>
 
