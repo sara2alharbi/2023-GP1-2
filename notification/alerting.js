@@ -49,7 +49,6 @@ function checkForAlerts() {
                                 '</td>' +
                             '<td>' +
                                 'جودة الهواء منخفضة ودرجة الحرارة مرتفعة' +
-                                '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
                             '</td>' +
                         '</tr>';
                     
@@ -68,7 +67,6 @@ function checkForAlerts() {
                                 '</td>' +
                             '<td>' +
                                 'درجة الحرارة مرتفعة' +
-                                '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
                             '</td>' +
                         '</tr>';
                     
