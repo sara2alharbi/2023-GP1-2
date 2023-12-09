@@ -12,16 +12,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $room = $_POST["room"];
     $notification = $_POST["notification"];
 
-    $stmt = $mysqli->prepare("INSERT INTO alerts (time, date, room, notification) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $time, $date, $room, $notification);
+    // Check if an alert with the same time and date already exists
+    $checkStmt = $mysqli->prepare("SELECT COUNT(*) FROM alerts WHERE time = ? AND date = ?");
+    $checkStmt->bind_param("ss", $time, $date);
+    $checkStmt->execute();
+    $checkStmt->bind_result($count);
+    $checkStmt->fetch();
+    $checkStmt->close();
 
-    if ($stmt->execute()) {
-        echo "Alert stored successfully.";
+    if ($count > 0) {
+        echo "Alert with the same time and date already exists. Not storing duplicate.";
     } else {
-        echo "Error storing alert: " . $stmt->error;
-    }
+        // If no alert with the same time and date, insert the new alert
+        $insertStmt = $mysqli->prepare("INSERT INTO alerts (time, date, room, notification) VALUES (?, ?, ?, ?)");
+        $insertStmt->bind_param("ssss", $time, $date, $room, $notification);
 
-    $stmt->close();
+        if ($insertStmt->execute()) {
+            echo "Alert stored successfully.";
+        } else {
+            echo "Error storing alert: " . $insertStmt->error;
+        }
+
+        $insertStmt->close();
+    }
 }
 
 $mysqli->close();
