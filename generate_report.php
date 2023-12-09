@@ -1,6 +1,6 @@
 <?php
 include "base/session_checker.php";?>
-?>
+
 
 <!DOCTYPE html>
 <html lang="ar">
