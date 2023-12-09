@@ -118,7 +118,6 @@
     </div><!-- End Page Title -->
     <section class="section dashboard">
         <div class="row">
-            <!-- Recent Sales -->
             <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">

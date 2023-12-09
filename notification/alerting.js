@@ -49,9 +49,7 @@ function checkForAlerts() {
                                 '</td>' +
                             '<td>' +
                                 'جودة الهواء منخفضة ودرجة الحرارة مرتفعة' +
-                                '<p>التاريخ ' + data.date + '</p>' +
                                 '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                                '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</td>' +
                         '</tr>';
                     
@@ -70,9 +68,7 @@ function checkForAlerts() {
                                 '</td>' +
                             '<td>' +
                                 'درجة الحرارة مرتفعة' +
-                                '<p>التاريخ ' + data.date + '</p>' +
                                 '<p> درجة الحرارة ' + data.temperature + ' °C</p>' +
-                                '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</td>' +
                         '</tr>';
                     
@@ -92,8 +88,6 @@ function checkForAlerts() {
                                 '</td>' +
                             '<td>' +
                                 'جودة الهواء منخفضة' +
-                                '<p>التاريخ ' + data.date + '</p>' +
-                                '<button class="remove-btn" data-id="' + data.temperature_id + '" data-air="' + data.air_id + '" data-type="' + data.type + '" onclick="removeNotification(this)">حذف</button>' +
                             '</td>' +
                         '</tr>';
                     

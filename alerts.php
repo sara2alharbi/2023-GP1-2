@@ -31,7 +31,11 @@ include "base/session_checker.php";?>
     </div><!-- End Page Title -->
   
     <section class="section dashboard">
-<table>
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <table>
   <thead>
     <tr>
       <th>الوقت</th>
@@ -42,9 +46,9 @@ include "base/session_checker.php";?>
   <tbody id="alerts-table">
     <!-- Table rows will be dynamically added here -->
   </tbody>
-</table>
-
-
+</table>      
+        </div><!-- End Recent Sales -->
+        </div><!-- End Right side columns -->
     </section>
 
 </main><!-- End Main -->
