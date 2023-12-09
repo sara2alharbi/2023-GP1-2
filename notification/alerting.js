@@ -2,6 +2,8 @@
 var newNotificationsCount = 0;
 var displayedNotificationIdsTemps = [];
 var displayedNotificationIdsAir = [];
+var storedAlertTimes = []; // Array to track stored alert times
+
 
 function checkForAlerts() {
     $.ajax({
