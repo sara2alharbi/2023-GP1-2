@@ -1,5 +1,9 @@
-
+// Function to check for new sensor data and display alerts
+var newNotificationsCount = 0;
+var displayedNotificationIdsTemps = [];
+var displayedNotificationIdsAir = [];
 var storedAlertTimes = []; // Array to track stored alert times
+
 
 function checkForAlerts() {
     $.ajax({
@@ -11,6 +15,28 @@ function checkForAlerts() {
                 return;
             } else {
                 items.forEach(function (data) {
+
+                    if (data.type === "temperature") {
+                        if (displayedNotificationIdsTemps.includes(data.temperature_id)) {
+                            return; // Skip if already displayed
+                        }
+                        displayedNotificationIdsTemps.push(data.temperature_id);
+                    } else {
+                        if (displayedNotificationIdsAir.includes(data.air_id)) {
+                            return; // Skip if already displayed
+                        }
+                        displayedNotificationIdsAir.push(data.air_id);
+                    }
+                    // Increment the notification count
+                    newNotificationsCount++;
+
+
+                    // Update the notification count
+                    $('#notification-count').text(newNotificationsCount);
+                    $('#notification-count').show();
+
+                    // Append the new notification to the dropdown list
+                    var alertHtml = '';
                     var notificationMessage = '';
                     console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
@@ -48,6 +74,8 @@ function checkForAlerts() {
 
                     // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
+                    // Append the new row to the table
+                    //$('#alerts-table').append(alertHtml);
                 });
             }
         }
@@ -104,8 +132,10 @@ function removeSecondsFromTime(timeString) {
 }
 
 
+
+
 // Initialize by checking for alerts immediately
 checkForAlerts();
 
-// Periodically check for alerts (every 5 minutes in this example)
-setInterval(checkForAlerts, 300000); // 300,000 milliseconds = 5 minutes
+// Periodically check for alerts (every 10 seconds in this example)
+setInterval(checkForAlerts, 300000); // 10,000 milliseconds = 10 seconds
