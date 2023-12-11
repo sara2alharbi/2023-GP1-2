@@ -1,12 +1,10 @@
-
 var storedAlertTimes = []; // Array to track stored alert times
-
 
 function checkForAlerts() {
     $.ajax({
         url: 'notification/get_notifications.php',
         method: 'GET',
-        dataType: 'json', // Expect JSON response
+        dataType: 'json',
         success: function (items) {
             if (Object.keys(items).length === 0) {
                 return;
@@ -16,40 +14,39 @@ function checkForAlerts() {
                     console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
 
-                    if (data.type === 'combined') {                    
+                    if (data.type === 'combined') {
                         notificationMessage = '<h6>جودة الهواء منخفضة و درجة الحرارة مرتفعة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>' +
                             '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
-                        
-                        message = "جودة الهواء منخفضة و درجة الحرارة مرتفعة";
-                    
                     } else if (data.type === 'temperature') {
                         notificationMessage =
                             '<h6>درجة الحرارة مرتفعة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>' +
                             '<p> درجة الحرارة ' + data.temperature + ' °C</p>';
-                        message = "درجة الحرارة مرتفعة";
-
-                    
-                    } else if (data.type === 'air_quality') {                    
+                    } else if (data.type === 'air_quality') {
                         notificationMessage = '<h6>جودة الهواء منخفضة</h6>' +
                             '<p>الوقت ' + modifiedTime + '</p>' +
                             '<p> في الغرفة رقم ' + data.room + '</p>';
-                        message = "جودة الهواء منخفضة";
                     }
 
                     storeAlertInDatabase({
                         time: modifiedTime,
                         date: data.date,
                         room: data.room,
-                        notification: message
+                        notification: notificationMessage
                     });
 
-                    // Pass the string as the message to the Notify function
-                    Notify(notificationMessage, null, null, 'danger');
+                    // Check if the user has navigated between pages
+                    if (!sessionStorage.getItem('pageNavigated')) {
+                        // Pass the string as the message to the Notify function
+                        Notify(notificationMessage, null, null, 'danger');
+                    }
                 });
+
+                // Set sessionStorage to indicate that the user has not navigated between pages
+                sessionStorage.setItem('pageNavigated', false);
             }
         }
     });
@@ -104,9 +101,14 @@ function removeSecondsFromTime(timeString) {
     return newTime;
 }
 
-
 // Initialize by checking for alerts immediately
 checkForAlerts();
 
 // Periodically check for alerts (every 5 minutes in this example)
 setInterval(checkForAlerts, 300000); // 300,000 milliseconds = 5 minutes
+
+// Event listener for page navigation
+$(window).on('beforeunload', function () {
+    // Set sessionStorage to indicate that the user has navigated between pages
+    sessionStorage.setItem('pageNavigated', true);
+});
