@@ -14,8 +14,6 @@ date_default_timezone_set('Asia/Riyadh');
 $currentMinute = date('i');
 
 // Get temperature data
-$idList = implode(',', $temperatureIds);
-$airIdList = implode(',', $airIds);
 $currentDate = (string) date('Y-m-d');
 $currentTime = (string) date('H:i:s');
 
@@ -24,7 +22,6 @@ $windowEnd = $currentTime;
 
 $queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate'
                             AND temperature > 25
-                            AND id NOT IN ($idList)
                             AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 $resultTemperature = $mysqli->query($queryTemperature);
 
@@ -78,7 +75,6 @@ $all_alerts['temperature_alerts'] = $temperature_alerts;
 
 $queryAirQuality = "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
                             AND airquality = 0 
-                            AND id NOT IN ($airIdList)
                             AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 
 $resultAirQuality = $mysqli->query($queryAirQuality);
@@ -172,7 +168,6 @@ foreach ($all_alerts['temperature_alerts'] as $entry) {
     }
 }
 
-$IdList = implode(',', $temperatureToDelete);
 
 $queryDelete = "DELETE FROM temperature WHERE id IN ($IdList)";
 $mysqli->query($queryDelete);
@@ -192,7 +187,6 @@ foreach ($all_alerts['air_alerts'] as $entry) {
     }
 }
 
-$IdList = implode(',', $airToDelete);
 
 $queryDelete = "DELETE FROM airquality WHERE id IN ($IdList)";
 $mysqli->query($queryDelete);
