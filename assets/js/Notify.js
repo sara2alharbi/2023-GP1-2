@@ -44,21 +44,6 @@ Notify = function(text, callback, close_callback, style) {
 
 }
 
-// Function to fetch and display notifications
-function fetchNotifications() {
-    $.ajax({
-        url: 'notification/get_notifications.php', 
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            displayNotifications(data);
-        },
-        error: function (error) {
-            console.error('Error fetching notifications:', error);
-        }
-    });
-}
-
 // Function to display notifications
 function displayNotifications(notifications) {
     // Clear existing notifications
@@ -90,10 +75,7 @@ function clearNotifications() {
     $('#notifications').empty();
 }
 
-// Fetch and display notifications when the page loads
-$(document).ready(function () {
-    fetchNotifications();
-});
+
 
 
 // Clear notifications when navigating to a new page

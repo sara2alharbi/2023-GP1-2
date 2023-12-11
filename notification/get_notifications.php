@@ -7,32 +7,13 @@ if ($mysqli->connect_error) {
 
 session_start();
 $user_email = $_SESSION['email'];
-$query = "SELECT * FROM alerts WHERE user_email = ?";
-$stmt = $mysqli->prepare($query);
-$stmt->bind_param("s", $user_email);
-
-if ($stmt->execute()) {
-    $result = $stmt->get_result();
-    $temperatureIds = array();
-    $airIds = array();
-    $temperatureIds[] = 0;
-    $airIds[] = 0;
-    while ($row = $result->fetch_assoc()) {
-        $temperatureIds[] = $row['temperature_id'];
-        $airIds[] = $row['airquality_id'];
-    }
-
-    $stmt->close();
-}
 
 date_default_timezone_set('Asia/Riyadh');
 
 // Calculate the current minute
 $currentMinute = date('i');
 
-// Get temperature data
-$idList = implode(',', $temperatureIds);
-$airIdList = implode(',', $airIds);
+
 $currentDate = (string) date('Y-m-d');
 $currentTime = (string) date('H:i:s');
 
@@ -41,7 +22,6 @@ $windowEnd = $currentTime;
 
 $queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate'
                             AND temperature > 25
-                            AND id NOT IN ($idList)
                             AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 $resultTemperature = $mysqli->query($queryTemperature);
 
@@ -95,7 +75,6 @@ $all_alerts['temperature_alerts'] = $temperature_alerts;
 
 $queryAirQuality = "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
                             AND airquality = 0 
-                            AND id NOT IN ($airIdList)
                             AND Time_Today BETWEEN '$windowStart' AND '$windowEnd'";
 
 $resultAirQuality = $mysqli->query($queryAirQuality);
@@ -189,10 +168,8 @@ foreach ($all_alerts['temperature_alerts'] as $entry) {
     }
 }
 
-$IdList = implode(',', $temperatureToDelete);
 
-$queryDelete = "DELETE FROM temperature WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
+
 $all_alerts['temperature_alerts'] = $result;
 
 $result = [];
@@ -209,10 +186,7 @@ foreach ($all_alerts['air_alerts'] as $entry) {
     }
 }
 
-$IdList = implode(',', $airToDelete);
 
-$queryDelete = "DELETE FROM airquality WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
 
 $all_alerts['air_alerts'] = $result;
 
