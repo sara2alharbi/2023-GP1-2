@@ -185,13 +185,7 @@ include "base/session_checker.php";?>
                             <input type="radio" class="form-check-input" name="type" value="بحث"> قاعة بحث
                         </label>
                     </div>
-
-                    <div class="form-check-inline">
-                        <label class="form-check-label">
-                            <input type="radio" class="form-check-input" name="type" value="مدرج"> مدرج
-                        </label>
-                    </div>
-
+                    
                     <div class="form-check-inline">
                         <label class="form-check-label">
                             <input type="radio" id="show-second-form" class="form-check-input" name="type"
