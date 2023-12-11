@@ -27,13 +27,6 @@ function checkForAlerts() {
                         }
                         displayedNotificationIdsAir.push(data.air_id);
                     }
-                    // Increment the notification count
-                    newNotificationsCount++;
-
-
-                    // Update the notification count
-                    $('#notification-count').text(newNotificationsCount);
-                    $('#notification-count').show();
 
                     // Append the new notification to the dropdown list
                     var alertHtml = '';
@@ -74,8 +67,6 @@ function checkForAlerts() {
 
                     // Pass the string as the message to the Notify function
                     Notify(notificationMessage, null, null, 'danger');
-                    // Append the new row to the table
-                    //$('#alerts-table').append(alertHtml);
                 });
             }
         }
@@ -131,11 +122,8 @@ function removeSecondsFromTime(timeString) {
     return newTime;
 }
 
-
-
-
 // Initialize by checking for alerts immediately
 checkForAlerts();
 
 // Periodically check for alerts (every 10 seconds in this example)
-setInterval(checkForAlerts, 300000); // 10,000 milliseconds = 10 seconds
+setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
