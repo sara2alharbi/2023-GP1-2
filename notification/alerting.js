@@ -108,5 +108,5 @@ function removeSecondsFromTime(timeString) {
 // Initialize by checking for alerts immediately
 checkForAlerts();
 
-// Periodically check for alerts (every 10 seconds in this example)
-setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
+// Periodically check for alerts (every 5 minutes in this example)
+setInterval(checkForAlerts, 300000); // 300,000 milliseconds = 5 minutes
