@@ -169,8 +169,7 @@ foreach ($all_alerts['temperature_alerts'] as $entry) {
 }
 
 
-$queryDelete = "DELETE FROM temperature WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
+
 $all_alerts['temperature_alerts'] = $result;
 
 $result = [];
@@ -188,8 +187,6 @@ foreach ($all_alerts['air_alerts'] as $entry) {
 }
 
 
-$queryDelete = "DELETE FROM airquality WHERE id IN ($IdList)";
-$mysqli->query($queryDelete);
 
 $all_alerts['air_alerts'] = $result;
 
