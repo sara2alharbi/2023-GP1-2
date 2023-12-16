@@ -227,7 +227,7 @@ echo "</table>";
     <div class="rowTwo">
         <?php
         if ($air_quality_affected) {
-            echo "<p class ='air'>🌫️جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 5 أيام</p>";
+            echo "<p class ='air'>🌫جودة الهواء <strong class='highlight'> تأثرت </strong>خلال 5 أيام</p>";
             echo "<br>";
             
         } else {
@@ -241,8 +241,7 @@ echo "</table>";
     }
     
 
-    // Close the database connection
-    $conn->close();
+ 
 
 ?>
     </div>
@@ -297,7 +296,6 @@ echo "</table>";
 
 if (isset($_POST['room'])) {
     $roomNum = $_POST['room'];
-
     // Select all lectures in this room
     $numLec_query = "SELECT courseCo, section, day, startTime, endTime FROM lecture WHERE roomNo = '$roomNum'";
     $result_query = $conn->query($numLec_query);
@@ -367,53 +365,52 @@ if (isset($_POST['room'])) {
                 }}
                 }
             }
-        
+}}
 
         // Close the table after all rows are printed
         echo "</table>";
 
-        // Display count of lectures above average noise level
         echo "<p>النسبة: <strong>$trueLec</strong> من أصل <strong>$num_rows</strong></p>";
-    }
-}
+?>  <!-- This might be the cause of the error, remove this line -->
 
-?>
     <br><br>
-    <button  class="btn btn-primary ourBtn" onclick="downloadImage()">تحميل التقرير</button>
-    </div>
+    <button class="btn btn-primary ourBtn" onclick="downloadImage()">تحميل التقرير</button>
+</div>
 
-    <script>
-function downloadImage() {
-    // Hide the download button temporarily
-    var downloadButton = document.querySelector('button');
-    downloadButton.style.display = 'none';
+<script>
+    function downloadImage() {
+        // Hide the download button temporarily
+        var downloadButton = document.querySelector('button');
+        downloadButton.style.display = 'none';
 
-    // Specify the element to capture (excluding the button)
-    var elementToCapture = document.getElementById('report-container');
+        // Specify the element to capture (excluding the button)
+        var elementToCapture = document.getElementById('report-container');
 
-    // Use html2canvas to capture the specified element as an image
-    html2canvas(elementToCapture).then(function (canvas) {
-        // Convert the canvas to a data URL
-        var imageData = canvas.toDataURL("image/png");
+        // Use html2canvas to capture the specified element as an image
+        html2canvas(elementToCapture).then(function (canvas) {
+            // Convert the canvas to a data URL
+            var imageData = canvas.toDataURL("image/png");
 
-        // Create a temporary link element
-        var link = document.createElement('a');
-        link.href = imageData;
-        link.download = 'التقرير الإسبوعي.png'; // Set the desired file name
+            // Create a temporary link element
+            var link = document.createElement('a');
+            link.href = imageData;
+            link.download = 'التقرير الإسبوعي.png'; // Set the desired file name
 
-        // Append the link to the document and trigger the download
-        document.body.appendChild(link);
-        link.click();
+            // Append the link to the document and trigger the download
+            document.body.appendChild(link);
+            link.click();
 
-        // Remove the link from the document
-        document.body.removeChild(link);
+            // Remove the link from the document
+            document.body.removeChild(link);
 
-        // Show the download button again
-        downloadButton.style.display = 'block';
-    });
-}
-
-    </script>
+            // Show the download button again
+            downloadButton.style.display = 'block';
+        });
+    }
+</script>
 
 </body>
 </html>
+<?php  
+    $conn->close(); 
+?>
