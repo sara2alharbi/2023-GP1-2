@@ -411,6 +411,3 @@ if (isset($_POST['room'])) {
 
 </body>
 </html>
-<?php  
-    $conn->close(); 
-?>
