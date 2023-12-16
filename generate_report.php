@@ -291,6 +291,93 @@ echo "</table>";
 
 </script>
 
+<h5 > نسبة إقامة المحاضرات في وقتها  المحجوز بحسب الضوضاء</h5>
+  
+<?php
+
+if (isset($_POST['room'])) {
+    $roomNum = $_POST['room'];
+
+    // Select all lectures in this room
+    $numLec_query = "SELECT courseCo, section, day, startTime, endTime FROM lecture WHERE roomNo = '$roomNum'";
+    $result_query = $conn->query($numLec_query);
+    $num_rows = mysqli_num_rows($result_query);
+
+    $trueLec = 0; // Initialize count of lectures above average noise level
+
+    if ($result_query->num_rows > 0) {
+        // Display table header
+        echo "<table class='table'>";
+        echo "<tr><th>رقم المقرر</th><th>الشعبة</th><th>اليوم</th><th>بداية المحاضرة</th><th>نهاية المحاضرة</th></tr>";
+
+        while ($outerRow = $result_query->fetch_assoc()) {
+            $course = $outerRow['courseCo'];
+            $section = $outerRow['section'];
+            $day = $outerRow['day'];
+            $startTime = $outerRow['startTime'];
+            $endTime = $outerRow['endTime'];
+            $noiseLevel = 0;
+            $count = 0;
+
+            // Select lecture's info in this room
+            $Lec_query = "SELECT noise, Date_today, Time_today FROM noise WHERE microID = '$microID'";
+            $result2_query = $conn->query($Lec_query);
+
+            if ($result2_query->num_rows > 0) {
+                $result2_data = [];
+
+                while ($innerRow = $result2_query->fetch_assoc()) {
+                    $result2_data[] = $innerRow;
+                }
+
+                foreach ($result2_data as $innerRow) {
+                    $noise = $innerRow['noise'];
+                    $Date_today = $innerRow['Date_today'];
+                    $Time_today = $innerRow['Time_today'];
+                    $dayOfWeek = date('l', strtotime($Date_today));
+                    $startTimeStamp = strtotime($startTime);
+                    $endTimeStamp = strtotime($endTime);
+                    $Time_todayStamp = strtotime($Time_today);
+
+                    if ($day == $dayOfWeek && $Time_todayStamp >= $startTimeStamp && $Time_todayStamp <= $endTimeStamp) {
+                        $noiseLevel += $noise;
+                        $count++;
+                    }
+                }
+
+                if ($count > 0) {
+                    $avg = $noiseLevel / $count;
+                    if ($avg < 20) {
+                        // Print each lecture meeting the condition within the table
+                        $daysMapping = array(
+                         'Saturday' => 'السبت',
+                         'Sunday' => 'الأحد',
+                         'Monday' => 'الاثنين',
+                          'Tuesday' => 'الثلاثاء',
+                          'Wednesday' => 'الأربعاء',
+                          'Thursday' => 'الخميس',
+                           'Friday' => 'الجمعة'
+                               );                          
+                                  
+                                 if (isset($daysMapping[$day])) {
+                                 $arabicDay = $daysMapping[$day]; }
+                        echo "<tr><td>$course</td><td>$section</td><td>$arabicDay</td><td>$startTime</td><td>$endTime</td></tr>";
+                    } else {
+                        $trueLec++; // Increment count for lectures above average noise level
+                }}
+                }
+            }
+        
+
+        // Close the table after all rows are printed
+        echo "</table>";
+
+        // Display count of lectures above average noise level
+        echo "<p>النسبة: <strong>$trueLec</strong> من أصل <strong>$num_rows</strong></p>";
+    }
+}
+
+?>
     <br><br>
     <button  class="btn btn-primary ourBtn" onclick="downloadImage()">تحميل التقرير</button>
     </div>
