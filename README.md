@@ -17,7 +17,7 @@
 ###### to be able to use the web portal you can follow the instruction
 
 ### web portal 
-#### using the code
+#### using the code in localhost
 ###### you should have:
 * Visual studio code
 * Live server
@@ -29,3 +29,14 @@
 * Open MySql
 * Import the database
 * Run the code
+
+### you can use the system using this link:
+* https://elmamsystem.com
+
+### for login credentials use:
+* email : admin1@gmail.com 
+* password : admin12345
+
+### Github link:
+* https://github.com/sara2alharbi/2023-GP1-2/tree/master
+
