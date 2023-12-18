@@ -291,7 +291,7 @@ echo "</table>";
 </script>
 <br><br><br>
 
-<h5 > نسبة إقامة المحاضرات في وقتها  المحجوز بحسب الضوضاء</h5>
+<h5 > المحاضرات التي لم تقام في وقتها</h5>
   <br>
   
 <?php
@@ -372,7 +372,7 @@ if (isset($_POST['room'])) {
         // Close the table after all rows are printed
         echo "</table>";
 
-        echo "<p>النسبة: <strong>$trueLec</strong> من أصل <strong>$num_rows</strong></p>";
+        echo "<p>نسبة إقامة المحاضرات في وقتها  المحجوز بحسب الضوضاء:<strong>$trueLec</strong> من أصل <strong>$num_rows</strong></p>";
 ?>  <!-- This might be the cause of the error, remove this line -->
 
     <br><br>
