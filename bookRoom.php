@@ -259,7 +259,7 @@ include "base/session_checker.php";?>
 
             <div class="col-md-6">
                 <input type="time" id="InputStartTime2" name="InputStartTime2" class="timePicker form-control"
-                       placeholder="وقت نهاية المحاضرة">
+                       placeholder="وقت بداية المحاضرة">
 
             </div>
             <div class="col-md-6">
