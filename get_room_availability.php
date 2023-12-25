@@ -62,13 +62,14 @@ foreach ($roomAvailability as $room => $status) {
     }
 
 
+    if (mysqli_num_rows($resultNoise) > 0) {
         $row = mysqli_fetch_assoc($resultNoise);
         $noiseLevel = $row['noise'];
 
         // Check if the noise level is above 25
         $availabilityStatus = ($noiseLevel > 25) ? "غير متاحة" : "متاحة";
-    
+    }
 
-    echo "<tr><td>$room</td><td>$status</td><td>$availabilityStatus</td></tr>";
+    echo "<tr><td>$room</td><td>$status</td><td>$$noiseLevel</td></tr>";
 }
 ?>
