@@ -47,6 +47,9 @@ if (mysqli_num_rows($resultG35) > 0) {
     $roomAvailability["G35"] = "محجوزة";
 }
 
+date_default_timezone_set('Asia/Riyadh');
+$current_date = date("Y-m-d");
+
 // Check noise data and update room availability
 foreach ($roomAvailability as $room => $status) {
     $microId = ($room == "G9") ? "ESP12F" : "ESP12E";
