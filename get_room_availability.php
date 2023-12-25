@@ -1,5 +1,6 @@
 <?php
 include 'DB.php';
+
 date_default_timezone_set('Asia/Riyadh');
 
 // Get the current time and day
@@ -52,6 +53,7 @@ foreach ($roomAvailability as $room => $status) {
 
     $sqlNoise = "SELECT * FROM noise
                  WHERE MicroID = '$microId'
+                 AND Date_today = '$current_date'
                  ORDER BY Time_today DESC
                  LIMIT 1";
 
@@ -61,15 +63,15 @@ foreach ($roomAvailability as $room => $status) {
         die("Query failed: " . mysqli_error($conn));
     }
 
-
     if (mysqli_num_rows($resultNoise) > 0) {
-        $row = mysqli_fetch_assoc($resultNoise);
+    while ($row = mysqli_fetch_assoc($resultNoise)) {
         $noiseLevel = $row['noise'];
 
         // Check if the noise level is above 25
         $availabilityStatus = ($noiseLevel > 25) ? "غير متاحة" : "متاحة";
     }
+    }
 
-    echo "<tr><td>$room</td><td>$status</td><td>$$noiseLevel</td></tr>";
+    echo "<tr><td>$room</td><td>$status</td><td>$availabilityStatus</td></tr>";
 }
 ?>
