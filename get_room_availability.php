@@ -65,7 +65,7 @@ foreach ($roomAvailability as $room => $status) {
     if (!$resultNoise) {
         die("Query failed: " . mysqli_error($conn));
     }
-
+    $availabilityStatus = 'متاحة';
     if (mysqli_num_rows($resultNoise) > 0) {
     while ($row = mysqli_fetch_assoc($resultNoise)) {
         $noiseLevel = $row['noise'];
