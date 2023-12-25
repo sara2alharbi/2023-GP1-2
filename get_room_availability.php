@@ -1,5 +1,5 @@
 <?php
-
+include 'DB.php';
 date_default_timezone_set('Asia/Riyadh');
 
 // Get the current time and day
@@ -61,7 +61,6 @@ foreach ($roomAvailability as $room => $status) {
         die("Query failed: " . mysqli_error($conn));
     }
 
-   
 
     if (mysqli_num_rows($resultNoise) > 0) {
         $row = mysqli_fetch_assoc($resultNoise);
