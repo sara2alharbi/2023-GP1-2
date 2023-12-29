@@ -1,5 +1,4 @@
 // Function to check for new sensor data and display alerts
-var newNotificationsCount = 0;
 var displayedNotificationIdsTemps = [];
 var displayedNotificationIdsAir = [];
 var storedAlertTimes = []; // Array to track stored alert times
@@ -126,4 +125,4 @@ function removeSecondsFromTime(timeString) {
 checkForAlerts();
 
 // Periodically check for alerts (every 10 seconds in this example)
-setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
+//setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds

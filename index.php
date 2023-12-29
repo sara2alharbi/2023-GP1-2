@@ -34,14 +34,14 @@ include "base/session_checker.php";?>
       <div class="row">
 
 
-            <!-- Recent Sales -->
+            <!--name-->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                     <h1 class="card-title" style="font-size: 230%;"> مرحبًا بِك <?php echo $userName; ?><span style="font-size: 70%;"> | في إلمام</span></h1>                   
                 </div>
               </div>
-            </div><!-- End Recent Sales -->
+            </div><!--End name-->
                                 <!-- building-info Card -->
                                 <div class="col-lg-4">
               <div class="card info-card sales-card">
@@ -144,13 +144,12 @@ var myPieChart = new Chart(ctx, {
                 labels: labels,
                 datasets: [{
                     data: data,
-                    backgroundColor: ['#caf0f8', '#00b4d8'], // Customize the colors of each segment
+                    backgroundColor: ['#caf0f8', '#00b4d8'], 
                 }]
             }
         });
 </script>
 <script>
-// Replace 'YOUR_API_KEY' with your actual API key
 const apiKey = 'ebeaf8cebc55cdfbb9f2ec96e8146f73';
 const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Riyadh&appid=${apiKey}&units=metric`;
 const airQualityApiUrl = `https://api.openweathermap.org/data/2.5/air_pollution?lat=24.7136&lon=46.6753&appid=${apiKey}`;

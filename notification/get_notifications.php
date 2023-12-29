@@ -6,19 +6,17 @@ if ($mysqli->connect_error) {
 }
 session_start();
 $user_email = $_SESSION['email'];
-
+//*************************************************************************************************** */
 
 date_default_timezone_set('Asia/Riyadh');
-
 // Calculate the current minute
 $currentMinute = date('i');
-
-
 $currentDate = (string) date('Y-m-d');
 $currentTime = (string) date('H:i:s');
-
 $windowStart = date('H:i:s', strtotime("$currentTime -60 minutes"));
 $windowEnd = $currentTime;
+
+//*************************************************************************************************** */
 
 $queryTemperature = "SELECT * FROM temperature WHERE Date_today = '$currentDate'
                             AND temperature > 25
@@ -75,6 +73,9 @@ foreach ($temperature_alerts as $row) {
 $temperature_alerts = $selectedData;
 $all_alerts['temperature_alerts'] = $temperature_alerts;
 
+
+//*************************************************************************************************** */
+
 $queryAirQuality =
     "SELECT * FROM airquality WHERE Date_today = '$currentDate' 
                            AND airquality = 0 
@@ -124,7 +125,8 @@ foreach ($air_alerts as $row) {
     }
 }
 $air_alerts = $selectedData;
-
+//*************************************************************************************************** */
+// check the mixed alerts
 foreach ($temperature_alerts as $tempAlert) {
     $tempTime = $tempAlert['time'];
     $time = strtotime($tempTime);
@@ -209,6 +211,7 @@ $all_alerts['air_alerts'] = $result;
 
 $result = [];
 $lastTimestamp = null;
+//*************************************************************************************************** */
 
 foreach ($all_alerts['mix'] as $entry) {
     $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
