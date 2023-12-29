@@ -307,7 +307,7 @@ if (isset($_POST['room'])) {
 
     if ($result_query->num_rows > 0) {
         // Display table header
-        echo "<table class='table' style='display: flex; justify-content: center;'>";
+        echo "<table class='table' style='display: flex; justify-content: center; align-items: center;'>";
         echo "<tr><th>رقم المقرر</th><th>الشعبة</th><th>اليوم</th><th>بداية المحاضرة</th><th>نهاية المحاضرة</th></tr>";
 
         while ($outerRow = $result_query->fetch_assoc()) {
