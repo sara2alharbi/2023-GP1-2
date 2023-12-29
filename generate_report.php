@@ -238,7 +238,7 @@ echo "</table>";
         }
         echo '<p class="chat_title">متوسط درجة الحرارة لكل  يوم</p>';
         echo "<hr>";
-    }
+    
     
 
  
@@ -373,6 +373,7 @@ if (isset($_POST['room'])) {
         echo "</table>";
 
         echo "<p>نسبة إقامة المحاضرات في وقتها  المحجوز بحسب الضوضاء:<strong>$trueLec</strong> من أصل <strong>$num_rows</strong></p>";
+}
 ?>  <!-- This might be the cause of the error, remove this line -->
 
     <br><br>
