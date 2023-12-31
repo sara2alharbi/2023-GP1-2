@@ -58,6 +58,7 @@ $temperatureToDelete[] = 0;
 $selectedData = []; // Array to store the selected data
 $lastMinute = null; // Variable to track the last selected minute
 
+//removes duplicates within the same minute, and organizes it into an array.
 foreach ($temperature_alerts as $row) {
     $timeParts = explode(":", $row["time"]);
     $minute = isset($timeParts[1]) ? (int)$timeParts[1] : null;
@@ -113,6 +114,7 @@ $airToDelete[] = 0;
 $selectedData = []; // Array to store the selected data
 $lastMinute = null; // Variable to track the last selected minute
 
+//removes duplicates within the same minute, and organizes it into an array.
 foreach ($air_alerts as $row) {
     $timeParts = explode(":", $row["time"]);
     $minute = isset($timeParts[1]) ? (int)$timeParts[1] : null;
@@ -151,7 +153,7 @@ foreach ($temperature_alerts as $tempAlert) {
                 return;
             }
             $airAlert['type'] = 'combined';
-            $airAlert['temperature_id'] = $tempAlert['temperature_id'];
+            $airAlert['temperature_id'] = $tempAlert['temperature_id']; //same id
             $airAlert['temperature'] = $tempAlert['temperature'];
             $mix_alerts[] = $airAlert;
             unset($air_alerts[$key]);
@@ -177,6 +179,7 @@ $all_alerts['air_alerts'] = $remainingAirAlerts;
 $result = [];
 $lastTimestamp = null;
 
+//filters out alerts that are within a 5-minute interval
 foreach ($all_alerts['temperature_alerts'] as $entry) {
     $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
 
@@ -211,7 +214,6 @@ $all_alerts['air_alerts'] = $result;
 
 $result = [];
 $lastTimestamp = null;
-//*************************************************************************************************** */
 
 foreach ($all_alerts['mix'] as $entry) {
     $currentTimestamp = strtotime($entry['date'] . ' ' . $entry['time']);
@@ -222,6 +224,7 @@ foreach ($all_alerts['mix'] as $entry) {
     }
 }
 $all_alerts['mix'] = $result;
+//*************************************************************************************************** */
 
 $individualAlerts = [];
 

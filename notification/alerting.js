@@ -28,9 +28,8 @@ function checkForAlerts() {
                     }
 
                     // Append the new notification to the dropdown list
-                    var alertHtml = '';
                     var notificationMessage = '';
-                    console.log('General air Id' + data.air_id);
+                    //console.log('General air Id' + data.air_id);
                     const modifiedTime = removeSecondsFromTime(data.time);
 
                     if (data.type === 'combined') {                    
@@ -125,4 +124,4 @@ function removeSecondsFromTime(timeString) {
 checkForAlerts();
 
 // Periodically check for alerts (every 10 seconds in this example)
-//setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
+setInterval(checkForAlerts, 30000); // 10,000 milliseconds = 10 seconds
